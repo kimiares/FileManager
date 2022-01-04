@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace FileManager.Drawing
 {
-    class Point : IDrawing
+    public class Point : IDrawing
     {
+        /// <summary>
+        /// X
+        /// </summary>
         public int X { get; set; }
+        /// <summary>
+        /// Y
+        /// </summary>
         public int Y { get; set; }
+
         public char Symbol { get; set; }
+        public Point(int x, int y) : this(x, y, ' ') { }
         public Point(int x, int y, char symb)
         {
             this.X = x;
@@ -20,7 +28,10 @@ namespace FileManager.Drawing
         
         public void Draw()
         {
-            throw new NotImplementedException();
+
+            Console.SetCursorPosition(X, Y);
+            Console.Write(Symbol);
+          
         }
 
        
