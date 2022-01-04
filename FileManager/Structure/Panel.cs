@@ -17,7 +17,10 @@ namespace FileManager.Structure
 
         IDrawing drawing;
         IPanelStrategy strategy;
+        public Panel()
+        {
 
+        }
 
         public void CreatePanel()
         {

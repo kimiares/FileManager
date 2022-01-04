@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FileManager.Control.Input
 {
+    /// <summary>
+    /// обработчик клавиатуры
+    /// </summary>
     class Keyboard:IInput
     {
     }

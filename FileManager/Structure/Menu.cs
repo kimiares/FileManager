@@ -20,6 +20,10 @@ namespace FileManager.Structure
         public List<T> Buttons { get; set; }
         public List<T> Cells { get; set; }
         IDrawing drawing;
+        public Menu()
+        {
+
+        }
         public void CheckArea()
         {
             throw new NotImplementedException();

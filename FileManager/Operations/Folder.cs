@@ -8,5 +8,29 @@ namespace FileManager.Operations
 {
     interface Folder: IOperation
     {
+        public void Get()
+        {
+            throw new NotImplementedException();
+        }
+        public void Copy()
+        {
+            throw new NotImplementedException();
+        }
+        public void Delete()
+        {
+            throw new NotImplementedException();
+        }
+        public void Rename()
+        {
+            throw new NotImplementedException();
+        }
+        public void Create()
+        {
+            throw new NotImplementedException();
+        }
+        public void Info()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

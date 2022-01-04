@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace FileManager.Control.Input
 {
-    class Mouse: IInput
+    /// <summary>
+    /// обработчик мышки
+    /// </summary>
+    class Mouse : IInput
     {
     }
 }
