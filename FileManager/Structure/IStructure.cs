@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    interface IStructure
+    public interface IStructure
     {
         void MakeActive();
     }

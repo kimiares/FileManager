@@ -7,23 +7,29 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    class Panel<T> : List<T>, IStructure,ICheckArea
+    public class Panel<T> : IStructure, ICheckArea
     {
         
         
         public Point StartPoint { get; set; }
-        public int Width { get; set; }
-        public int Heigth { get; set; }
+        public Point FinishPoint { get; set; }
+       
         public bool IsActive { get; set; }
         public string Path { get; set; }
-        public 
+        public List<T> Columns { get; set; }
 
-        IDrawing drawing;
-        IPanelStrategy strategy;
+        public IDrawing drawing;
+        public IPanelStrategy algorithm;
+
         public Panel()
         {
-
+            drawing = new Table();
         }
+        public PanelBuilder<T> CreateBuilder()
+        {
+            return new PanelBuilder<T>();
+        }
+        
 
         public void CreatePanel()
         {
@@ -31,16 +37,19 @@ namespace FileManager.Structure
         }
         public void SetContent()
         {
-            throw new NotImplementedException();
+            this.algorithm.SetColumn();
         }
-        public void CheckArea()
+        public bool CheckArea(Point point)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            //or get a List<Point> of this area and check list.Contains(point)
+            if ((point.X >= StartPoint.X && point.X <= StartPoint.X + FinishPoint.X) && (point.Y >= StartPoint.Y && point.Y <= StartPoint.Y + FinishPoint.Y)) result = true;
+            return result;
         }
 
         public void MakeActive()
         {
-            throw new NotImplementedException();
+            this.IsActive = !this.IsActive;
         }
         public void Add()
         {

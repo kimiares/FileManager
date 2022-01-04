@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Drawing
 {
-    interface IDrawing
+    public interface IDrawing
     {
         void Draw();
     }

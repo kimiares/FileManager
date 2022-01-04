@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure.PanelStrategy
 {
-    class EachColumn : IPanelStrategy
+    public class EachColumn : IPanelStrategy
     {
+        /// <summary>
+        /// для трех столбцов
+        /// </summary>
         public void SetColumn()
         {
+                   
+            
             throw new NotImplementedException();
         }
     }

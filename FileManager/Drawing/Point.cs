@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Drawing
 {
-    class Point : IDrawing
+    public class Point : IDrawing
     {
         public int X { get; set; }
         public int Y { get; set; }
