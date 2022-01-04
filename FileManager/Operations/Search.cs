@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace FileManager.Operations
 {
-    interface Search:IOperation
+    class Search:IOperation
     {
+        public void SearchFile()
+        {
+            throw new NotImplementedException();
+        }
+        public void SearchFolder()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

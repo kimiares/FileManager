@@ -8,6 +8,9 @@ namespace FileManager.Drawing
 {
     class Corner : IDrawing
     {
+        /// <summary>
+        /// all chars are getting from "╚╝╗╔╦╩"
+        /// </summary>
         public string Corners { get; set; }
         public Corner()
         {

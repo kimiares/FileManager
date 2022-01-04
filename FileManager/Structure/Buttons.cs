@@ -20,5 +20,9 @@ namespace FileManager.Structure
         {
 
         }
+        public void CreateButtons()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
