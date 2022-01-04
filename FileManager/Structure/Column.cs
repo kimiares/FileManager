@@ -14,7 +14,6 @@ namespace FileManager.Structure
         public int Heigth { get; set; }
         public bool IsActive { get; set; }
        
-        IDrawing drawing;
         public Column()
         {
 

@@ -9,11 +9,14 @@ namespace FileManager.Structure
 {
     class Panel<T> : List<T>, IStructure,ICheckArea
     {
+        
+        
         public Point StartPoint { get; set; }
         public int Width { get; set; }
         public int Heigth { get; set; }
         public bool IsActive { get; set; }
         public string Path { get; set; }
+        public 
 
         IDrawing drawing;
         IPanelStrategy strategy;
