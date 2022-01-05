@@ -19,5 +19,10 @@ namespace FileManager.Structure.PanelStrategy
         {
             throw new NotImplementedException();
         }
+
+        public void SetColumn(int columnCount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

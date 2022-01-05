@@ -21,7 +21,7 @@ namespace FileManager.Structure
             
         }
 
-        public bool CheckArea(Point point)
+        public new bool CheckArea(Point point)
         {
             return base.CheckArea(point);
         }

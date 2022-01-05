@@ -9,9 +9,10 @@ namespace FileManager.Structure.PanelStrategy
 {
     public class AllColumn: IPanelStrategy
     {
-        public void SetColumn()
+        public void SetColumn(int columnCount)
         {
-            throw new NotImplementedException();
+            
+
 
 
 

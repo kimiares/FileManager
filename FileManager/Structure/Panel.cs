@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 namespace FileManager.Structure
 {
     public class Panel<T> : IStructure, ICheckArea
+        where T: IStructure
     {
         
         
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }
+        public int ColCount { get; set; }
        
         public bool IsActive { get; set; }
         /// <summary>
@@ -33,24 +35,19 @@ namespace FileManager.Structure
             this.drawing = drawing;
             this.algorithm = algorithm;
             SetContent();
-            DrawPanel();
+            
         }
-        //public PanelBuilder<T> CreateBuilder()
-        //{
-        //    return new PanelBuilder<T>();
-        //}
+        
         
 
+      
         /// <summary>
-        /// Drawing panel border
+        /// fill panel by content
         /// </summary>
-        public void DrawPanel()
-        {
-            this.drawing.Draw();
-        }
         public void SetContent()
         {
-            this.algorithm.SetColumn();
+            
+            
         }
         
 
@@ -73,9 +70,19 @@ namespace FileManager.Structure
             throw new NotImplementedException();
         }
 
-        public bool CheckArea()
+        public bool CheckArea(Point point)
         {
-            throw new NotImplementedException();
+            bool result = false;
+
+            if ((point.X >= StartPoint.X && point.X <= StartPoint.X + FinishPoint.X) && (point.Y >= StartPoint.Y && point.Y <= StartPoint.Y + FinishPoint.Y))
+                result = true;
+            return result;
         }
+
+
+        public void Test(T a)
+        {
+            a.MakeActive();
+        } 
     }
 }

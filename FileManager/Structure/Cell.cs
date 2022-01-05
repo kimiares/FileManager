@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    class Cell<T> : IStructure, ICheckArea
+    public class Cell<T> : IStructure, ICheckArea
     {
         
         public Point StartPoint { get; set; }
@@ -22,7 +22,7 @@ namespace FileManager.Structure
         /// </summary>
         public bool IsSelected { get; set; }
         /// <summary>
-        /// содержимое ячейки (FileSystemInfo/String)
+        /// содержимое ячейки (FileSystemInfo/String/Disk?)
         /// </summary>
         public T Content { get; set; }
         
@@ -52,11 +52,6 @@ namespace FileManager.Structure
             if ((point.X >= StartPoint.X && point.X <= StartPoint.X + FinishPoint.X) && (point.Y >= StartPoint.Y && point.Y <= StartPoint.Y + FinishPoint.Y)) 
                 result = true;
             return result;
-        }
-
-        public bool CheckArea()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -13,6 +13,6 @@ namespace FileManager.Structure
         /// <summary>
         /// проверка на принадлежность к указанной области
         /// </summary>
-        bool CheckArea();
+        bool CheckArea(Point point);
     }
 }

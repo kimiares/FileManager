@@ -11,6 +11,6 @@ namespace FileManager.Structure
     /// </summary>
     public interface IPanelStrategy
     {
-        void SetColumn();
+        void SetColumn(int columnCount);
     }
 }

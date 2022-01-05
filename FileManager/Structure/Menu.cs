@@ -35,12 +35,10 @@ namespace FileManager.Structure
             this.drawing = drawing;
             this.IsActive = false;
         }
-       
+   
         
         
         
-        
-
         public void MakeActive()
         {
             this.IsActive = !this.IsActive;
@@ -54,9 +52,13 @@ namespace FileManager.Structure
             throw new NotImplementedException();
         }
 
-        public bool CheckArea()
+        public bool CheckArea(Point point)
         {
-            throw new NotImplementedException();
+            bool result = false;
+
+            if ((point.X >= StartPoint.X && point.X <= StartPoint.X + FinishPoint.X) && (point.Y >= StartPoint.Y && point.Y <= StartPoint.Y + FinishPoint.Y))
+                result = true;
+            return result;
         }
     }
 }

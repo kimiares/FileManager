@@ -11,10 +11,11 @@ namespace FileManager.Structure.PanelStrategy
         /// <summary>
         /// для трех столбцов
         /// </summary>
-        public void SetColumn()
+        
+       
+
+        public void SetColumn(int columnCount)
         {
-                   
-            
             throw new NotImplementedException();
         }
     }
