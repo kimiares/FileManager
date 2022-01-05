@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FileManager.Drawing;
+using FileManager.Structure;
+using System;
 
 namespace FileManager
 {
@@ -10,6 +12,9 @@ namespace FileManager
 
             Console.ReadKey();
             // Cells?
+
+
+            
 
         }
     }

@@ -11,7 +11,7 @@ namespace FileManager.Structure
     {
         public new Point StartPoint { get; set; }
         public new Point FinishPoint { get; set; }
-        public new bool IsActive { get; set; }
+        //public bool IsActive { get; set; }
         public string Text { get; set; }
 
         public IDrawing drawing;

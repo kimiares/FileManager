@@ -53,5 +53,10 @@ namespace FileManager.Structure
                 result = true;
             return result;
         }
+
+        public bool CheckArea()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

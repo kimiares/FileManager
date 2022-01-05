@@ -15,8 +15,8 @@ namespace FileManager.Structure
         public string Name { get; set; }
         public bool IsActive { get; set; }
         public Point StartPoint { get; set; }
-        public int Width { get; set; }
-        public int Heigth { get; set; }
+        public Point FinishPoint { get; set; }
+        
         /// <summary>
         /// кнопки меню (Yes/No)
         /// </summary>
@@ -26,20 +26,24 @@ namespace FileManager.Structure
         /// </summary>
         public List<T> MenuCells { get; set; }
         public IDrawing drawing;
-        public Menu()
+
+        public Menu(Point start, Point finish, string name, IDrawing drawing)
         {
-            drawing = new Table();
+            this.StartPoint = start;
+            this.FinishPoint = finish;
+            this.Name = name;
+            this.drawing = drawing;
+            this.IsActive = false;
         }
+       
         
-        public MenuBuilder<T> CreateBuilder()
-        {
-            return new MenuBuilder<T>();
-        }
+        
+        
         
 
         public void MakeActive()
         {
-            throw new NotImplementedException();
+            this.IsActive = !this.IsActive;
         }
         public void Add()
         {
@@ -50,7 +54,7 @@ namespace FileManager.Structure
             throw new NotImplementedException();
         }
 
-        public bool CheckArea(Point point)
+        public bool CheckArea()
         {
             throw new NotImplementedException();
         }

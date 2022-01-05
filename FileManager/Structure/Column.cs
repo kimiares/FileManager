@@ -20,10 +20,18 @@ namespace FileManager.Structure
             
             this.IsActive = false;
         }
+        /// <summary>
+        /// add cell into column
+        /// </summary>
+        /// <param name="cell"></param>
         public void Add(Cell<T> cell)
         {
             this.Add(cell);
         }
+        /// <summary>
+        /// remove cell from column
+        /// </summary>
+        /// <param name="cell"></param>
         public void Remove(Cell<T> cell)
         {
             this.Remove(cell);

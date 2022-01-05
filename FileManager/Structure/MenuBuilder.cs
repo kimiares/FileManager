@@ -10,27 +10,28 @@ namespace FileManager.Structure
     public class MenuBuilder<T>
     {
         public Menu<T> menu;
-        
+        public IDrawing drawing;
+
         public MenuBuilder()
         {
             menu = new Menu<T>();
         }
-
+        public MenuBuilder<T> SetDrawing()
+        {
+            this.drawing = new Table();
+            return this;
+        }
         public MenuBuilder<T> SetStartPoint(Point point)
         {
             menu.StartPoint = point;
             return this;
         }
-        public MenuBuilder<T> SetWidth(int width)
+        public MenuBuilder<T> SetfinishPoint(Point point)
         {
-            menu.Width = width;
+            menu.FinishPoint = point;
             return this;
         }
-        public MenuBuilder<T> SetHeight(int height)
-        {
-            menu.Width = height;
-            return this;
-        }
+        
         
         public MenuBuilder<T> SetButtonList(List<T> menuButtons)
         {
