@@ -11,30 +11,50 @@ namespace FileManager.Structure
     {
         
         public Point StartPoint { get; set; }
-        public int Width { get; set; }
-        public int Heigth { get; set; }
+        public Point FinishPoint { get; set; }
+        
+        /// <summary>
+        /// активность
+        /// </summary>
         public bool IsActive { get; set; }
+        /// <summary>
+        /// выбор
+        /// </summary>
         public bool IsSelected { get; set; }
+        /// <summary>
+        /// содержимое ячейки (FileSystemInfo/String)
+        /// </summary>
         public T Content { get; set; }
-        IDrawing drawing;
+        
 
-        public Cell()
+        public Cell(Point startPoint, Point finishPoint, T content)
         {
-
+            this.StartPoint = startPoint;
+            this.FinishPoint = finishPoint;
+            this.Content = content;
         }
 
         public void MakeActive()
 
         {
-            throw new NotImplementedException();
+            this.IsActive = !this.IsActive;
         }
         public void MakeSelected()
 
         {
-            throw new NotImplementedException();
+            this.IsSelected = !this.IsSelected;
         }
 
-        public void CheckArea()
+        public bool CheckArea(Point point)
+        {
+            bool result = false;
+            
+            if ((point.X >= StartPoint.X && point.X <= StartPoint.X + FinishPoint.X) && (point.Y >= StartPoint.Y && point.Y <= StartPoint.Y + FinishPoint.Y)) 
+                result = true;
+            return result;
+        }
+
+        public bool CheckArea()
         {
             throw new NotImplementedException();
         }

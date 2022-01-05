@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileManager.Structure;
 
 namespace FileManager.Structure.PanelStrategy
 {
-    class AllColumn: IPanelStrategy
+    public class AllColumn: IPanelStrategy
     {
         public void SetColumn()
         {
             throw new NotImplementedException();
+
+
+
+
         }
     }
 }

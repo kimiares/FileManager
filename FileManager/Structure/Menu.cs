@@ -10,34 +10,51 @@ namespace FileManager.Structure
     /// <summary>
     /// всплывающее меню
     /// </summary>
-    class Menu<T> : IStructure, ICheckArea
+    public class Menu<T> : IStructure, ICheckArea
     {
         public string Name { get; set; }
         public bool IsActive { get; set; }
         public Point StartPoint { get; set; }
-        public int Width { get; set; }
-        public int Heigth { get; set; }
-        public List<T> Buttons { get; set; }
-        public List<T> Cells { get; set; }
-        IDrawing drawing;
-        public Menu()
-        {
+        public Point FinishPoint { get; set; }
+        
+        /// <summary>
+        /// кнопки меню (Yes/No)
+        /// </summary>
+        public List<T> MenuButtons { get; set; }
+        /// <summary>
+        /// ячейки для вывод/ввод 
+        /// </summary>
+        public List<T> MenuCells { get; set; }
+        public IDrawing drawing;
 
-        }
-        public void CheckArea()
+        public Menu(Point start, Point finish, string name, IDrawing drawing)
         {
-            throw new NotImplementedException();
+            this.StartPoint = start;
+            this.FinishPoint = finish;
+            this.Name = name;
+            this.drawing = drawing;
+            this.IsActive = false;
         }
+       
+        
+        
+        
+        
 
         public void MakeActive()
         {
-            throw new NotImplementedException();
+            this.IsActive = !this.IsActive;
         }
         public void Add()
         {
             throw new NotImplementedException();
         }
         public void Remove()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckArea()
         {
             throw new NotImplementedException();
         }

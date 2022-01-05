@@ -7,46 +7,75 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    class Panel<T> : List<T>, IStructure,ICheckArea
+    public class Panel<T> : IStructure, ICheckArea
     {
+        
+        
         public Point StartPoint { get; set; }
-        public int Width { get; set; }
-        public int Heigth { get; set; }
+        public Point FinishPoint { get; set; }
+       
         public bool IsActive { get; set; }
+        /// <summary>
+        /// Root path
+        /// </summary>
         public string Path { get; set; }
+        public List<T> Columns { get; set; }
 
-        IDrawing drawing;
-        IPanelStrategy strategy;
-        public Panel()
+        public IDrawing drawing;
+        public IPanelStrategy algorithm;
+
+        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy algorithm)
         {
-
+            this.StartPoint = start;
+            this.FinishPoint = finish;
+            this.Path = path;
+            this.IsActive = false;
+            this.drawing = drawing;
+            this.algorithm = algorithm;
+            SetContent();
+            DrawPanel();
         }
+        //public PanelBuilder<T> CreateBuilder()
+        //{
+        //    return new PanelBuilder<T>();
+        //}
+        
 
-        public void CreatePanel()
+        /// <summary>
+        /// Drawing panel border
+        /// </summary>
+        public void DrawPanel()
         {
-            throw new NotImplementedException();
+            this.drawing.Draw();
         }
         public void SetContent()
         {
-            throw new NotImplementedException();
+            this.algorithm.SetColumn();
         }
-        public void CheckArea()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public void MakeActive()
         {
-            throw new NotImplementedException();
+            this.IsActive = !this.IsActive;
         }
+        /// <summary>
+        /// add column
+        /// </summary>
         public void Add()
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// remove column
+        /// </summary>
         public void Remove()
         {
             throw new NotImplementedException();
         }
 
+        public bool CheckArea()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

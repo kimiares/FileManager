@@ -7,33 +7,42 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    class Column<T> : List<T>, IStructure, ICheckArea
+    class Column<T> : List<T> where T: Cell<T>, IStructure, ICheckArea
     {
         public Point StartPoint { get; set; }
-        public int Width { get; set; }
-        public int Heigth { get; set; }
+        public Point FinishPoint { get; set; }
         public bool IsActive { get; set; }
        
-        IDrawing drawing;
-        public Column()
+        public Column(Point start, Point finish)
         {
-
+            this.StartPoint = start;
+            this.FinishPoint = finish;
+            
+            this.IsActive = false;
         }
-        public void Add()
+        /// <summary>
+        /// add cell into column
+        /// </summary>
+        /// <param name="cell"></param>
+        public void Add(Cell<T> cell)
         {
-            throw new NotImplementedException();
+            this.Add(cell);
         }
-        public void Remove()
+        /// <summary>
+        /// remove cell from column
+        /// </summary>
+        /// <param name="cell"></param>
+        public void Remove(Cell<T> cell)
         {
-            throw new NotImplementedException();
+            this.Remove(cell);
         }
 
         public void MakeActive()
         {
-            throw new NotImplementedException();
+            this.IsActive = !this.IsActive;
         }
 
-        public void CheckArea()
+        public void CheckArea(Point point)
         {
             throw new NotImplementedException();
         }

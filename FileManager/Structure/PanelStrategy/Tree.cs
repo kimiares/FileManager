@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure.PanelStrategy
 {
-    class Tree : IPanelStrategy
+    public class Tree : IPanelStrategy
     {
         IDrawing drawing;
         public void BuildTree()

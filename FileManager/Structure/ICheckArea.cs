@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileManager.Drawing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 namespace FileManager.Structure
 {
     
-    interface ICheckArea
+    public interface ICheckArea
     {
         /// <summary>
         /// проверка на принадлежность к указанной области
         /// </summary>
-        void CheckArea();
+        bool CheckArea();
     }
 }

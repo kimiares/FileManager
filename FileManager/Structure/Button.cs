@@ -7,22 +7,24 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    class Button<T> : Cell<T>, ICheckArea
+    class Button<T> : Cell<T>
     {
         public new Point StartPoint { get; set; }
-        public new int Width { get; set; }
-        public new int Heigth { get; set; }
-        public new bool IsActive { get; set; }
+        public new Point FinishPoint { get; set; }
+        //public bool IsActive { get; set; }
         public string Text { get; set; }
 
-        IDrawing drawing;
-        public Button()
+        public IDrawing drawing;
+        public Button(Point startPoint, Point finishPoint, T content, IDrawing drawing): base(startPoint, finishPoint, content)
         {
+            
+            
+        }
 
-        }
-        public new void CheckArea()
+        public bool CheckArea(Point point)
         {
-            throw new NotImplementedException();
+            return base.CheckArea(point);
         }
+        
     }
 }

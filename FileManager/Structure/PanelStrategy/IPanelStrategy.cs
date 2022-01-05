@@ -9,7 +9,7 @@ namespace FileManager.Structure
     /// <summary>
     /// выбор способа заполнения столбцов
     /// </summary>
-    interface IPanelStrategy
+    public interface IPanelStrategy
     {
         void SetColumn();
     }
