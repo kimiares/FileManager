@@ -10,10 +10,10 @@ namespace FileManager.Structure
     public class PanelBuilder<T>
     {
         public Panel<T> panel;
-        public PanelBuilder()
-        {
-            panel = new Panel<T>();
-        }
+        //public PanelBuilder()
+        //{
+        //    panel = new Panel<T>();
+        //}
 
         public PanelBuilder<T> SetPoints(Point start, Point finish)
         {

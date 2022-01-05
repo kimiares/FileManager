@@ -35,7 +35,14 @@ namespace FileManager.Commander
         /// Panels count 
         /// </summary>
         public int ColumnCount { get; set; }
-
+        /// <summary>
+        /// Path for panel A
+        /// </summary>
+        public string PathA { get; set; }
+        /// <summary>
+        /// Path for panel B
+        /// </summary>
+        public string PathB { get; set; }
         /// <summary>
         /// Save settings to xml file 
         /// </summary>
@@ -50,13 +57,15 @@ namespace FileManager.Commander
         /// <summary>
         /// Load settings from xml file 
         /// </summary>
-        public void LoadSettings()
+        public Configuration LoadSettings()
         {
+            Configuration NewSettings = new Configuration();
             XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
             using (FileStream fs = new FileStream("settings.xml", FileMode.OpenOrCreate))
             {
-                Configuration newPerson = (Configuration)formatter.Deserialize(fs);
+                NewSettings = (Configuration)formatter.Deserialize(fs);
             }
+            return NewSettings;
         }
     }
 }

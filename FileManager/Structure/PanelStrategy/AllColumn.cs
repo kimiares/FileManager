@@ -11,21 +11,11 @@ namespace FileManager.Structure.PanelStrategy
     {
         public void SetColumn()
         {
-            try
-            {
-                foreach(Column column in Panel.Columns)
-                {
-                    //fill column
-                }
-            }
-            catch
-            {
-                throw new NotImplementedException();
-            }
+            throw new NotImplementedException();
 
-            
-            
-            
+
+
+
         }
     }
 }

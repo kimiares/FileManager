@@ -11,7 +11,10 @@ namespace FileManager.Drawing
         /// <summary>
         /// all chars are getting from "╚╝╗╔╦╩"
         /// </summary>
-        public string Corners { get; set; }
+       // public string Corners { get; set; }
+        public static string Corners = "╔╗╝╚";
+
+        public static string TCorners = "╦╩";
         public Corner()
         {
 

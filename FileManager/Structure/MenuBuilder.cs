@@ -12,13 +12,13 @@ namespace FileManager.Structure
         public Menu<T> menu;
         public IDrawing drawing;
 
-        public MenuBuilder()
-        {
-            menu = new Menu<T>();
-        }
+        //public MenuBuilder()
+        //{
+        //    menu = new Menu<T>();
+        //}
         public MenuBuilder<T> SetDrawing()
         {
-            this.drawing = new Table();
+            //this.drawing = new Table();
             return this;
         }
         public MenuBuilder<T> SetStartPoint(Point point)
