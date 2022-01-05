@@ -7,20 +7,14 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure.PanelStrategy
 {
-    public class Tree : IPanelStrategy
+    public class Tree<T> : IPanelStrategy<T>
+        where T : IStructure
+        
     {
         IDrawing drawing;
-        public void BuildTree()
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public void SetColumn()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetColumn(int columnCount)
+        public void SetColumn(List<Column<T>> targertList, int columnCount)
         {
             throw new NotImplementedException();
         }

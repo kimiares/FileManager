@@ -52,13 +52,6 @@ namespace FileManager.Structure
             throw new NotImplementedException();
         }
 
-        public bool CheckArea(Point point)
-        {
-            bool result = false;
-
-            if ((point.X >= StartPoint.X && point.X <= StartPoint.X + FinishPoint.X) && (point.Y >= StartPoint.Y && point.Y <= StartPoint.Y + FinishPoint.Y))
-                result = true;
-            return result;
-        }
+     
     }
 }

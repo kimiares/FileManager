@@ -13,6 +13,16 @@ namespace FileManager.Structure
         /// <summary>
         /// проверка на принадлежность к указанной области
         /// </summary>
-        bool CheckArea(Point point);
+        bool CheckArea(Point point, Point start, Point finish)
+        {
+            bool result = false;
+
+            if ((point.X >= start.X && point.X <= start.X + finish.X) 
+                && (point.Y >= start.Y && point.Y <= start.Y + finish.Y))
+                result = true;
+            return result;
+
+
+        }
     }
 }

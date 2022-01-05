@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Panel<T> : IStructure, ICheckArea
+    public class Panel<T> : List<Column<T>>, IStructure, ICheckArea
         where T: IStructure
+        
     {
         
         
@@ -21,12 +22,12 @@ namespace FileManager.Structure
         /// Root path
         /// </summary>
         public string Path { get; set; }
-        public List<T> Columns { get; set; }
+        //public List<T> Columns { get; set; }
 
         public IDrawing drawing;
-        public IPanelStrategy algorithm;
+        public IPanelStrategy<T> algorithm;
 
-        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy algorithm)
+        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy<T> algorithm)
         {
             this.StartPoint = start;
             this.FinishPoint = finish;
@@ -46,8 +47,9 @@ namespace FileManager.Structure
         /// </summary>
         public void SetContent()
         {
-            
-            
+            this.algorithm.SetColumn(this, ColCount);
+
+
         }
         
 
@@ -70,19 +72,12 @@ namespace FileManager.Structure
             throw new NotImplementedException();
         }
 
-        public bool CheckArea(Point point)
-        {
-            bool result = false;
-
-            if ((point.X >= StartPoint.X && point.X <= StartPoint.X + FinishPoint.X) && (point.Y >= StartPoint.Y && point.Y <= StartPoint.Y + FinishPoint.Y))
-                result = true;
-            return result;
-        }
 
 
         public void Test(T a)
         {
             a.MakeActive();
+            var b = a;
         } 
     }
 }
