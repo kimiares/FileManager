@@ -13,20 +13,20 @@ namespace FileManager.Structure
     public class Buttons<T>: List<T> where T: Button<T>
     {
         public Point StartPoint { get; set; }
+        public Point FinishPoint { get; set; }
         public int Width { get; set; }
         public int Heigth { get; set; }
         /// <summary>
         /// расстояние между кнопками
         /// </summary>
         public int SpaceBetweenButtons { get; set; }
-        public Buttons(Point start, int width, int height, int space)
+        public Buttons(Point start, Point finish, int space)
         {
             this.StartPoint = start;
-            this.Width = width;
-            this.Heigth = height;
+            this.FinishPoint = finish;
             this.SpaceBetweenButtons = space;
         }
-        public void CreateButtons()
+        public void CreateButtonsPanel()
         {
             throw new NotImplementedException();
         }

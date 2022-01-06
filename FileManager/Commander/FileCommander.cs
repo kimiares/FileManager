@@ -10,10 +10,10 @@ namespace FileManager.Commander
     /// <summary>
     /// инициализация коммандера
     /// </summary>
-    class FileCommander<T>
+    class FileCommander<T> where T: IStructure
     {
         public List<T> Panels { get; set; }
-        //public Buttons<T>  Buttons { get; set; }
+        public List<Button<T>> Buttons { get; set; }
 
 
         public FileCommander(List<T> panels /*Buttons<T> buttons*/)

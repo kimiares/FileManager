@@ -26,34 +26,14 @@ namespace FileManager.Structure.PanelStrategy
         /// </summary>
         public void SetColumn(List<Column<T>> targertList, int columnCount)
         {
-            foreach (Column<T> col in targertList)
-            {
-                if (targertList.IndexOf(col)==0)
-                {
-                    List<FileSystemInfo> temp = input.Take(col.MaxElementsNumber).ToList();
-                    foreach (var t in temp)
-                    {
-                        col.Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.Name));
-                    }                    
-                }
-                if (targertList.IndexOf(col) == 1)
-                {
-                    List<FileSystemInfo> temp = input.Take(col.MaxElementsNumber).ToList();
-                    foreach (var t in temp)
-                    {
-                        col.Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.CreationTime.Year));
-                    }
-                }
-                if (targertList.IndexOf(col) == 2)
-                {
-                    List<FileSystemInfo> temp = input.Take(col.MaxElementsNumber).ToList();
-                    foreach (var t in temp)
-                    {
-                        col.Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.LastWriteTime.Date));
-                    }
-                }
-
-            }
+             List<FileSystemInfo> temp = input.Take(targertList[0].MaxElementsNumber).ToList();
+               foreach (var t in temp)
+               {
+                        targertList[0].Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.Name));
+                        targertList[1].Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.CreationTime.Year));
+                        targertList[2].Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.LastWriteTime.Date));
+                        
+               }               
         }
     }
 }

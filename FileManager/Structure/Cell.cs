@@ -44,6 +44,7 @@ namespace FileManager.Structure
         {
             this.IsSelected = !this.IsSelected;
         }
+        
 
        
     }

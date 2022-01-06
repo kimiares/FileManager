@@ -25,14 +25,14 @@ namespace FileManager.Structure.PanelStrategy
         public void SetColumn(List<Column<T>> targertList, int columnCount)
         {
             
-                foreach (Column<T> col in targertList)
+                foreach (Column<T> column in targertList)
                 {
-                    List<FileSystemInfo> temp = this.input.Take(col.MaxElementsNumber).ToList();
+                    List<FileSystemInfo> temp = this.input.Take(column.MaxElementsNumber).ToList();
                     foreach (FileSystemInfo t in temp)
                     {
-                        col.Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t));
+                    column.Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.Name));
                     }
-                    input = input.Skip(col.MaxElementsNumber).ToList();
+                    input = input.Skip(column.MaxElementsNumber).ToList();
                 }
             
         }

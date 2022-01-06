@@ -21,8 +21,8 @@ namespace FileManager.Structure
                 && (point.Y >= start.Y && point.Y <= start.Y + finish.Y))
                 result = true;
             return result;
-
-
         }
+
+        
     }
 }

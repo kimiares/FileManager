@@ -9,7 +9,7 @@ namespace FileManager.Structure
 {
     public class Panel<T> : List<Column<T>>, IStructure, ICheckArea
         where T: IStructure
-        
+
     {
         
         
