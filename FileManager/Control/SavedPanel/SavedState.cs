@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Control.SavedPanel
 {
-    class SavedState<T>
+    class SavedState<T> where T: IStructure
     {
         public List<T> ItemsInColumns { get; set; }
         public Panel<T> ActivePanel { get; set; }

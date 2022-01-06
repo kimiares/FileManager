@@ -11,7 +11,7 @@ namespace FileManager.Control.SavedPanel
     /// сохранение состояния панели для перехода по директориям. As is variant
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class PanelState<T>
+    class PanelState<T> where T : IStructure
     {
         public List<T> ItemsInColumns { get; set; }
         public Panel<T> ActivePanel { get; set; }
