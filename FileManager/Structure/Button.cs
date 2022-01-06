@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    class Button<T> : Cell<T>, ICheckArea
+    public class Button<T> : Cell<T>, ICheckArea
     {
         public new Point StartPoint { get; set; }
         public new Point FinishPoint { get; set; }

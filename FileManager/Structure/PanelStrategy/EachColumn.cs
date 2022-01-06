@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure.PanelStrategy
 {
+    /// <summary>
+    /// fill each column by diff data(name,date,etc)
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class EachColumn<T> : IPanelStrategy<T>
         where T : IStructure
 
@@ -30,9 +34,7 @@ namespace FileManager.Structure.PanelStrategy
                     foreach (var t in temp)
                     {
                         col.Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.Name));
-                    }
-                    //input = input.Skip(col.maxNumbers).ToList();
-
+                    }                    
                 }
                 if (targertList.IndexOf(col) == 1)
                 {
@@ -41,7 +43,6 @@ namespace FileManager.Structure.PanelStrategy
                     {
                         col.Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.CreationTime.Year));
                     }
-
                 }
                 if (targertList.IndexOf(col) == 2)
                 {
@@ -50,7 +51,6 @@ namespace FileManager.Structure.PanelStrategy
                     {
                         col.Add(new Cell<T>(StartPoint, FinishPoint, (T)(object)t.LastWriteTime.Date));
                     }
-
                 }
 
             }

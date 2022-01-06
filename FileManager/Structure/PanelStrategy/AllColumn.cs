@@ -10,6 +10,10 @@ using FileManager.Structure;
 
 namespace FileManager.Structure.PanelStrategy
 {
+    /// <summary>
+    /// fill all columns by same data(only names)
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class AllColumn<T> : IPanelStrategy<T>
         where T : IStructure
 

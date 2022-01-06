@@ -10,7 +10,7 @@ namespace FileManager.Structure
     /// <summary>
     /// панель кнопок
     /// </summary>
-    class Buttons<T>: List<T> where T: Button<T>
+    public class Buttons<T>: List<T> where T: Button<T>
     {
         public Point StartPoint { get; set; }
         public int Width { get; set; }

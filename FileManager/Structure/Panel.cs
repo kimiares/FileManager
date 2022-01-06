@@ -73,11 +73,5 @@ namespace FileManager.Structure
         }
 
 
-
-        public void Test(T a)
-        {
-            a.MakeActive();
-            var b = a;
-        } 
     }
 }

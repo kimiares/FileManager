@@ -11,10 +11,14 @@ namespace FileManager.Structure
     /// выбор способа заполнения столбцов
     /// </summary>
     public interface IPanelStrategy<T> 
-        where T: IStructure
-        
+        where T: IStructure       
         
     {
+        /// <summary>
+        /// Column filling. Params: column for filling, count of columns
+        /// </summary>
+        /// <param name="targertList"></param>
+        /// <param name="columnCount"></param>
         void SetColumn(List<Column<T>> targertList, int columnCount);
     }
 }
