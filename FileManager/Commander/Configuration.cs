@@ -12,60 +12,83 @@ namespace FileManager.Commander
     /// <summary>
     /// настройки для запуска
     /// </summary>
-    class Configuration
+    public class Configuration
     {
         /// <summary>
-        /// Left Upper start point (X,Y)
+        /// PanelHeight
         /// </summary>
-        public Point Start { get; set; }
+        public int PanelHeight = Console.WindowHeight;
         /// <summary>
-        /// Screen width
+        /// PanelWidth
         /// </summary>
-        public int Width { get; set; }
-        public int Heigth { get; set; }
+        public int PanelWidth = Console.WindowWidth;
         /// <summary>
-        /// Panels textcolor 
+        /// Default TextColor
         /// </summary>
-        public ConsoleColor FontColor { get; set; }
+        public ConsoleColor TextColor = ConsoleColor.White;
         /// <summary>
-        /// Panels backcolor 
+        /// Default BackColor
         /// </summary>
-        public ConsoleColor BackColor { get; set; }
+        public ConsoleColor BackColor = ConsoleColor.Blue;
         /// <summary>
-        /// Panels count 
+        /// Default path of right panel
         /// </summary>
-        public int ColumnCount { get; set; }
+        public string PathRight = DriveInfo.GetDrives()[0]?.Name;
         /// <summary>
-        /// Path for panel A
+        /// Default path of left panel
         /// </summary>
-        public string PathA { get; set; }
+        public string PathLeft = DriveInfo.GetDrives()[0]?.Name;
         /// <summary>
-        /// Path for panel B
+        /// Left Upper coordinate X for left panel
         /// </summary>
-        public string PathB { get; set; }
+        public int ALX = 0;
         /// <summary>
-        /// Save settings to xml file 
+        /// Left Upper coordinate Y for left panel
         /// </summary>
-        public void SaveSettings(Configuration settings)
-        {
-            XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
-            using (FileStream fs = new FileStream("settings.xml", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, settings);
-            }
-        }
+        public int ALY = 0;
         /// <summary>
-        /// Load settings from xml file 
+        /// Right Bottom coordinate X for left panel
         /// </summary>
-        public Configuration LoadSettings()
-        {
-            Configuration NewSettings = new Configuration();
-            XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
-            using (FileStream fs = new FileStream("settings.xml", FileMode.OpenOrCreate))
-            {
-                NewSettings = (Configuration)formatter.Deserialize(fs);
-            }
-            return NewSettings;
-        }
+        public int BLX = Console.WindowWidth / 2 - 1;
+        /// <summary>
+        /// Right Bottom coordinate Y for left panel
+        /// </summary>
+        public int BLY = Console.WindowHeight - 4;
+        /// <summary>
+        /// Left Upper coordinate X for right panel
+        /// </summary>
+        public int ARX = Console.WindowWidth / 2 + 1;
+        /// <summary>
+        /// Left Upper coordinate Y for right panel
+        /// </summary>
+        public int ARY = 0;
+        /// <summary>
+        /// Right Bottom coordinate X for right panel
+        /// </summary>
+        public int BRX = Console.WindowWidth - 1;
+        /// <summary>
+        /// Right Bottom coordinate Y for right panel
+        /// </summary>
+        public int BRY = Console.WindowHeight - 4;
+        /// <summary>
+        /// Active Panel
+        /// </summary>
+        public bool ActivePanel = false;
+        /// <summary>
+        /// ViewMode Left Panel
+        /// 1 - one column
+        /// 2 - three columns
+        /// 3 - three columns as one
+        /// </summary>
+        public int ViewModeLeftPanel = 3;
+        /// <summary>
+        /// ViewMode Right Panel
+        /// 1 - one column
+        /// 2 - three columns
+        /// 3 - three columns as one
+        /// </summary>
+        public int ViewModeRightPanel = 3;
+
+
     }
 }

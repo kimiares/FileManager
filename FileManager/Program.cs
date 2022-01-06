@@ -1,6 +1,7 @@
-﻿using FileManager.Drawing;
+﻿using FileManager.Commander;
+using FileManager.Drawing;
 using System;
-using System.Drawing;
+
 
 namespace FileManager
 {
@@ -9,12 +10,12 @@ namespace FileManager
         static void Main(string[] args)
         {
             Console.ResetColor();
-           //  Line a = new Line(new Drawing.Point(0, 0, ' '), new Drawing.Point(0, 20, ' '));
-           // a.Draw();
-            Table m = new Table("sewfesdfsf", new Drawing.Point(0, 0), new Drawing.Point(60, 28),3);
-
+           
+            Settings MySet = Settings.Instance();
+            Table m1 = new Table(MySet.Sets.PathLeft, new Drawing.Point( MySet.Sets.ALX, MySet.Sets.ALY), new Drawing.Point(MySet.Sets.BLX, MySet.Sets.BLY),4);
+            Table m2 = new Table(MySet.Sets.PathRight, new Drawing.Point(MySet.Sets.ARX, MySet.Sets.ARY), new Drawing.Point(MySet.Sets.BRX, MySet.Sets.BRY), 4);
             Console.ReadKey();
-            // Cells?
+          
 
         }
     }
