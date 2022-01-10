@@ -12,9 +12,9 @@ namespace FileManager.Structure.PanelStrategy
     /// fill each column by diff data(name,date,etc)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class EachColumn<U,T> : IPanelStrategy<U, T>
+    public class EachColumn<T> : IPanelStrategy<T>
         where T : class
-        where U: IStructure
+        //where U: IStructure
 
     {
 
@@ -25,7 +25,7 @@ namespace FileManager.Structure.PanelStrategy
         /// <summary>
         /// для трех столбцов
         /// </summary>
-        public void SetColumn(List<Column<U, T>> targertList, List<T> input, int columnCount)
+        public void SetColumn(List<Column<T>> targertList, List<T> input, int columnCount)
         {
              List<T> temp = input.Take(targertList[0].MaxElementsNumber).ToList();
                foreach (var t in temp)

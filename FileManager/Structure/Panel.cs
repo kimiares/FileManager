@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Panel<U,T> : List<Column<U,T>>, ICheckArea
+    public class Panel<T> : List<Column<T>>, ICheckArea
         where T : class
-        where U: IStructure
+        //where U: IStructure
 
     {
         
@@ -27,9 +27,9 @@ namespace FileManager.Structure
         public List<T> Input { get; set; }
 
         public IDrawing drawing;
-        public IPanelStrategy<U, T> algorithm;
+        public IPanelStrategy<T> algorithm;
 
-        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy<U, T> algorithm, List<T> input)
+        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy<T> algorithm, List<T> input)
         {
             this.StartPoint = start;
             this.FinishPoint = finish;
@@ -38,11 +38,13 @@ namespace FileManager.Structure
             this.drawing = drawing;
             this.algorithm = algorithm;
             this.Input = input;
-            //this.algorithm.SetColumn(this, this.Input, this.ColCount);
+            
 
             AddTableName();
             SetContent();
-            
+            PrintContent();
+
+
         }
 
 
@@ -62,7 +64,16 @@ namespace FileManager.Structure
 
         public void PrintContent()
         {
-
+            foreach(Column<T> column in this)
+            {
+                for(int i = 0; i < column.Count; i++)
+                {
+                    Console.SetCursorPosition(column[i].StartPoint.X, column[i].StartPoint.Y + i);
+                    Console.WriteLine(column[i].Content);
+                    
+                }
+            }
+            
         }
 
 

@@ -41,6 +41,7 @@ namespace FileManager.Structure
 
         {
             this.IsActive = !this.IsActive;
+            
         }
         public void MakeSelected()
 

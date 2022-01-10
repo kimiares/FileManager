@@ -16,7 +16,7 @@ namespace FileManager.Control.SavedPanel
         where T: class
     {
         public List<T> ItemsInColumns { get; set; }
-        public Panel<U,T> ActivePanel { get; set; }
+        public Panel<T> ActivePanel { get; set; }
         public T SelectedItem { get; set; }
 
 

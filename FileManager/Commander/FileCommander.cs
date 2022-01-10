@@ -10,15 +10,14 @@ namespace FileManager.Commander
     /// <summary>
     /// инициализация коммандера
     /// </summary>
-    class FileCommander<U,T> 
-        where U: IStructure
+    class FileCommander<T> 
+        //where U: IStructure
         where T : class
     {
-        public List<U> Panels { get; set; }
-        public List<Button> Buttons { get; set; }
+        
 
 
-        public FileCommander(List<U> panels /*Buttons<T> buttons*/)
+        public FileCommander()
         {
             throw new NotImplementedException();
         }

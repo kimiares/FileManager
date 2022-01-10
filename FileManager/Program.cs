@@ -2,11 +2,11 @@
 ﻿using FileManager.Commander;
 using FileManager.Drawing;
 using System;
-﻿using FileManager.Drawing;
+
 using FileManager.Structure;
 using FileManager.Structure.PanelStrategy;
 using FileManager.Operations;
-using System;
+
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -51,15 +51,21 @@ namespace FileManager
 
                 //Table tableForPanel = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(60, 28), 3);
 
-                Panel<IStructure, string> panel = new Panel<IStructure, string>(
+                Panel<FileSystemInfo> panel = new Panel<FileSystemInfo>(
                     new Drawing.Point(1, 1),
                     new Drawing.Point(59, 27),
                     MySet.Sets.PathLeft,
                     new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(60, 28), 3),
-                    new AllColumn<IStructure, string>(),
-                    input);
+                    new AllColumn<FileSystemInfo>(),
+                    testFSI);
 
 
+
+
+
+
+
+              
 
             }
            

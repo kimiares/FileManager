@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Column<U, T> : List<Cell<T>>, ICheckArea
+    public class Column<T> : List<Cell<T>>, ICheckArea
         where T : class
-        where U: IStructure
+        //where U: IStructure
     {
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }

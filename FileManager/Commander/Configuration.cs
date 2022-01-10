@@ -90,5 +90,8 @@ namespace FileManager.Commander
         public int ViewModeRightPanel = 3;
 
 
+        public int ColumnCount = 3;
+
+
     }
 }
