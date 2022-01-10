@@ -9,7 +9,7 @@ namespace FileManager.Operations
 {
     public class Files: IOperation
     {
-        public List<FileSystemInfo> GetFiles(string path)
+        public static List<FileSystemInfo> GetFiles(string path)
         {
             List<FileSystemInfo> result = new List<FileSystemInfo>();
             try

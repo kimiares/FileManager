@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Column<T> : List<Cell<T>>, IStructure, ICheckArea
+    public class Column<U, T> : List<Cell<T>>, IStructure, ICheckArea
+        where U: IStructure
+        where T: class
     {
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }

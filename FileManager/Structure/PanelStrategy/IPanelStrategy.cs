@@ -10,8 +10,9 @@ namespace FileManager.Structure
     /// <summary>
     /// выбор способа заполнения столбцов
     /// </summary>
-    public interface IPanelStrategy<T> 
-        where T: IStructure       
+    public interface IPanelStrategy<U, T> 
+        where U: IStructure
+        where T: class
         
     {
         /// <summary>
@@ -19,6 +20,6 @@ namespace FileManager.Structure
         /// </summary>
         /// <param name="targertList"></param>
         /// <param name="columnCount"></param>
-        void SetColumn(List<Column<T>> targertList, int columnCount);
+        void SetColumn(List<Column<U, T>> targertList, List<T> input, int columnCount);
     }
 }

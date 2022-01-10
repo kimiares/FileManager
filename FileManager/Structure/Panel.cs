@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Panel<T> : List<Column<T>>, IStructure, ICheckArea
-        where T: IStructure
+    public class Panel<U,T> : List<Column<U,T>>, IStructure, ICheckArea
+        where U: IStructure
+        where T:class
 
     {
         
@@ -22,12 +23,12 @@ namespace FileManager.Structure
         /// Root path
         /// </summary>
         public string Path { get; set; }
-        //public List<T> Columns { get; set; }
+        public List<T> Input { get; set; }
 
         public IDrawing drawing;
-        public IPanelStrategy<T> algorithm;
+        public IPanelStrategy<U,T> algorithm;
 
-        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy<T> algorithm)
+        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy<U, T> algorithm, List<T> input)
         {
             this.StartPoint = start;
             this.FinishPoint = finish;
@@ -35,23 +36,33 @@ namespace FileManager.Structure
             this.IsActive = false;
             this.drawing = drawing;
             this.algorithm = algorithm;
+            this.Input = input;
+            //this.algorithm.SetColumn(this, this.Input, this.ColCount);
+
+
             SetContent();
             
         }
-        
-        
 
-      
+
+
+
         /// <summary>
         /// fill panel by content
         /// </summary>
         public void SetContent()
         {
-            this.algorithm.SetColumn(this, ColCount);
+            this.algorithm.SetColumn(this, this.Input, this.ColCount);
 
 
         }
-        
+
+
+
+        public void PrintContent()
+        {
+
+        }
 
         public void MakeActive()
         {

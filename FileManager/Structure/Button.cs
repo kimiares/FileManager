@@ -17,8 +17,9 @@ namespace FileManager.Structure
         public IDrawing drawing;
         public Button(Point startPoint, Point finishPoint, T content, IDrawing drawing): base(startPoint, finishPoint, content)
         {
-            
-            
+
+            Text = (string)Convert.ChangeType(content, typeof(string));
+
         }
 
         
