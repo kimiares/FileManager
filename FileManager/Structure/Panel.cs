@@ -1,14 +1,16 @@
 ﻿using FileManager.Drawing;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Panel<T> : List<Column<T>>, IStructure, ICheckArea
-        where T:class, IStructure, ICheckArea
+    public class Panel<U,T> : List<Column<U,T>>, ICheckArea
+        where T : class
+        where U: IStructure
 
     {
         
@@ -25,7 +27,7 @@ namespace FileManager.Structure
         public List<T> Input { get; set; }
 
         public IDrawing drawing;
-        public IPanelStrategy<U,T> algorithm;
+        public IPanelStrategy<U, T> algorithm;
 
         public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy<U, T> algorithm, List<T> input)
         {

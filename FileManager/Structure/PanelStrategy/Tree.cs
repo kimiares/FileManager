@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure.PanelStrategy
 {
-    public class Tree<U, T> : IPanelStrategy<U,T>
+    public class Tree<U,T> : IPanelStrategy<U,T>
+        where T : class
         where U : IStructure
-        where T: class
-        
+
     {
         IDrawing drawing;
         

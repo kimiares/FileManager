@@ -10,7 +10,7 @@ namespace FileManager.Structure
     /// <summary>
     /// всплывающее меню
     /// </summary>
-    public class Menu<T> : IStructure, ICheckArea
+    public class Menu<T> where T : class, IStructure
     {
         public string Name { get; set; }
         public bool IsActive { get; set; }

@@ -1,13 +1,16 @@
 ﻿using FileManager.Drawing;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Cell<T> where T: class, IStructure, ICheckArea
+    public class Cell<T>:ICheckArea
+        where T: class
+        
     {
         
         public Point StartPoint { get; set; }

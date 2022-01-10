@@ -17,12 +17,12 @@ namespace FileManager.Structure
         {
             bool result = false;
 
-            if ((point.X >= start.X && point.X <= start.X + finish.X) 
+            if ((point.X >= start.X && point.X <= start.X + finish.X)
                 && (point.Y >= start.Y && point.Y <= start.Y + finish.Y))
                 result = true;
             return result;
         }
 
-        
+
     }
 }

@@ -14,9 +14,10 @@ namespace FileManager.Structure.PanelStrategy
     /// fill all columns by same data(only names)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class AllColumn<T> : IPanelStrategy<T>
-        where T : class, IStructure, ICheckArea
-        
+    public class AllColumn<U, T> : IPanelStrategy<U,T>
+        where T : class
+        where U: IStructure
+
 
     {
         //public List<FileSystemInfo> input;
@@ -26,10 +27,10 @@ namespace FileManager.Structure.PanelStrategy
 
        
         
-        public void SetColumn(List<Column<T>> targertList, List<T> input, int columnCount)
+        public void SetColumn(List<Column<U, T>> targertList, List<T> input, int columnCount)
         {
             
-                foreach (Column<T> column in targertList)
+                foreach (Column<U,T> column in targertList)
                 {
                     List<T> temp = input.Take(column.MaxElementsNumber).ToList();
                     foreach (T t in temp)
@@ -41,7 +42,7 @@ namespace FileManager.Structure.PanelStrategy
                                     column.StartPoint.X, column.StartPoint.Y+i), 
                                 new Point(
                                     column.FinishPoint.X, column.FinishPoint.Y-column.MaxElementsNumber+i), 
-                                    (T)(object)t));
+                                    t));
                         }
                         
                         }
