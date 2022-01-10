@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Cell<T>:ICheckArea
-        where T: class
+    public class Cell<T>: ICheckArea, IStructure
+        //where T: class
         
     {
         

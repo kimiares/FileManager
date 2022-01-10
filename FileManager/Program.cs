@@ -46,16 +46,17 @@ namespace FileManager
 
                 
                 List<string> input = new List<string>() { "A", "B", "C", "D", "E", "F" };
+                
                 List<FileSystemInfo> testFSI = Operations.Files.GetFiles(@"C:\");
 
                 Table m = new Table("sewfesdfsf", new Drawing.Point(0, 0), new Drawing.Point(60, 28), 3);
                 
-                Panel<IStructure, FileSystemInfo> panel = new Panel<IStructure, FileSystemInfo>(new Drawing.Point(1, 1), 
+                Panel<IStructure, string> panel = new Panel<IStructure, string>(new Drawing.Point(1, 1), 
                     new Drawing.Point(59, 27), 
                     "C", 
                     m, 
-                    new AllColumn<IStructure, FileSystemInfo>(),
-                    testFSI);
+                    new AllColumn<IStructure, string>(),
+                    input);
 
 
 
