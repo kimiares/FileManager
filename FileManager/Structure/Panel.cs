@@ -40,7 +40,7 @@ namespace FileManager.Structure
             this.Input = input;
             //this.algorithm.SetColumn(this, this.Input, this.ColCount);
 
-
+            AddTableName();
             SetContent();
             
         }
@@ -63,6 +63,15 @@ namespace FileManager.Structure
         public void PrintContent()
         {
 
+        }
+
+
+        public void AddTableName()
+        {
+            Console.SetCursorPosition(
+                StartPoint.X + (FinishPoint.X - StartPoint.X) / 2 - Path.Length / 2, 
+                StartPoint.Y-1);
+            Console.Write(Path);
         }
 
         public void MakeActive()
