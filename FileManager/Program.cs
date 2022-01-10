@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+﻿using FileManager.Commander;
+using FileManager.Drawing;
+using System;
+
+=======
 ﻿using FileManager.Drawing;
 using FileManager.Structure;
 using FileManager.Structure.PanelStrategy;
@@ -6,14 +12,23 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+>>>>>>> 94ecb01d8d3343a8e185d4ed9f10ff275c78b171
 
 namespace FileManager
 {
     class Program
     {
-        
         static void Main(string[] args)
         {
+<<<<<<< HEAD
+            Console.ResetColor();
+           
+            Settings MySet = Settings.Instance();
+            Table m1 = new Table(MySet.Sets.PathLeft, new Drawing.Point( MySet.Sets.ALX, MySet.Sets.ALY), new Drawing.Point(MySet.Sets.BLX, MySet.Sets.BLY),4);
+            Table m2 = new Table(MySet.Sets.PathRight, new Drawing.Point(MySet.Sets.ARX, MySet.Sets.ARY), new Drawing.Point(MySet.Sets.BRX, MySet.Sets.BRY), 4);
+            Console.ReadKey();
+          
+=======
             // Console.ResetColor();
             ////  Line a = new Line(new Drawing.Point(0, 0, ' '), new Drawing.Point(0, 20, ' '));
             //// a.Draw();
@@ -71,6 +86,7 @@ namespace FileManager
             }
            
             
+>>>>>>> 94ecb01d8d3343a8e185d4ed9f10ff275c78b171
 
         }
     }
