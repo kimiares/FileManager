@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Button<T> : Cell<T>, ICheckArea
+    public class Button : ICheckArea
     {
         public new Point StartPoint { get; set; }
         public new Point FinishPoint { get; set; }
-        //public bool IsActive { get; set; }
+        
         public string Text { get; set; }
 
-        public IDrawing drawing;
-        public Button(Point startPoint, Point finishPoint, T content, IDrawing drawing): base(startPoint, finishPoint, content)
+        public Button(Point startPoint, Point finishPoint, string text)
         {
 
-            Text = (string)Convert.ChangeType(content, typeof(string));
+            this.StartPoint = startPoint;
+            this.FinishPoint = finishPoint;
+            this.Text = text;
 
         }
 

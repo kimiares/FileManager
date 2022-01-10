@@ -34,14 +34,20 @@ namespace FileManager.Structure.PanelStrategy
                     List<T> temp = input.Take(column.MaxElementsNumber).ToList();
                     foreach (T t in temp)
                     {
-                    column.Add(new Cell<T>(column.StartPoint, column.FinishPoint, (T)(object)t));
+                        for (int i = 0; i < column.Count; i++)
+                        {
+                            column.Add(new Cell<T>(
+                                new Point(
+                                    column.StartPoint.X, column.StartPoint.Y+i), 
+                                new Point(
+                                    column.FinishPoint.X, column.FinishPoint.Y-column.MaxElementsNumber+i), 
+                                    (T)(object)t));
+                        }
+                        
+                        }
+                        input = input.Skip(column.MaxElementsNumber).ToList();
                     }
-                    input = input.Skip(column.MaxElementsNumber).ToList();
-                }
             
         }
-
-
-        
     }
 }

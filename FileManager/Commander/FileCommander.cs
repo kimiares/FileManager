@@ -13,7 +13,7 @@ namespace FileManager.Commander
     class FileCommander<T> where T: IStructure
     {
         public List<T> Panels { get; set; }
-        public List<Button<T>> Buttons { get; set; }
+        public List<Button> Buttons { get; set; }
 
 
         public FileCommander(List<T> panels /*Buttons<T> buttons*/)
