@@ -9,5 +9,8 @@ namespace FileManager.Structure
     public interface IStructure
     {
         void MakeActive();
+
+
+
     }
 }

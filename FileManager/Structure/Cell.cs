@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Cell<T> : IStructure, ICheckArea
+    public class Cell<T> where T: class, IStructure, ICheckArea
     {
         
         public Point StartPoint { get; set; }

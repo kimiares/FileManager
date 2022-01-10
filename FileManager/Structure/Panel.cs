@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Panel<U,T> : List<Column<U,T>>, IStructure, ICheckArea
-        where U: IStructure
-        where T:class
+    public class Panel<T> : List<Column<T>>, IStructure, ICheckArea
+        where T:class, IStructure, ICheckArea
 
     {
         
