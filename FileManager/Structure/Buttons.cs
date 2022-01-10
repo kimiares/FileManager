@@ -10,25 +10,62 @@ namespace FileManager.Structure
     /// <summary>
     /// панель кнопок
     /// </summary>
-    class Buttons<T>: List<T> where T: Button<T>
+    public class Buttons: List<Cell<string>> 
     {
+        /// <summary>
+        /// Start point of first button
+        /// </summary>
         public Point StartPoint { get; set; }
+        /// <summary>
+        /// Width of buttons
+        /// </summary>
         public int Width { get; set; }
+        /// <summary>
+        /// Heigth of buttons
+        /// </summary>
         public int Heigth { get; set; }
         /// <summary>
-        /// расстояние между кнопками
+        /// Space between buttons
         /// </summary>
         public int SpaceBetweenButtons { get; set; }
-        public Buttons(Point start, int width, int height, int space)
+        /// <summary>
+        /// Count of buttons
+        /// </summary>
+        public int ButtonsCount { get; set; }
+        ///
+  
+
+
+        public Buttons(Point start, int width, int height, int space, List <string> items)
         {
             this.StartPoint = start;
             this.Width = width;
             this.Heigth = height;
             this.SpaceBetweenButtons = space;
+            this.ButtonsCount = items.Count;
+            ButtonsInitializer(items);
+            DrawButtons();
         }
-        public void CreateButtons()
+
+        private Point GetButtonStartPoint(int i)
         {
-            throw new NotImplementedException();
+            
+            return  new Point ((i) * (Width + SpaceBetweenButtons) + StartPoint.X, StartPoint.Y) ;
+        }
+
+        public void ButtonsInitializer(List<string> items)
+        {
+            for (int i = 0; i < ButtonsCount; i++)
+                this.Add(new Cell<string>(GetButtonStartPoint(i), GetButtonStartPoint(i),items[i]));
+        }
+
+        public void DrawButtons()
+        {
+            foreach (Cell<string> menuitem in this)
+            {
+                Console.SetCursorPosition(menuitem.StartPoint.X, menuitem.StartPoint.Y);
+                Console.Write(menuitem.Content);
+            }
         }
     }
 }
