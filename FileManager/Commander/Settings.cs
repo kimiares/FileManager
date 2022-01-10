@@ -41,20 +41,12 @@ namespace FileManager.Commander
             get { return maxelementscolumn; }
             set { maxelementscolumn = value; }
         }
-        private int menulenght;
-        public int MenuLenght
-        {
-            get { return menulenght; }
-            set { menulenght = value; }
-        }
-
         /// <summary>
         /// Additional program settings, calculated on base main settings.  
         /// </summary>
         private void InizialiseParams()
         {
-            MaxElementsColumn = Sets.PanelHeight-2;
-
+            MaxElementsColumn = Sets.PanelHeight - 2;
         }
 
 

@@ -36,7 +36,7 @@ namespace FileManager.Drawing
             ColCount = colcount;
             Lines = Calculate();
             Draw();
-            AddTableName();
+            //AddTableName();
         }
         /// <summary>
         /// Draw table with cornerns

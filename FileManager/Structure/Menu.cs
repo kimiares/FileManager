@@ -10,7 +10,7 @@ namespace FileManager.Structure
     /// <summary>
     /// всплывающее меню
     /// </summary>
-    public class Menu<T> : IStructure, ICheckArea
+    public class Menu<T> where T : class, IStructure
     {
         public string Name { get; set; }
         public bool IsActive { get; set; }
@@ -35,12 +35,10 @@ namespace FileManager.Structure
             this.drawing = drawing;
             this.IsActive = false;
         }
-       
+   
         
         
         
-        
-
         public void MakeActive()
         {
             this.IsActive = !this.IsActive;
@@ -54,9 +52,6 @@ namespace FileManager.Structure
             throw new NotImplementedException();
         }
 
-        public bool CheckArea()
-        {
-            throw new NotImplementedException();
-        }
+     
     }
 }

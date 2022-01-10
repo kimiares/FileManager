@@ -1,36 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FileManager.Operations
 {
-    interface Folder: IOperation
+    public class Folder: IOperation
     {
-        public void Get()
+        public static List<FileSystemInfo> Get(string path)
         {
-            throw new NotImplementedException();
+            List<FileSystemInfo> result = new List<FileSystemInfo>();
+
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(path);
+                DirectoryInfo[] folders = dir.GetDirectories();
+                foreach (DirectoryInfo fol in folders)
+                {
+                    result.Add(fol);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new Exception();
+            }
         }
-        public void Copy()
+        public void Copy(FileSystemInfo directory, string pathToCopy)
         {
-            throw new NotImplementedException();
+            if (!Directory.Exists(pathToCopy))
+            {
+                Directory.CreateDirectory(pathToCopy);
+
+            }
+
+            string[] files = Directory.GetFiles(directory.FullName);
+            foreach (string file in files)
+            {
+                string name = Path.GetFileName(file);
+                string dest = Path.Combine(pathToCopy, name);
+                File.Copy(file, dest);
+            }
+
+
+            DirectoryInfo di = new DirectoryInfo(directory.FullName);
+            DirectoryInfo[] folders = di.GetDirectories();
+            foreach (DirectoryInfo folder in folders)
+            {
+                string name = Path.GetFileName(folder.Name);
+                string dest = Path.Combine(pathToCopy, name);
+                Copy(folder, dest);
+            }
         }
-        public void Delete()
+        public static void Delete(params FileSystemInfo[] directory)
         {
-            throw new NotImplementedException();
+            if (directory.Length != 0)
+            {
+                foreach (var d in directory)
+                {
+                    if (Directory.Exists(d.FullName))
+                    {
+                        Directory.Delete(d.FullName, true);
+                    }
+                }
+            }
         }
-        public void Rename()
+        public static void Rename(FileSystemInfo directory, string newName)
         {
-            throw new NotImplementedException();
+            if (Directory.Exists(directory.Name))
+            {
+                Directory.Move(directory.Name, newName);
+            }
         }
-        public void Create()
+        public static void Create(string path)
         {
-            throw new NotImplementedException();
+            DirectoryInfo directory = new DirectoryInfo(path);
+            directory.Create();
         }
-        public void Info()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
