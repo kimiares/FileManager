@@ -21,21 +21,11 @@ namespace FileManager
             foreach (var d in Enum.GetValues(typeof(ButtonEnum)))
             {
                 items.Add(d.ToString().PadRight(10));
-            
             }
-               
-            
             Buttons MB  = new Buttons  (new Point(1, 29), 1, 2, 11, items);
-      
-
           //  Buttons MB2 = new Buttons (new Point(1, 2), 3, 1, 20,2);
-
-        
-        //   MB2.DrawButtons();
-       
+          //   MB2.DrawButtons();
             Console.ReadKey();
-          
-
         }
     }
 }

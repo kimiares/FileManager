@@ -15,7 +15,7 @@ namespace FileManager.Commander
         where T : class
     {
         public List<U> Panels { get; set; }
-        public List<Button> Buttons { get; set; }
+     //   public List<Button> Buttons { get; set; }
 
 
         public FileCommander(List<U> panels /*Buttons<T> buttons*/)

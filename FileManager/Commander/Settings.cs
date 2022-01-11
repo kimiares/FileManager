@@ -12,22 +12,18 @@ namespace FileManager.Commander
     {
         public static Settings Instance()
         {
-            if (_instance == null)
-            {
-                _instance = new Settings();
+            _instance = _instance ?? new Settings();
+
                 return _instance;
-            }
-            else
-            {
-                return null;
-            }
+
         }
         public Configuration Sets;
 
         protected Settings()
         {
-            Sets = File.Exists("settings.xml") ? LoadSettings() : new Configuration();
-            SaveSettings();
+            Sets = new Configuration();
+                if (File.Exists("settings.xml"))
+                    Sets = LoadSettings();
             InizialiseParams();
         }
 
@@ -57,10 +53,17 @@ namespace FileManager.Commander
         /// </summary>
         public void SaveSettings()
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
-            using (FileStream fs = new FileStream("settings.xml", FileMode.OpenOrCreate))
+            try
             {
-                formatter.Serialize(fs, Sets);
+                XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
+                using (FileStream fs = new FileStream("settings.xml", FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, Sets);
+                }
+            }
+            catch
+            { 
+            
             }
         }
         /// <summary>
@@ -69,15 +72,20 @@ namespace FileManager.Commander
         /// <returns></returns>
         public Configuration LoadSettings()
         {
-            Configuration NewConfigSettings = new Configuration();
-            XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
-
-
-            using (FileStream fs = new FileStream("settings.xml", FileMode.OpenOrCreate))
+            try
             {
-                NewConfigSettings = (Configuration)formatter.Deserialize(fs);
+                Configuration NewConfigSettings = new Configuration();
+                XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
+                using (FileStream fs = new FileStream("settings.xml", FileMode.Open))
+                {
+                    NewConfigSettings = (Configuration)formatter.Deserialize(fs);
+                }
+                return NewConfigSettings;
             }
-            return NewConfigSettings;
+            catch
+            { 
+            
+            }
         }
     }
 }
