@@ -1,4 +1,5 @@
-﻿using FileManager.Drawing;
+﻿using FileManager.Commander;
+using FileManager.Drawing;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Panel<T> : List<Column<T>>, ICheckArea
-        where T : class
-        //where U: IStructure
-
+    public class Panel : List<Column>, ICheckArea
+        
     {
         
         
@@ -24,12 +23,13 @@ namespace FileManager.Structure
         /// Root path
         /// </summary>
         public string Path { get; set; }
-        public List<T> Input { get; set; }
+        public List<FileSystemInfo> Input { get; set; }
+        
 
         public IDrawing drawing;
-        public IPanelStrategy<T> algorithm;
+        public IPanelStrategy algorithm;
 
-        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy<T> algorithm, List<T> input)
+        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy algorithm, List<FileSystemInfo> input)
         {
             this.StartPoint = start;
             this.FinishPoint = finish;
@@ -40,14 +40,16 @@ namespace FileManager.Structure
             this.Input = input;
             
 
+
             AddTableName();
             SetContent();
             PrintContent();
+            
 
 
         }
-
-
+        Settings mySet= Settings.Instance();
+        
 
 
         /// <summary>
@@ -55,25 +57,30 @@ namespace FileManager.Structure
         /// </summary>
         public void SetContent()
         {
-            this.algorithm.SetColumn(this, this.Input, this.ColCount);
-
-
+           
+            this.algorithm.SetColumn(this, this.Input);
         }
 
 
 
+        /// <summary>
+        /// print content in panel
+        /// </summary>
         public void PrintContent()
         {
-            foreach(Column<T> column in this)
+            
+            foreach (Column column in this)
             {
                 for(int i = 0; i < column.Count; i++)
                 {
-                    Console.SetCursorPosition(column[i].StartPoint.X, column[i].StartPoint.Y + i);
-                    Console.WriteLine(column[i].Content);
+                    Console.SetCursorPosition(
+                        this.StartPoint.X+i*mySet.Sets.PanelWidth/ mySet.Sets.ColumnCount, 
+                        this.StartPoint.Y + i);
                     
+
+                    Console.WriteLine(column[i].Content);                    
                 }
-            }
-            
+            }            
         }
 
 

@@ -15,30 +15,29 @@ namespace FileManager.Structure.PanelStrategy
     /// fill all columns by same data(only names)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class AllColumn<T> : IPanelStrategy<T>
-        where T : class
-        //where U: IStructure
+    public class AllColumn : IPanelStrategy
+        
 
 
     {
         //public List<FileSystemInfo> input;
         public int maxNumbers;
-        public Point StartPoint { get; set; }
-        public Point FinishPoint { get; set; }
+        //public Point StartPoint { get; set; }
+        //public Point FinishPoint { get; set; }
 
         Settings MySet = Settings.Instance();
 
-        public void SetColumn(List<Column<T>> targertList, List<T> input, int columnCount)
+        public void SetColumn(List<Column> targertList, List<FileSystemInfo> input)
         {
             
-                foreach (Column<T> column in targertList)
+                foreach (Column column in targertList)
                 {
-                    List<T> temp = input.Take(MySet.MaxElementsColumn).ToList();
-                    foreach (T t in temp)
+                    List<FileSystemInfo> temp = input.Take(MySet.MaxElementsColumn).ToList();
+                    foreach (FileSystemInfo t in temp)
                     {
                         for (int i = 0; i < MySet.Sets.ColumnCount; i++)
                         {
-                            column.Add(new Cell<T>(
+                            column.Add(new Cell(
                                 new Point(
                                     column.StartPoint.X, column.StartPoint.Y+i), 
                                 new Point(

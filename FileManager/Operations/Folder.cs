@@ -23,9 +23,9 @@ namespace FileManager.Operations
                 }
                 return result;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception();
+                throw new DirectoryNotFoundException();
             }
         }
         public void Copy(FileSystemInfo directory, string pathToCopy)
@@ -60,19 +60,19 @@ namespace FileManager.Operations
             {
                 foreach (var d in directory)
                 {
-                    if (Directory.Exists(d.FullName))
-                    {
-                        Directory.Delete(d.FullName, true);
-                    }
+                    if (d.Exists) d.Delete();
                 }
             }
+            else
+            {
+                throw new FileNotFoundException();
+            }
+
         }
         public static void Rename(FileSystemInfo directory, string newName)
         {
-            if (Directory.Exists(directory.Name))
-            {
-                Directory.Move(directory.Name, newName);
-            }
+            if (directory.Exists) Directory.Move(directory.Name, newName);
+            
         }
         public static void Create(string path)
         {

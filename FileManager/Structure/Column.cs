@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Column<T> : List<Cell<T>>, ICheckArea
-        where T : class
-        //where U: IStructure
+    public class Column : List<Cell>, ICheckArea
+        
+        
     {
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }
@@ -28,7 +28,7 @@ namespace FileManager.Structure
         /// add cell into column
         /// </summary>
         /// <param name="cell"></param>
-        public void Add(Cell<T> cell)
+        public void Add(Cell cell)
         {
             this.Add(cell);
         }
@@ -36,7 +36,7 @@ namespace FileManager.Structure
         /// remove cell from column
         /// </summary>
         /// <param name="cell"></param>
-        public void Remove(Cell<T> cell)
+        public void Remove(Cell cell)
         {
             this.Remove(cell);
         }

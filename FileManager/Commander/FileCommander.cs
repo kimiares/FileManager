@@ -10,13 +10,10 @@ namespace FileManager.Commander
     /// <summary>
     /// инициализация коммандера
     /// </summary>
-    class FileCommander<T> 
-        //where U: IStructure
-        where T : class
+    class FileCommander 
+        
     {
         
-
-
         public FileCommander()
         {
             throw new NotImplementedException();

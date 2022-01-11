@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace FileManager.Control.SavedPanel
 {
-    class Buffer<T> 
-        //where U : IStructure
-        where T: class
+    class Buffer
+        
     {
-        public SavedState<T> SavedState { get; set; }
+        public SavedState SavedState { get; set; }
     }
 }

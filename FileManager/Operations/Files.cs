@@ -17,15 +17,12 @@ namespace FileManager.Operations
                 DirectoryInfo dir = new DirectoryInfo(path);
                 FileInfo[] files = dir.GetFiles();
 
-                foreach (FileInfo file in files)
-                {
-                    result.Add(file);
-                }
+                result.AddRange(files);
                 return result;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception();
+                throw new FileNotFoundException();
             }
 
 
@@ -39,7 +36,7 @@ namespace FileManager.Operations
                 }
                 else
                 {
-                    throw new Exception("file not found");
+                    throw new FileNotFoundException();
                 }
             
         }
@@ -49,21 +46,7 @@ namespace FileManager.Operations
             {
                 foreach (FileSystemInfo file in filesToDelete)
                 {
-                    if (file is FileInfo)
-                    {
-                        if (File.Exists(file.FullName))
-                        {
-                            File.Delete(file.FullName);
-
-                        }
-                    }
-                    if (file is DirectoryInfo)
-                    {
-
-                        Folder.Delete(file);
-
-                    }
-
+                    if (file.Exists) file.Delete();
                 }
             }
         }
@@ -71,17 +54,14 @@ namespace FileManager.Operations
         {
             if (string.IsNullOrWhiteSpace(newName))
             {
-                throw new ArgumentException("New name cannot be null or blank", newName);
+                throw new ArgumentNullException("New name cannot be null or blank", newName);
             }
             else
             {
-                if (File.Exists(file.Name))
-                {
-                    File.Move(file.Name, newName);
-                }
+                if (file.Exists) File.Move(file.Name, newName);
                 else
                 {
-                    throw new Exception("file not found");
+                    throw new FileNotFoundException("file not found");
                 }
 
             }

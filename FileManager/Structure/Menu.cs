@@ -10,7 +10,7 @@ namespace FileManager.Structure
     /// <summary>
     /// всплывающее меню
     /// </summary>
-    public class Menu<T> where T : class, IStructure
+    public class Menu: IStructure
     {
         public string Name { get; set; }
         public bool IsActive { get; set; }
@@ -20,11 +20,11 @@ namespace FileManager.Structure
         /// <summary>
         /// кнопки меню (Yes/No)
         /// </summary>
-        public List<T> MenuButtons { get; set; }
+        public List<Cell> MenuButtons { get; set; }
         /// <summary>
         /// ячейки для вывод/ввод 
         /// </summary>
-        public List<T> MenuCells { get; set; }
+        public List<Cell> MenuCells { get; set; }
         public IDrawing drawing;
 
         public Menu(Point start, Point finish, string name, IDrawing drawing)

@@ -8,19 +8,17 @@ using System.IO;
 
 namespace FileManager.Commander
 {
-    class Settings
+    public class Settings
     {
         public static Settings Instance()
         {
             if (_instance == null)
             {
                 _instance = new Settings();
-                return _instance;
+                
             }
-            else
-            {
-                return null;
-            }
+            return _instance;
+
         }
         public Configuration Sets;
 
@@ -41,6 +39,9 @@ namespace FileManager.Commander
             get { return maxelementscolumn; }
             set { maxelementscolumn = value; }
         }
+
+
+        public int ColumnCount { get; set; }
         /// <summary>
         /// Additional program settings, calculated on base main settings.  
         /// </summary>

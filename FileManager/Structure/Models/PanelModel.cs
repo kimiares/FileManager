@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure.Models
 {
-    class PanelModel
+    public class PanelModel
     {
     }
 }

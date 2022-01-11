@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Cell<T>: ICheckArea, IStructure
-        //where T: class
+    public class Cell: ICheckArea, IStructure
+        
         
     {
         
@@ -27,10 +27,10 @@ namespace FileManager.Structure
         /// <summary>
         /// содержимое ячейки (FileSystemInfo/String/Disk?)
         /// </summary>
-        public T Content { get; set; }
+        public FileSystemInfo Content { get; set; }
         
 
-        public Cell(Point startPoint, Point finishPoint, T content)
+        public Cell(Point startPoint, Point finishPoint, FileSystemInfo content)
         {
             this.StartPoint = startPoint;
             this.FinishPoint = finishPoint;

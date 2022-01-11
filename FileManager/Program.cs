@@ -46,32 +46,30 @@ namespace FileManager
 
                 Settings MySet = Settings.Instance();
                 List<string> input = new List<string>() { "A", "B", "C", "D", "E", "F" };
-                
+                List<Stream> input2 = new List<Stream>()
+                { new MemoryStream(new byte[56],false),
+                        new MemoryStream(new byte[56],false),
+                       new MemoryStream(new byte[56],false)};
+
                 List<FileSystemInfo> testFSI = Operations.Files.GetFiles(@"C:\");
 
                 //Table tableForPanel = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(60, 28), 3);
 
-                Panel<FileSystemInfo> panel = new Panel<FileSystemInfo>(
+                ICheckArea panel = new Panel(
                     new Drawing.Point(1, 1),
                     new Drawing.Point(59, 27),
                     MySet.Sets.PathLeft,
                     new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(60, 28), 3),
-                    new AllColumn<FileSystemInfo>(),
+                    new AllColumn(),
                     testFSI);
 
+                
 
+                
+                
 
-
-
-
-
-              
-
-            }
-           
+            }       
             
-
-
         }
     }
 }

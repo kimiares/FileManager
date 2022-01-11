@@ -1,18 +1,18 @@
 ﻿using FileManager.Structure;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FileManager.Control.SavedPanel
 {
-    class SavedState<T> 
-        //where U : IStructure
-        where T : class
+    class SavedState 
+        
     {
-        public List<T> ItemsInColumns { get; set; }
-        public Panel<T> ActivePanel { get; set; }
-        public T SelectedItem { get; set; }
+        public List<FileSystemInfo> ItemsInColumns { get; set; }
+        public Panel ActivePanel { get; set; }
+        public FileSystemInfo SelectedItem { get; set; }
     }
 }

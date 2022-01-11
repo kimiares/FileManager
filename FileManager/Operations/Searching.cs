@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace FileManager.Operations
 {
-    class Search:IOperation
+    class Searching:IOperation
     {
         
-        public List<FileSystemInfo> SearchFileFolders(string mask, string disk)
+        public List<FileSystemInfo> SearchInFolder(string mask, string disk)
         {
-            Regex regMask = RegexMethod.TransformMaskToRegex(mask);
-            List<FileSystemInfo> resultFiles = new List<FileSystemInfo>();
+            Regex regMask = RegexMethod.MakeRegexMaskForSearch(mask);
+            List<FileSystemInfo> resultFilesAndFolder = new List<FileSystemInfo>();
 
             DirectoryInfo directory = new DirectoryInfo(disk);
 
@@ -23,8 +23,9 @@ namespace FileManager.Operations
             {
                 if (regMask.IsMatch(di.Name))
                 {
-                    resultFiles.Add(di);
+                    resultFilesAndFolder.Add(di);
                 }
+                SearchInFolder(mask, di.Name);
             }
 
             FileInfo[] files = directory.GetFiles();
@@ -32,11 +33,10 @@ namespace FileManager.Operations
             {
                 if (regMask.IsMatch(f.Name))
                 {
-                    resultFiles.Add(f);
+                    resultFilesAndFolder.Add(f);
                 }
             }
-            return resultFiles;
-
+            return resultFilesAndFolder;
 
         }
 

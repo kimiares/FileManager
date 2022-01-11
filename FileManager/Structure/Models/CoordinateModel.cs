@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure.Models
 {
-    class CoordinateModel
+    public class CoordinateModel
     {
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }

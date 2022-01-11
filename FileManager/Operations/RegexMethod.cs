@@ -9,7 +9,7 @@ namespace FileManager.Operations
 {
     public class RegexMethod
     {
-        public static Regex TransformMaskToRegex(string mask)
+        public static Regex MakeRegexMaskForSearch(string mask)
         {
             mask = mask.Replace(".", @"\.");
             mask = mask.Replace("?", ".");
