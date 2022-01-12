@@ -10,7 +10,7 @@ namespace FileManager.Structure
     /// <summary>
     /// панель кнопок
     /// </summary>
-    public class Buttons: List<Cell<string>> 
+    public class Buttons: List<Button>
     {
         /// <summary>
         /// Start point of first button
@@ -33,10 +33,10 @@ namespace FileManager.Structure
         /// </summary>
         public int ButtonsCount { get; set; }
         ///
-  
 
 
-        public Buttons(Point start, int width, int height, int space, List <string> items)
+
+        public Buttons(Point start, int width, int height, int space, List<string> items)
         {
             this.StartPoint = start;
             this.Width = width;
@@ -49,23 +49,23 @@ namespace FileManager.Structure
 
         private Point GetButtonStartPoint(int i)
         {
-            
-            return  new Point ((i) * (Width + SpaceBetweenButtons) + StartPoint.X, StartPoint.Y) ;
+
+            return new Point((i) * (Width + SpaceBetweenButtons) + StartPoint.X, StartPoint.Y);
         }
 
         public void ButtonsInitializer(List<string> items)
         {
-            for (int i = 0; i < ButtonsCount; i++)
-                this.Add(new Cell<string>(GetButtonStartPoint(i), GetButtonStartPoint(i),items[i]));
+            //for (int i = 0; i < ButtonsCount; i++)
+            //    this.Add(new Cell(GetButtonStartPoint(i), GetButtonStartPoint(i), items[i]));
         }
 
         public void DrawButtons()
         {
-            foreach (Cell<string> menuitem in this)
-            {
-                Console.SetCursorPosition(menuitem.StartPoint.X, menuitem.StartPoint.Y);
-                Console.Write(menuitem.Content);
-            }
+            //foreach (Cell menuitem in this)
+            //{
+            //    Console.SetCursorPosition(menuitem.StartPoint.X, menuitem.StartPoint.Y);
+            //    Console.Write(menuitem.Content);
+            //}
         }
     }
 }

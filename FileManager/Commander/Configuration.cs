@@ -88,6 +88,8 @@ namespace FileManager.Commander
         /// 3 - three columns as one
         /// </summary>
         public int ViewModeRightPanel { get; set; } = 3;
+       
+
 
 
     }

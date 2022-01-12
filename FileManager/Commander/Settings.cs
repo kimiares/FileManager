@@ -40,6 +40,10 @@ namespace FileManager.Commander
         /// <summary>
         /// Additional program settings, calculated on base main settings.  
         /// </summary>
+
+        public int ColumnCount { get; set; } = 3;
+        public int ColumnWidth { get; set; }
+
         private void InizialiseParams()
         {
             MaxElementsColumn = Sets.PanelHeight - 2;
@@ -83,8 +87,8 @@ namespace FileManager.Commander
                 return NewConfigSettings;
             }
             catch
-            { 
-            
+            {
+                throw new FileLoadException();
             }
         }
     }

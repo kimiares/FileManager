@@ -1,4 +1,5 @@
-﻿using FileManager.Drawing;
+﻿using FileManager.Commander;
+using FileManager.Drawing;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Panel<U,T> : List<Column<U,T>>, ICheckArea
-        where T : class
-        where U: IStructure
-
+    public class Panel : List<Column>, ICheckArea
+        
     {
         
         
@@ -24,13 +23,15 @@ namespace FileManager.Structure
         /// Root path
         /// </summary>
         public string Path { get; set; }
-        public List<T> Input { get; set; }
+        public List<FileSystemInfo> Input { get; set; }
+        
 
         public IDrawing drawing;
-        public IPanelStrategy<U, T> algorithm;
+        public IPanelStrategy algorithm;
 
-        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy<U, T> algorithm, List<T> input)
+        public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy algorithm, List<FileSystemInfo> input)
         {
+            
             this.StartPoint = start;
             this.FinishPoint = finish;
             this.Path = path;
@@ -38,32 +39,74 @@ namespace FileManager.Structure
             this.drawing = drawing;
             this.algorithm = algorithm;
             this.Input = input;
-            //this.algorithm.SetColumn(this, this.Input, this.ColCount);
+            
+
 
             AddTableName();
-            SetContent();
+            SetColumn();
+            SetContent(this, this.Input);
+            algorithm.PrintContent(this);
             
-        }
 
+
+        }
+        Settings mySet= Settings.Instance();
 
 
 
         /// <summary>
         /// fill panel by content
         /// </summary>
-        public void SetContent()
+        //public void SetContent()
+        //{
+
+        //    this.algorithm.SetColumn(this, this.Input);
+        //}
+        public void SetContent(List<Column> targertList, List<FileSystemInfo> input)
         {
-            this.algorithm.SetColumn(this, this.Input, this.ColCount);
 
+            foreach (Column column in targertList)
+            {
+                List<FileSystemInfo> temp = input.Take(mySet.MaxElementsColumn).ToList();
+                foreach (FileSystemInfo t in temp)
+                {
+                    for (int i = 0; i < mySet.MaxElementsColumn; i++)
+                    {
+                        column.Add(new Cell(
+                            new Point(
+                                mySet.Sets.ALX + 1 + i, mySet.Sets.ALY + 1 + i),
+                            new Point(
+                                mySet.Sets.ALX + 1 + i + mySet.ColumnWidth, mySet.Sets.ALY + 1 + i + mySet.MaxElementsColumn),
+                                t));
+                    }
 
+                }
+                input = input.Skip(mySet.MaxElementsColumn).ToList();
+            }
+
+        }
+        public void SetColumn()
+        {
+            for(int i = 0; i< 3;i++)
+            {
+                this.Add(
+                    new Column(
+                        new Point(mySet.Sets.ALX + 1 + i*mySet.ColumnWidth, mySet.Sets.ALY + 1),
+                            new Point(mySet.Sets.ALX+1+(i+1)*mySet.ColumnWidth, mySet.Sets.ALY+1+mySet.MaxElementsColumn)
+                        
+                        
+                        ));
+            }
+            
+            
         }
 
 
 
-        public void PrintContent()
-        {
-
-        }
+        /// <summary>
+        /// print content in panel
+        /// </summary>
+        
 
 
         public void AddTableName()
@@ -78,20 +121,7 @@ namespace FileManager.Structure
         {
             this.IsActive = !this.IsActive;
         }
-        /// <summary>
-        /// add column
-        /// </summary>
-        public void Add()
-        {
-            throw new NotImplementedException();
-        }
-        /// <summary>
-        /// remove column
-        /// </summary>
-        public void Remove()
-        {
-            throw new NotImplementedException();
-        }
+        
 
 
     }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileManager.Commander;
 using FileManager.Drawing;
 using FileManager.Structure;
 
@@ -14,41 +15,56 @@ namespace FileManager.Structure.PanelStrategy
     /// fill all columns by same data(only names)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class AllColumn<U, T> : IPanelStrategy<U,T>
-        where T : class
-        where U: IStructure
+    public class AllColumn : IPanelStrategy
+        
 
 
     {
-        //public List<FileSystemInfo> input;
+        
         public int maxNumbers;
-        public Point StartPoint { get; set; }
-        public Point FinishPoint { get; set; }
+        
+
+        Settings mySet = Settings.Instance();
+
+        //public void SetColumn(List<Column> targertList, List<FileSystemInfo> input)
+        //{
+            
+        //        foreach (Column column in targertList)
+        //        {
+        //            List<FileSystemInfo> temp = input.Take(MySet.MaxElementsColumn).ToList();
+        //            foreach (FileSystemInfo t in temp)
+        //            {
+        //                for (int i = 0; i < MySet.Sets.ColumnCount; i++)
+        //                {
+        //                    column.Add(new Cell(
+        //                        new Point(
+        //                            MySet.Sets.ALX+1+i, MySet.Sets.ALY+1+i), 
+        //                        new Point(
+        //                            MySet.Sets.ALX + 1 + i + MySet.ColumnWidth, MySet.Sets.ALY + 1 + i + MySet.MaxElementsColumn), 
+        //                            t));
+        //                }
+                        
+        //            }
+        //                input = input.Skip(MySet.MaxElementsColumn).ToList();
+        //        }
+            
+        //}
+
+
+        public void PrintContent(List<Column> targertList)
+        {
+
+            foreach (Column column in targertList)
+            {
+                for (int i = 0; i < column.Count; i++)
+                {
+                    //Console.SetCursorPosition(mySet.Sets.ALX + 1 + i*mySet, mySet.Sets.ALY + 1 + i);
+                    Console.WriteLine(column[i].Content.Name);
+                    column.Remove(column[i]);
+                }
+            }
+        }
 
        
-        
-        public void SetColumn(List<Column<U, T>> targertList, List<T> input, int columnCount)
-        {
-            
-                foreach (Column<U,T> column in targertList)
-                {
-                    List<T> temp = input.Take(column.MaxElementsNumber).ToList();
-                    foreach (T t in temp)
-                    {
-                        for (int i = 0; i < column.Count; i++)
-                        {
-                            column.Add(new Cell<T>(
-                                new Point(
-                                    column.StartPoint.X, column.StartPoint.Y+i), 
-                                new Point(
-                                    column.FinishPoint.X, column.FinishPoint.Y-column.MaxElementsNumber+i), 
-                                    t));
-                        }
-                        
-                        }
-                        input = input.Skip(column.MaxElementsNumber).ToList();
-                    }
-            
-        }
     }
 }

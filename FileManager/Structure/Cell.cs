@@ -1,13 +1,16 @@
 ﻿using FileManager.Drawing;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Cell<T> : IStructure, ICheckArea 
+    public class Cell: ICheckArea, IStructure
+        
+        
     {
         
         public Point StartPoint { get; set; }
@@ -22,12 +25,12 @@ namespace FileManager.Structure
         /// </summary>
         public bool IsSelected { get; set; }
         /// <summary>
-        /// содержимое ячейки (FileSystemInfo/String)
+        /// содержимое ячейки (FileSystemInfo/String/Disk?)
         /// </summary>
-        public T Content { get; set; }
+        public FileSystemInfo Content { get; set; }
         
 
-        public Cell(Point startPoint, Point finishPoint, T content)
+        public Cell(Point startPoint, Point finishPoint, FileSystemInfo content)
         {
             this.StartPoint = startPoint;
             this.FinishPoint = finishPoint;
@@ -38,25 +41,15 @@ namespace FileManager.Structure
 
         {
             this.IsActive = !this.IsActive;
+            
         }
         public void MakeSelected()
 
         {
             this.IsSelected = !this.IsSelected;
         }
+        
 
-        public bool CheckArea(Point point)
-        {
-            bool result = false;
-            
-            if ((point.X >= StartPoint.X && point.X <= StartPoint.X + FinishPoint.X) && (point.Y >= StartPoint.Y && point.Y <= StartPoint.Y + FinishPoint.Y)) 
-                result = true;
-            return result;
-        }
-
-        public bool CheckArea()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
