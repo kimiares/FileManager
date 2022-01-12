@@ -20,7 +20,9 @@ namespace FileManager
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
+            
             Settings MySet = Settings.Instance();
+            
             Table m1 = new Table(MySet.Sets.PathLeft, new Drawing.Point( MySet.Sets.ALX, MySet.Sets.ALY), new Drawing.Point(MySet.Sets.BLX, MySet.Sets.BLY),4);
             Table m2 = new Table(MySet.Sets.PathRight, new Drawing.Point(MySet.Sets.ARX, MySet.Sets.ARY), new Drawing.Point(MySet.Sets.BRX, MySet.Sets.BRY),4);
 
@@ -29,14 +31,18 @@ namespace FileManager
             {
                 items.Add(d.ToString().PadRight(10));
             }
-            Buttons MB  = new Buttons  (new Point(1, 29), 1, 2, 11, items);
+            //Buttons MB  = new Buttons  (new Point(1, 29), 1, 2, 11, items);
           //  Buttons MB2 = new Buttons (new Point(1, 2), 3, 1, 20,2);
           //   MB2.DrawButtons();
             Console.ReadKey();
 
 
-                Settings MySet = Settings.Instance();
-                List<string> input = new List<string>() { "A", "B", "C", "D", "E", "F" };
+                
+                
+            
+            
+            
+            List<string> input = new List<string>() { "A", "B", "C", "D", "E", "F" };
                 List<Stream> input2 = new List<Stream>()
                 { new MemoryStream(new byte[56],false),
                         new MemoryStream(new byte[56],false),
@@ -59,8 +65,9 @@ namespace FileManager
                 
                 
 
-            }       
+            
             
         }
     }
 }
+

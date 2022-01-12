@@ -9,20 +9,25 @@ namespace FileManager.Structure
 {
     public class Button : ICheckArea
     {
-        public new Point StartPoint { get; set; }
-        public new Point FinishPoint { get; set; }
-        
-        public string Text { get; set; }
+        //public Point StartPoint { get; set; }
+        //public Point FinishPoint { get; set; }
+        ////public bool IsActive { get; set; }
+        //public string Text { get; set; }
 
-        public Button(Point startPoint, Point finishPoint, string text)
-        {
+        //public IDrawing drawing;
+        //public Button(Point startPoint, Point finishPoint, string text) : base(startPoint, finishPoint, content)
+        //{
+        //    StartPoint = startPoint;
+        //    FinishPoint = finishPoint;
+        //    // Text = text.to;
+        //}
 
-            this.StartPoint = startPoint;
-            this.FinishPoint = finishPoint;
-            this.Text = text;
+        //public bool CheckArea(Point point)
+        //{
+        //    //  return base.CheckArea(point);
+        //    return true;
+        //}
 
-        }
 
-        
     }
 }

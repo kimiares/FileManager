@@ -70,7 +70,7 @@ namespace FileManager.Structure
                 List<FileSystemInfo> temp = input.Take(mySet.MaxElementsColumn).ToList();
                 foreach (FileSystemInfo t in temp)
                 {
-                    for (int i = 0; i < mySet.Sets.ColumnCount; i++)
+                    for (int i = 0; i < mySet.MaxElementsColumn; i++)
                     {
                         column.Add(new Cell(
                             new Point(

@@ -58,7 +58,7 @@ namespace FileManager.Structure.PanelStrategy
             {
                 for (int i = 0; i < column.Count; i++)
                 {
-                    Console.SetCursorPosition(mySet.Sets.ALX + 1 + i*mySet.ColumnWidth, mySet.Sets.ALY + 1 + i);
+                    //Console.SetCursorPosition(mySet.Sets.ALX + 1 + i*mySet, mySet.Sets.ALY + 1 + i);
                     Console.WriteLine(column[i].Content.Name);
                     column.Remove(column[i]);
                 }

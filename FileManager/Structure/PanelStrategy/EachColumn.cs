@@ -65,7 +65,7 @@ namespace FileManager.Structure.PanelStrategy
             {
                 for (int i = 0; i < targertList.Count; i++)
                 {
-                    Console.SetCursorPosition(mySet.Sets.ALX + 1 + mySet.ColumnWidth, mySet.Sets.ALY + 1 + i);
+                    //Console.SetCursorPosition(mySet.Sets.ALX + 1 + mySet.ColumnWidth, mySet.Sets.ALY + 1 + i);
                     Console.WriteLine(column[i].Content.Name);
                 }
             }
@@ -77,7 +77,7 @@ namespace FileManager.Structure.PanelStrategy
             {
                 for (int i = 0; i < targertList.Count; i++)
                 {
-                    Console.SetCursorPosition(mySet.Sets.ALX + 1 + 2*mySet.ColumnWidth, mySet.Sets.ALY + 1 + i);
+                    //Console.SetCursorPosition(mySet.Sets.ALX + 1 + 2*mySet.ColumnWidth, mySet.Sets.ALY + 1 + i);
                     Console.WriteLine(column[i].Content.Name);
                 }
             }
