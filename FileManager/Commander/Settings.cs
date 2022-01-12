@@ -8,24 +8,22 @@ using System.IO;
 
 namespace FileManager.Commander
 {
-    public class Settings
+    class Settings
     {
         public static Settings Instance()
         {
-            if (_instance == null)
-            {
-                _instance = new Settings();
-                
-            }
-            return _instance;
+            _instance = _instance ?? new Settings();
+
+                return _instance;
 
         }
         public Configuration Sets;
 
         protected Settings()
         {
-            Sets = File.Exists("settings.xml") ? LoadSettings() : new Configuration();
-            SaveSettings();
+            Sets = new Configuration();
+                if (File.Exists("settings.xml"))
+                    Sets = LoadSettings();
             InizialiseParams();
         }
 
@@ -39,19 +37,16 @@ namespace FileManager.Commander
             get { return maxelementscolumn; }
             set { maxelementscolumn = value; }
         }
-
-        public int ColumnWidth { get; set; }
-
-
-        public int ColumnCount { get; set; }
         /// <summary>
         /// Additional program settings, calculated on base main settings.  
         /// </summary>
+
+        public int ColumnCount { get; set; } = 3;
+        public int ColumnWidth { get; set; }
+
         private void InizialiseParams()
         {
             MaxElementsColumn = Sets.PanelHeight - 2;
-            ColumnWidth = (Sets.PanelWidth - 2 - 3) / 6;
-
         }
 
 
@@ -62,10 +57,17 @@ namespace FileManager.Commander
         /// </summary>
         public void SaveSettings()
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
-            using (FileStream fs = new FileStream("settings.xml", FileMode.OpenOrCreate))
+            try
             {
-                formatter.Serialize(fs, Sets);
+                XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
+                using (FileStream fs = new FileStream("settings.xml", FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, Sets);
+                }
+            }
+            catch
+            { 
+            
             }
         }
         /// <summary>
@@ -74,15 +76,20 @@ namespace FileManager.Commander
         /// <returns></returns>
         public Configuration LoadSettings()
         {
-            Configuration NewConfigSettings = new Configuration();
-            XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
-
-
-            using (FileStream fs = new FileStream("settings.xml", FileMode.OpenOrCreate))
+            try
             {
-                NewConfigSettings = (Configuration)formatter.Deserialize(fs);
+                Configuration NewConfigSettings = new Configuration();
+                XmlSerializer formatter = new XmlSerializer(typeof(Configuration));
+                using (FileStream fs = new FileStream("settings.xml", FileMode.Open))
+                {
+                    NewConfigSettings = (Configuration)formatter.Deserialize(fs);
+                }
+                return NewConfigSettings;
             }
-            return NewConfigSettings;
+            catch
+            {
+                throw new FileLoadException();
+            }
         }
     }
 }
