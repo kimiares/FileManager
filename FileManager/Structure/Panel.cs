@@ -10,10 +10,7 @@ using System.Threading.Tasks;
 namespace FileManager.Structure
 {
     public class Panel : List<Column>, ICheckArea
-        
     {
-        
-        
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }
         public int ColCount { get; set; }
@@ -97,18 +94,10 @@ namespace FileManager.Structure
                         
                         ));
             }
-            
-            
         }
-
-
-
         /// <summary>
         /// print content in panel
         /// </summary>
-        
-
-
         public void AddTableName()
         {
             Console.SetCursorPosition(
