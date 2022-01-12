@@ -44,7 +44,7 @@ namespace FileManager.Structure
             this.SpaceBetweenButtons = space;
             this.ButtonsCount = items.Count;
             ButtonsInitializer(items);
-            DrawButtons();
+          
         }
 
         private Point GetButtonStartPoint(int i)
@@ -52,20 +52,18 @@ namespace FileManager.Structure
 
             return new Point((i) * (Width + SpaceBetweenButtons) + StartPoint.X, StartPoint.Y);
         }
+        private Point GetButtonFinishtPoint(int i)
+        {
+
+            return new Point((i) * (Width + SpaceBetweenButtons) + StartPoint.X+Width, StartPoint.Y+Heigth);
+        }
 
         public void ButtonsInitializer(List<string> items)
         {
-            //for (int i = 0; i < ButtonsCount; i++)
-            //    this.Add(new Cell(GetButtonStartPoint(i), GetButtonStartPoint(i), items[i]));
+            for (int i = 0; i < ButtonsCount; i++)
+                this.Add(new Button(GetButtonStartPoint(i), GetButtonFinishtPoint(i), items[i]));
         }
 
-        public void DrawButtons()
-        {
-            //foreach (Cell menuitem in this)
-            //{
-            //    Console.SetCursorPosition(menuitem.StartPoint.X, menuitem.StartPoint.Y);
-            //    Console.Write(menuitem.Content);
-            //}
-        }
+       
     }
 }
