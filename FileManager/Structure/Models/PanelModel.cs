@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileManager.Structure
+namespace FileManager.Structure.Models
 {
-    public interface IStructure
+    class PanelModel
     {
-        void MakeActive();
-
-
-
     }
 }

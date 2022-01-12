@@ -11,8 +11,18 @@ namespace FileManager.Structure
     public interface ICheckArea
     {
         /// <summary>
-        /// проверка на принадлежность к указанной области
+        /// C#8.0: inteface default realization
         /// </summary>
-        bool CheckArea();
+        bool CheckArea(Point point, Point start, Point finish)
+        {
+            bool result = false;
+
+            if ((point.X >= start.X && point.X <= start.X + finish.X)
+                && (point.Y >= start.Y && point.Y <= start.Y + finish.Y))
+                result = true;
+            return result;
+        }
+
+
     }
 }
