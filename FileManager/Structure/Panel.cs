@@ -31,6 +31,7 @@ namespace FileManager.Structure
 
         public Panel(Point start, Point finish, string path, IDrawing drawing, IPanelStrategy algorithm, List<FileSystemInfo> input)
         {
+            
             this.StartPoint = start;
             this.FinishPoint = finish;
             this.Path = path;
@@ -42,23 +43,62 @@ namespace FileManager.Structure
 
 
             AddTableName();
-            SetContent();
-            PrintContent();
+            SetColumn();
+            SetContent(this, this.Input);
+            algorithm.PrintContent(this);
             
 
 
         }
         Settings mySet= Settings.Instance();
-        
+
 
 
         /// <summary>
         /// fill panel by content
         /// </summary>
-        public void SetContent()
+        //public void SetContent()
+        //{
+
+        //    this.algorithm.SetColumn(this, this.Input);
+        //}
+        public void SetContent(List<Column> targertList, List<FileSystemInfo> input)
         {
-           
-            this.algorithm.SetColumn(this, this.Input);
+
+            foreach (Column column in targertList)
+            {
+                List<FileSystemInfo> temp = input.Take(mySet.MaxElementsColumn).ToList();
+                foreach (FileSystemInfo t in temp)
+                {
+                    for (int i = 0; i < mySet.Sets.ColumnCount; i++)
+                    {
+                        column.Add(new Cell(
+                            new Point(
+                                mySet.Sets.ALX + 1 + i, mySet.Sets.ALY + 1 + i),
+                            new Point(
+                                mySet.Sets.ALX + 1 + i + mySet.ColumnWidth, mySet.Sets.ALY + 1 + i + mySet.MaxElementsColumn),
+                                t));
+                    }
+
+                }
+                input = input.Skip(mySet.MaxElementsColumn).ToList();
+            }
+
+        }
+        public void SetColumn()
+        {
+            for(int i = 0; i< 3;i++)
+            {
+                this.Add(
+                    new Column(
+                        new Point(mySet.Sets.ALX + 1 + i*mySet.ColumnWidth, mySet.Sets.ALY + 1),
+                            new Point(mySet.Sets.ALX+1+(i+1)*mySet.ColumnWidth, mySet.Sets.ALY+1+mySet.MaxElementsColumn)
+                        
+                        
+                        ));
+            }
+            
+            
         }
 
 
@@ -66,22 +106,7 @@ namespace FileManager.Structure
         /// <summary>
         /// print content in panel
         /// </summary>
-        public void PrintContent()
-        {
-            
-            foreach (Column column in this)
-            {
-                for(int i = 0; i < column.Count; i++)
-                {
-                    Console.SetCursorPosition(
-                        this.StartPoint.X+i*mySet.Sets.PanelWidth/ mySet.Sets.ColumnCount, 
-                        this.StartPoint.Y + i);
-                    
-
-                    Console.WriteLine(column[i].Content);                    
-                }
-            }            
-        }
+        
 
 
         public void AddTableName()
@@ -96,20 +121,7 @@ namespace FileManager.Structure
         {
             this.IsActive = !this.IsActive;
         }
-        /// <summary>
-        /// add column
-        /// </summary>
-        public void Add()
-        {
-            throw new NotImplementedException();
-        }
-        /// <summary>
-        /// remove column
-        /// </summary>
-        public void Remove()
-        {
-            throw new NotImplementedException();
-        }
+        
 
 
     }

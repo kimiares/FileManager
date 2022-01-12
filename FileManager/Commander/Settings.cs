@@ -40,6 +40,8 @@ namespace FileManager.Commander
             set { maxelementscolumn = value; }
         }
 
+        public int ColumnWidth { get; set; }
+
 
         public int ColumnCount { get; set; }
         /// <summary>
@@ -48,6 +50,8 @@ namespace FileManager.Commander
         private void InizialiseParams()
         {
             MaxElementsColumn = Sets.PanelHeight - 2;
+            ColumnWidth = (Sets.PanelWidth - 2 - 3) / 6;
+
         }
 
 

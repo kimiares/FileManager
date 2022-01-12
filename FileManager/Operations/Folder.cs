@@ -7,26 +7,21 @@ using System.Threading.Tasks;
 
 namespace FileManager.Operations
 {
-    public class Folder: IOperation
+    public class Folder : IOperation
     {
-        public static List<FileSystemInfo> Get(string path)
+        public static IEnumerable<FileSystemInfo> GetFolder(string path)
         {
-            List<FileSystemInfo> result = new List<FileSystemInfo>();
-
             try
             {
-                DirectoryInfo dir = new DirectoryInfo(path);
-                DirectoryInfo[] folders = dir.GetDirectories();
-                foreach (DirectoryInfo fol in folders)
-                {
-                    result.Add(fol);
-                }
-                return result;
+                DirectoryInfo dir = new(path);
+                return dir.GetDirectories();
             }
-            catch (Exception)
+            catch(Exception)
             {
                 throw new DirectoryNotFoundException();
             }
+
+            
         }
         public void Copy(FileSystemInfo directory, string pathToCopy)
         {
@@ -54,31 +49,17 @@ namespace FileManager.Operations
                 Copy(folder, dest);
             }
         }
-        public static void Delete(params FileSystemInfo[] directory)
-        {
-            if (directory.Length != 0)
-            {
-                foreach (var d in directory)
-                {
-                    if (d.Exists) d.Delete();
-                }
-            }
-            else
-            {
-                throw new FileNotFoundException();
-            }
-
-        }
+       
         public static void Rename(FileSystemInfo directory, string newName)
         {
             if (directory.Exists) Directory.Move(directory.Name, newName);
-            
+
         }
         public static void Create(string path)
         {
             DirectoryInfo directory = new DirectoryInfo(path);
             directory.Create();
         }
-       
+
     }
 }

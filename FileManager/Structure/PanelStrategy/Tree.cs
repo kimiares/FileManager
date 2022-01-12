@@ -12,8 +12,10 @@ namespace FileManager.Structure.PanelStrategy
         
     {
         IDrawing drawing;
+
         
-        public void SetColumn(List<Column> targertList, List<FileSystemInfo> input)
+
+        public void PrintContent(List<Column> targertList)
         {
             throw new NotImplementedException();
         }

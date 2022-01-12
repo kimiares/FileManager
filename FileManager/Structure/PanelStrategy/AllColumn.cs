@@ -20,35 +20,51 @@ namespace FileManager.Structure.PanelStrategy
 
 
     {
-        //public List<FileSystemInfo> input;
+        
         public int maxNumbers;
-        //public Point StartPoint { get; set; }
-        //public Point FinishPoint { get; set; }
+        
 
-        Settings MySet = Settings.Instance();
+        Settings mySet = Settings.Instance();
 
-        public void SetColumn(List<Column> targertList, List<FileSystemInfo> input)
-        {
+        //public void SetColumn(List<Column> targertList, List<FileSystemInfo> input)
+        //{
             
-                foreach (Column column in targertList)
-                {
-                    List<FileSystemInfo> temp = input.Take(MySet.MaxElementsColumn).ToList();
-                    foreach (FileSystemInfo t in temp)
-                    {
-                        for (int i = 0; i < MySet.Sets.ColumnCount; i++)
-                        {
-                            column.Add(new Cell(
-                                new Point(
-                                    column.StartPoint.X, column.StartPoint.Y+i), 
-                                new Point(
-                                    column.FinishPoint.X, column.FinishPoint.Y- MySet.MaxElementsColumn + i), 
-                                    t));
-                        }
+        //        foreach (Column column in targertList)
+        //        {
+        //            List<FileSystemInfo> temp = input.Take(MySet.MaxElementsColumn).ToList();
+        //            foreach (FileSystemInfo t in temp)
+        //            {
+        //                for (int i = 0; i < MySet.Sets.ColumnCount; i++)
+        //                {
+        //                    column.Add(new Cell(
+        //                        new Point(
+        //                            MySet.Sets.ALX+1+i, MySet.Sets.ALY+1+i), 
+        //                        new Point(
+        //                            MySet.Sets.ALX + 1 + i + MySet.ColumnWidth, MySet.Sets.ALY + 1 + i + MySet.MaxElementsColumn), 
+        //                            t));
+        //                }
                         
-                        }
-                        input = input.Skip(column.MaxElementsNumber).ToList();
-                    }
+        //            }
+        //                input = input.Skip(MySet.MaxElementsColumn).ToList();
+        //        }
             
+        //}
+
+
+        public void PrintContent(List<Column> targertList)
+        {
+
+            foreach (Column column in targertList)
+            {
+                for (int i = 0; i < column.Count; i++)
+                {
+                    Console.SetCursorPosition(mySet.Sets.ALX + 1 + i*mySet.ColumnWidth, mySet.Sets.ALY + 1 + i);
+                    Console.WriteLine(column[i].Content.Name);
+                    column.Remove(column[i]);
+                }
+            }
         }
+
+       
     }
 }

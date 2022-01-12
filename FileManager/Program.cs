@@ -10,7 +10,7 @@ using FileManager.Operations;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-
+using System.Linq;
 
 namespace FileManager
 {
@@ -51,7 +51,7 @@ namespace FileManager
                         new MemoryStream(new byte[56],false),
                        new MemoryStream(new byte[56],false)};
 
-                List<FileSystemInfo> testFSI = Operations.Files.GetFiles(@"C:\");
+                List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\bob\").ToList();
 
                 //Table tableForPanel = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(60, 28), 3);
 
