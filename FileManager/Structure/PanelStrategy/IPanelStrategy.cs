@@ -19,7 +19,7 @@ namespace FileManager.Structure
         /// </summary>
         /// <param name="targertList"></param>
         /// <param name="columnCount"></param>
-        //void SetContent(List<Column> targertList, List<FileSystemInfo> input);
+        void SetContent(List<Column> targertList, List<FileSystemInfo> input);
         void PrintContent(List<Column> targertList);
     }
 }

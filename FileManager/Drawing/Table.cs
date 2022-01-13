@@ -106,7 +106,11 @@ namespace FileManager.Drawing
                 int ColumnWidth = (FinishPoint.X - StartPoint.X) / ColCount;
                 for (int i = 1; i < ColCount; i++)
                 {
-                    lines.Add(new Line(new Point(FinishPoint.X - i * ColumnWidth, StartPoint.Y), new Point((FinishPoint.X - i * ColumnWidth), FinishPoint.Y)));
+                    lines.Add(
+                        new Line(
+                            new Point(StartPoint.X + i * ColumnWidth, StartPoint.Y), 
+                            new Point((StartPoint.X + (i+1) * ColumnWidth), FinishPoint.Y)
+                            ));
                 }
             }
 

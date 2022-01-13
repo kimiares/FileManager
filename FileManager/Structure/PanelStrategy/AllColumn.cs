@@ -14,57 +14,54 @@ namespace FileManager.Structure.PanelStrategy
     /// <summary>
     /// fill all columns by same data(only names)
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+
     public class AllColumn : IPanelStrategy
-        
+
 
 
     {
-        
-        public int maxNumbers;
-        
-
         Settings mySet = Settings.Instance();
 
-        //public void SetColumn(List<Column> targertList, List<FileSystemInfo> input)
-        //{
-            
-        //        foreach (Column column in targertList)
-        //        {
-        //            List<FileSystemInfo> temp = input.Take(MySet.MaxElementsColumn).ToList();
-        //            foreach (FileSystemInfo t in temp)
-        //            {
-        //                for (int i = 0; i < MySet.Sets.ColumnCount; i++)
-        //                {
-        //                    column.Add(new Cell(
-        //                        new Point(
-        //                            MySet.Sets.ALX+1+i, MySet.Sets.ALY+1+i), 
-        //                        new Point(
-        //                            MySet.Sets.ALX + 1 + i + MySet.ColumnWidth, MySet.Sets.ALY + 1 + i + MySet.MaxElementsColumn), 
-        //                            t));
-        //                }
-                        
-        //            }
-        //                input = input.Skip(MySet.MaxElementsColumn).ToList();
-        //        }
-            
-        //}
-
-
-        public void PrintContent(List<Column> targertList)
+        
+        public void PrintContent(List<Column> columns)
         {
-
-            foreach (Column column in targertList)
+            foreach (Column column in columns)
             {
                 for (int i = 0; i < column.Count; i++)
                 {
-                    //Console.SetCursorPosition(mySet.Sets.ALX + 1 + i*mySet, mySet.Sets.ALY + 1 + i);
-                    Console.WriteLine(column[i].Content.Name);
-                    column.Remove(column[i]);
+                    Console.ResetColor();
+                    Console.SetCursorPosition(column.StartPoint.X, column.StartPoint.Y + i);
+                    Console.WriteLine(CutName(column[i].Content.Name));
+                }
+            }
+
+        }
+
+        public void SetContent(List<Column> columns, List<FileSystemInfo> input)
+        {
+
+            List<FileSystemInfo> temp = new List<FileSystemInfo>();
+            for (int i = 0; i < columns.Count; i++)
+            {
+
+                temp = input.Skip(i * mySet.MaxElementsColumn).Take(mySet.MaxElementsColumn).ToList();
+
+                for (int j = 0; j < temp.Count; j++)
+                {
+                    columns[i].Add(
+                    new Cell(
+                        new Point(columns[i].StartPoint.X, columns[i].StartPoint.Y + i),
+                        new Point(columns[i].StartPoint.X + mySet.ColumnWidthLeft, columns[i].StartPoint.Y + i),
+                        temp[j]
+                        ));
                 }
             }
         }
-
-       
+        public string CutName(string name)
+        {
+            if (name.Length > mySet.ColumnWidthLeft-2)
+                name = name.Substring(0, mySet.ColumnWidthLeft - 2);
+            return name;
+        }
     }
 }

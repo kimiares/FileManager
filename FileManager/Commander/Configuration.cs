@@ -21,7 +21,7 @@ namespace FileManager.Commander
         /// <summary>
         /// PanelWidth
         /// </summary>
-        public int PanelWidth { get; } = Console.WindowWidth;
+        public int PanelWidth { get; } = Console.WindowWidth/2;
         /// <summary>
         /// Default TextColor
         /// </summary>

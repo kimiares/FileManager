@@ -41,12 +41,18 @@ namespace FileManager.Commander
         /// Additional program settings, calculated on base main settings.  
         /// </summary>
 
-        public int ColumnCount { get; set; } = 3;
-        public int ColumnWidth { get; set; }
+        public int ColumnCountLeft { get; set; } = 3;
+        public int ColumnCountRight { get; set; } = 3;
+        public int ColumnWidthLeft { get; set; }
+        public int ColumnWidthRight { get; set; }
 
         private void InizialiseParams()
         {
-            MaxElementsColumn = Sets.PanelHeight - 2;
+            MaxElementsColumn = Sets.PanelHeight - 3;
+            if (Sets.ViewModeLeftPanel == 1) ColumnCountLeft = 1;
+            if (Sets.ViewModeRightPanel == 1) ColumnCountRight = 1;
+            ColumnWidthLeft = Sets.PanelWidth / ColumnCountLeft;
+            ColumnWidthRight = Sets.PanelWidth / ColumnCountRight;
         }
 
 
