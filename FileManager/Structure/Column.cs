@@ -50,15 +50,5 @@ namespace FileManager.Structure
         }
 
 
-        public void Move(bool direction)
-        {
-            this.selectedIndex = (direction==true) ? this.selectedIndex++ : this.selectedIndex--;
-        }
-        public void MakeSelected(int selectedIndex)
-        {
-            this[selectedIndex].IsSelected = !this[selectedIndex].IsSelected;
-        }
-
-
     }
 }

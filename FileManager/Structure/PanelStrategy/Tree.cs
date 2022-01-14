@@ -20,7 +20,22 @@ namespace FileManager.Structure.PanelStrategy
             throw new NotImplementedException();
         }
 
+        public void PrintContent(Panel targertList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PrintContentTest(Panel targertList)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetContent(List<Column> targertList, List<FileSystemInfo> input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetContent(Panel targertList, List<FileSystemInfo> input)
         {
             throw new NotImplementedException();
         }

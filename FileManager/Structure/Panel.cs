@@ -25,8 +25,6 @@ namespace FileManager.Structure
         /// </summary>
         public string Path { get; set; }
         public List<FileSystemInfo> Input { get; set; }
-
-
         public IDrawing drawing;
         public IPanelStrategy algorithm;
 
@@ -41,20 +39,22 @@ namespace FileManager.Structure
             this.algorithm = algorithm;
             this.Input = input;
             this.Index = index;
-
-
-
-            AddTableName();
-            SetColumn();
-            algorithm.SetContent(this, this.Input);
-            algorithm.PrintContent(this);
-
-
+            Set();
+           
 
         }
         Settings mySet = Settings.Instance();
-
-
+        
+        public void Set()
+        {
+            AddTableName();
+            SetColumn();
+            this.algorithm.SetContent(this, this.Input);
+            this.algorithm.PrintContent(this);
+        }
+        
+        
+        
         /// <summary>
         /// Create columns with coordinates
         /// </summary>
@@ -87,6 +87,9 @@ namespace FileManager.Structure
         {
             this.IsActive = !this.IsActive;
         }
+
+
+        
 
 
 

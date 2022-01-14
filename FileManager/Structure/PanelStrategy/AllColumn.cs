@@ -21,7 +21,7 @@ namespace FileManager.Structure.PanelStrategy
         Settings mySet = Settings.Instance();
 
         
-        public void PrintContent(List<Column> columns)
+        public void PrintContent(Panel columns)
         {
             foreach (Column column in columns)
             {
@@ -29,16 +29,19 @@ namespace FileManager.Structure.PanelStrategy
                 {
                     Console.ResetColor();
                     Console.SetCursorPosition(column.StartPoint.X, column.StartPoint.Y + i);
-                    Console.WriteLine(CutName(column[i].Content.Name));
+                    Console.WriteLine(((columns.IndexOf(column) == 0)&&i==0) ? ".." : SupportMethods.CutName(column[i].Content.Name));
                 }
             }
 
         }
 
-        public void SetContent(List<Column> columns, List<FileSystemInfo> input)
+       
+
+        public void SetContent(Panel columns, List<FileSystemInfo> input)
         {
 
             List<FileSystemInfo> temp = new List<FileSystemInfo>();
+            SupportMethods.AddRootIntoList(input[0], temp);
             for (int i = 0; i < columns.Count; i++)
             {
 
@@ -55,11 +58,6 @@ namespace FileManager.Structure.PanelStrategy
                 }
             }
         }
-        public string CutName(string name)
-        {
-            if (name.Length > mySet.ColumnWidthLeft-2)
-                name = name.Substring(0, mySet.ColumnWidthLeft - 2);
-            return name;
-        }
+        
     }
 }
