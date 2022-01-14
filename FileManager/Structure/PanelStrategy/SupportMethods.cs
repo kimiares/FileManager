@@ -32,19 +32,7 @@ namespace FileManager.Structure.PanelStrategy
         {
             return new DirectoryInfo(Directory.GetDirectoryRoot(file.FullName));
 
-        }
-
-        /// <summary>
-        /// Add parent directory to the top of the column
-        /// </summary>
-        /// <param name="file"></param>
-        /// <param name="list"></param>
-        public static void AddRootIntoList(FileSystemInfo file, List<FileSystemInfo> list)
-        {
-            list.Reverse();
-            list.Add(GetRoot(file));
-            list.Reverse();
-        }
+        }     
 
 
     }

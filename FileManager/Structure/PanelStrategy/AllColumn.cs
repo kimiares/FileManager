@@ -41,10 +41,10 @@ namespace FileManager.Structure.PanelStrategy
         {
 
             List<FileSystemInfo> temp = new List<FileSystemInfo>();
-            SupportMethods.AddRootIntoList(input[0], temp);
+            temp.Add(SupportMethods.GetRoot(input[0]));
+            temp.AddRange(input.Take(mySet.MaxElementsColumn - 1).ToList());
             for (int i = 0; i < columns.Count; i++)
             {
-
                 temp = input.Skip(i * mySet.MaxElementsColumn).Take(mySet.MaxElementsColumn).ToList();
 
                 for (int j = 0; j < temp.Count; j++)

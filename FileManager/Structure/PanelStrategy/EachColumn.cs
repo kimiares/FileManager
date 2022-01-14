@@ -4,8 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace FileManager.Structure.PanelStrategy
 {
@@ -25,9 +24,7 @@ namespace FileManager.Structure.PanelStrategy
         public void PrintContent(Panel columns)
         {
             foreach (Column column in columns)
-
             {
-
                 for (int i = 0; i < column.Count; i++)
                 {
                     Console.ResetColor();
@@ -45,11 +42,11 @@ namespace FileManager.Structure.PanelStrategy
         public void SetContent(Panel columns, List<FileSystemInfo> input)
         {
 
-            List<FileSystemInfo> temp = input.Take(mySet.MaxElementsColumn - 1).ToList();
-            SupportMethods.AddRootIntoList(input[0], temp);
+            List<FileSystemInfo> temp = new List<FileSystemInfo>();
+            temp.Add(SupportMethods.GetRoot(input[0]));
+            temp.AddRange(input.Take(mySet.MaxElementsColumn - 1).ToList());
             for (int i = 0; i < temp.Count; i++)
             {
-
                 for (int j = 0; j < columns.Count; j++)
                 {
                     columns[j].Add(
@@ -71,7 +68,7 @@ namespace FileManager.Structure.PanelStrategy
         /// <param name="index"></param>
         /// <param name="file"></param>
         
-        public string CheckColumn(int index, FileSystemInfo file)
+        public static string CheckColumn(int index, FileSystemInfo file)
         {
             if (index == 1)
             {
