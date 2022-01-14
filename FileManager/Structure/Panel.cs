@@ -71,6 +71,7 @@ namespace FileManager.Structure
 
         }
 
+
         /// <summary>
         /// Adding path into top of the panel
         /// </summary>

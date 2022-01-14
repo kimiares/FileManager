@@ -17,8 +17,6 @@ namespace FileManager.Structure.PanelStrategy
 
     public class AllColumn : IPanelStrategy
 
-
-
     {
         Settings mySet = Settings.Instance();
 

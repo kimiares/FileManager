@@ -15,6 +15,7 @@ namespace FileManager.Structure
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }
         public bool IsActive { get; set; }
+        public int selectedIndex = 0;
         
         public Column(Point start, Point finish)
         {
@@ -22,6 +23,7 @@ namespace FileManager.Structure
             this.FinishPoint = finish;
             
             this.IsActive = false;
+            
 
             
         }
@@ -47,6 +49,16 @@ namespace FileManager.Structure
             this.IsActive = !this.IsActive;
         }
 
-        
+
+        public void Move(bool direction)
+        {
+            this.selectedIndex = (direction==true) ? this.selectedIndex++ : this.selectedIndex--;
+        }
+        public void MakeSelected(int selectedIndex)
+        {
+            this[selectedIndex].IsSelected = !this[selectedIndex].IsSelected;
+        }
+
+
     }
 }

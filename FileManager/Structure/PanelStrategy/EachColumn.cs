@@ -36,6 +36,7 @@ namespace FileManager.Structure.PanelStrategy
             foreach (Column column in columns)
 
             {
+                
                 for (int i = 0; i < column.Count; i++)
                 {
                     Console.ResetColor();
@@ -52,11 +53,25 @@ namespace FileManager.Structure.PanelStrategy
         /// <param name="input"></param>
         public void SetContent(List<Column> columns, List<FileSystemInfo> input)
         {
-            List<FileSystemInfo> temp = input.Take(mySet.MaxElementsColumn).ToList();
+            List<FileSystemInfo> temp = input.Take(mySet.MaxElementsColumn-1).ToList();
             for (int i = 0; i < temp.Count; i++)
             {
-                for (int j = 0; j < columns.Count; j++)
+                
+                for(int c = 0; c < columns.Count; c++)
                 {
+                    columns[c].Add(
+                        new Cell(
+                            new Point(columns[c].StartPoint.X + c * mySet.ColumnWidthLeft, columns[c].StartPoint.Y + i),
+                            new Point(columns[c].StartPoint.X + mySet.ColumnWidthLeft + c * mySet.ColumnWidthLeft, columns[c].StartPoint.Y + i),
+                            
+                            ));
+                }
+                
+                
+                for (int j = 1; j < columns.Count-1; j++)
+                {
+                                        
+                    
                     columns[j].Add(
                     new Cell(
                         new Point(columns[j].StartPoint.X + j * mySet.ColumnWidthLeft, columns[j].StartPoint.Y + i),
@@ -95,6 +110,19 @@ namespace FileManager.Structure.PanelStrategy
             if (name.Length > mySet.ColumnWidthLeft - 2)
                 name = name.Substring(0, mySet.ColumnWidthLeft - 2);
             return name;
+        }
+
+
+        public FileSystemInfo GetRoot(FileSystemInfo file)
+        {
+            string rootPath = Directory.GetDirectoryRoot(file.FullName);
+
+            FileSystemInfo result = FileSystemInfo;
+            
+
+
+            
+
         }
     }
 }
