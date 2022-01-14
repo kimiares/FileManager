@@ -50,6 +50,13 @@ namespace FileManager
                 new AllColumn(),
                 testFSI);
 
+            List<string> items = new List<string>();
+            foreach (var d in Enum.GetValues(typeof(ButtonEnum)))
+            {
+                items.Add(d.ToString().PadRight(10));
+            }
+
+            Buttons F_Buttons = new Buttons(new Drawing.Point(1, 29), 10, 1, 2, items);
 
 
 
