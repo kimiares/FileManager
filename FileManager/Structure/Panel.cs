@@ -49,7 +49,9 @@ namespace FileManager.Structure
         {
             AddTableName();
             SetColumn();
-            this.algorithm.SetContent(this, this.Input);
+            SetCellsTest();
+            //this.algorithm.SetContent(this, this.Input);
+            this.algorithm.SetContentTest(this, this.Input);
             this.algorithm.PrintContent(this);
         }
         
@@ -69,6 +71,30 @@ namespace FileManager.Structure
                        ));
             }
 
+        }
+        public void SetColumnTest()
+        {
+            for(int i = 0; i < mySet.ColumnCountLeft; i++)
+            {
+                this.Add(
+                    new Column(
+                        new Point(mySet.Sets.ALX + 1 - i + i * mySet.ColumnWidthLeft + this.Index * (mySet.Sets.PanelWidth + 1), mySet.Sets.ALY + 1),
+                            new Point(mySet.Sets.ALX + 1 - i + (i + 1) * mySet.ColumnWidthLeft + this.Index * (mySet.Sets.PanelWidth + 1), mySet.Sets.ALY + 1 + mySet.MaxElementsColumn)
+                       ));
+            }
+        }
+        public void SetCellsTest()
+        {
+            for(int i = 0; i < this.Count; i++)
+            {
+                for(int j = 0; j < mySet.MaxElementsColumn; j++)
+                {
+                    this[i].Add(new Cell(
+                        new Point(this[i].StartPoint.X + i * mySet.ColumnWidthLeft, this[i].StartPoint.Y + j),
+                        new Point(this[i].StartPoint.X + mySet.ColumnWidthLeft + i * mySet.ColumnWidthLeft, this[i].StartPoint.Y + j)
+                        ));
+                }
+            }
         }
 
 

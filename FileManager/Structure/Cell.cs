@@ -1,4 +1,6 @@
-﻿using FileManager.Drawing;
+﻿using FileManager.Commander;
+using FileManager.Drawing;
+using FileManager.Operations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,15 +29,25 @@ namespace FileManager.Structure
         /// <summary>
         /// содержимое ячейки (FileSystemInfo/String/Disk?)
         /// </summary>
-        public FileSystemInfo Content { get; set; }
-        
+        public FileSystemInfo? Content { get; set; }
 
-        public Cell(Point startPoint, Point finishPoint, FileSystemInfo content)
+        Settings mySet = Settings.Instance();
+
+
+        public Cell(Point startPoint, Point finishPoint)
+        {
+            this.StartPoint = startPoint;
+            this.FinishPoint = finishPoint;
+            
+        }
+        public Cell(Point startPoint, Point finishPoint, FileSystemInfo content) : this(startPoint, finishPoint)
         {
             this.StartPoint = startPoint;
             this.FinishPoint = finishPoint;
             this.Content = content;
+
         }
+
 
         public void MakeActive()
 

@@ -35,5 +35,10 @@ namespace FileManager.Structure.PanelStrategy
         {
             throw new NotImplementedException();
         }
+
+        public void SetContentTest(Panel targertList, List<FileSystemInfo> input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace FileManager.Structure
         /// <param name="targertList"></param>
         /// <param name="columnCount"></param>
         void SetContent(Panel targertList, List<FileSystemInfo> input);
+        void SetContentTest(Panel targertList, List<FileSystemInfo> input);
         void PrintContent(Panel targertList);
         
     }

@@ -35,29 +35,55 @@ namespace FileManager.Structure.PanelStrategy
 
         }
 
-       
-
-        public void SetContent(Panel columns, List<FileSystemInfo> input)
+        public void SetContent(Panel targertList, List<FileSystemInfo> input)
         {
+            throw new NotImplementedException();
+        }
 
+        public void SetContentTest(Panel targertList, List<FileSystemInfo> input)
+        {
             List<FileSystemInfo> temp = new List<FileSystemInfo>();
             temp.Add(SupportMethods.GetRoot(input[0]));
             temp.AddRange(input.Take(mySet.MaxElementsColumn - 1).ToList());
-            for (int i = 0; i < columns.Count; i++)
-            {
-                temp = input.Skip(i * mySet.MaxElementsColumn).Take(mySet.MaxElementsColumn).ToList();
 
-                for (int j = 0; j < temp.Count; j++)
+            for(int j = 0; j < targertList.Count; j++)
+            {
+                temp = input.Skip(j * mySet.MaxElementsColumn).Take(mySet.MaxElementsColumn).ToList();
+                for (int i = 0; i < temp.Count; i++)
                 {
-                    columns[i].Add(
-                    new Cell(
-                        new Point(columns[i].StartPoint.X, columns[i].StartPoint.Y + i),
-                        new Point(columns[i].StartPoint.X + mySet.ColumnWidthLeft, columns[i].StartPoint.Y + i),
-                        temp[j]
-                        ));
+                    
+                    foreach (Column col in targertList)
+                    {
+                        col[i].Content = temp[i];
+                    }
                 }
             }
+            
         }
-        
+
+
+
+        //public void SetContent(Panel columns, List<FileSystemInfo> input)
+        //{
+
+        //    List<FileSystemInfo> temp = new List<FileSystemInfo>();
+        //    temp.Add(SupportMethods.GetRoot(input[0]));
+        //    temp.AddRange(input.Take(mySet.MaxElementsColumn - 1).ToList());
+        //    for (int i = 0; i < columns.Count; i++)
+        //    {
+        //        temp = input.Skip(i * mySet.MaxElementsColumn).Take(mySet.MaxElementsColumn).ToList();
+
+        //        for (int j = 0; j < temp.Count; j++)
+        //        {
+        //            columns[i].Add(
+        //            new Cell(
+        //                new Point(columns[i].StartPoint.X, columns[i].StartPoint.Y + i),
+        //                new Point(columns[i].StartPoint.X + mySet.ColumnWidthLeft, columns[i].StartPoint.Y + i),
+        //                temp[j]
+        //                ));
+        //        }
+        //    }
+        //}
+
     }
 }
