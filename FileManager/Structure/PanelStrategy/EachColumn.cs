@@ -35,30 +35,13 @@ namespace FileManager.Structure.PanelStrategy
 
         }
         /// <summary>
-        /// Fill column with files/folder
+        /// Fill columns with names/creation time/last acces time
         /// </summary>
         /// <param name="columns"></param>
         /// <param name="input"></param>
-        //public void SetContent(Panel columns, List<FileSystemInfo> input)
-        //{
-
-        //    List<FileSystemInfo> temp = new List<FileSystemInfo>();
-        //    temp.Add(SupportMethods.GetRoot(input[0]));
-        //    temp.AddRange(input.Take(mySet.MaxElementsColumn - 1).ToList());
-        //    for (int i = 0; i < temp.Count; i++)
-        //    {
-        //        for (int j = 0; j < columns.Count; j++)
-        //        {
-        //            columns[j].Add(
-        //            new Cell(
-        //                new Point(columns[j].StartPoint.X + j * mySet.ColumnWidthLeft, columns[j].StartPoint.Y + i),
-        //                new Point(columns[j].StartPoint.X + mySet.ColumnWidthLeft + j * mySet.ColumnWidthLeft, columns[j].StartPoint.Y + i),
-        //                temp[i]
-        //                ));
-        //        }
-        //    }
-        //}
-        public void SetContentTest(Panel columns, List<FileSystemInfo> input)
+        
+        
+        public void SetContent(Panel columns, List<FileSystemInfo> input)
         {
 
             List<FileSystemInfo> temp = new List<FileSystemInfo>();
@@ -96,9 +79,6 @@ namespace FileManager.Structure.PanelStrategy
             return SupportMethods.CutName(file.Name);
         }
 
-        public void SetContent(Panel targertList, List<FileSystemInfo> input)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

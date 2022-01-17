@@ -29,7 +29,7 @@ namespace FileManager.Structure
         /// <summary>
         /// содержимое ячейки (FileSystemInfo/String/Disk?)
         /// </summary>
-        public FileSystemInfo? Content { get; set; }
+        public FileSystemInfo Content { get; set; }
 
         Settings mySet = Settings.Instance();
 
