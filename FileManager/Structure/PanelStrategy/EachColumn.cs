@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 
 
+
 namespace FileManager.Structure.PanelStrategy
 {
     /// <summary>
@@ -17,68 +18,49 @@ namespace FileManager.Structure.PanelStrategy
 
         Settings mySet = Settings.Instance();
 
-        /// <summary>
-        /// print different property in each column
-        /// </summary>
-        /// <param name="columns"></param>
-        public void PrintContent(Panel columns)
-        {
-            foreach (Column column in columns)
-            {
-                for (int i = 0; i < column.Count; i++)
-                {
-                    Console.ResetColor();
-                    Console.SetCursorPosition(column.StartPoint.X, column.StartPoint.Y + i);
-                    Console.WriteLine((i == 0) ? ".." : CheckColumn(columns.IndexOf(column), column[i].Content));
-                }
-            }
-
-        }
-        /// <summary>
-        /// Fill columns with names/creation time/last acces time
-        /// </summary>
-        /// <param name="columns"></param>
-        /// <param name="input"></param>
-        
-        
-        public void SetContent(Panel columns, List<FileSystemInfo> input)
+       
+        public IEnumerable<Cell> SetContent(Panel panel, List<FileSystemInfo> input)
         {
 
-            List<FileSystemInfo> temp = new List<FileSystemInfo>();
-            temp.Add(SupportMethods.GetRoot(input[0]));
-            temp.AddRange(input.Take(mySet.MaxElementsColumn - 1).ToList());
-
-            for (int i = 0; i < temp.Count; i++)
+            var tempList = new List<FileSystemInfo>
             {
-                foreach(Column col in columns)
-                {
-                    col[i].Content = temp[i];
-                }
+                new ParentDirectory((input[0]).GetRoot())
             }
+            .Union(input.Take(mySet.MaxElementsColumn-1));
+
+
+            return panel.GetAllCells()
+                .ZipAll(tempList, (cellsForFilling, temp) => new { cellsForFilling, temp })
+                .Where(r => r.cellsForFilling != null)
+                .Each(r => r.cellsForFilling.Content = r.temp)
+                .Select(r => r.cellsForFilling);
+
         }
 
-
-
-
-        /// <summary>
-        /// check column's index to choose strategy
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="file"></param>
-
-        public static string CheckColumn(int index, FileSystemInfo file)
+        public void PrintContent(Panel panel, List<FileSystemInfo> input)
         {
-            if (index == 1)
+            var cells = SetContent(panel, input).Take(mySet.MaxElementsColumn);
+            Console.ResetColor();
+            foreach (Cell cell in cells)
             {
-                return file.CreationTime.ToShortDateString();
+                
+                cell.StartPoint.SetCursor();
+                (cell.Content?.Name)
+                    .Write();
+
+                Console.SetCursorPosition(cell.StartPoint.X + mySet.ColumnWidthLeft-1, cell.StartPoint.Y);
+                
+                (cell.Content?.CreationTime.ToShortDateString())
+                    .Write();
+
+                Console.SetCursorPosition(cell.StartPoint.X + 2 * (mySet.ColumnWidthLeft-1), cell.StartPoint.Y);
+                (cell.Content?.LastAccessTime.ToShortDateString())
+                    .Write();
+
+
             }
-            if (index == 2)
-            {
-                return file.LastAccessTime.ToShortDateString();
-            }
-            return SupportMethods.CutName(file.Name);
         }
 
-        
+       
     }
 }

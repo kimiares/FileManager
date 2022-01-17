@@ -10,7 +10,7 @@ namespace FileManager.Commander
     /// <summary>
     /// инициализация коммандера
     /// </summary>
-    class FileCommander 
+    public class FileCommander 
         
     {
         

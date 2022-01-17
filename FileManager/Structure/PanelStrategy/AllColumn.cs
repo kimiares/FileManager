@@ -20,41 +20,42 @@ namespace FileManager.Structure.PanelStrategy
     {
         Settings mySet = Settings.Instance();
 
-        
-        public void PrintContent(Panel columns)
+
+        public IEnumerable<Cell> SetContent(Panel panel, List<FileSystemInfo> input)
         {
-            foreach (Column column in columns)
+
+            int cellsCount = panel.Count * mySet.MaxElementsColumn;
+            var tempList = new List<FileSystemInfo>
             {
-                for (int i = 0; i < column.Count; i++)
-                {
-                    Console.ResetColor();
-                    Console.SetCursorPosition(column.StartPoint.X, column.StartPoint.Y + i);
-                    Console.WriteLine(((columns.IndexOf(column) == 0)&&i==0) ? ".." : SupportMethods.CutName(column[i].Content.Name));
-                }
+                new ParentDirectory((input[0]).GetRoot())
             }
+            .Union(input.Take(cellsCount));
+
+
+            return panel.GetAllCells()
+                .ZipAll(tempList, (cellsForFilling, temp) => new { cellsForFilling, temp })
+                .Where(r => r.cellsForFilling != null)
+                .Each(r => r.cellsForFilling.Content = r.temp)
+                .Select(r => r.cellsForFilling);
+
 
         }
 
-        
 
-        public void SetContent(Panel targertList, List<FileSystemInfo> input)
+
+        public void PrintContent(Panel panel, List<FileSystemInfo> input)
         {
-            List<FileSystemInfo> temp = new List<FileSystemInfo>();
-            temp.Add(SupportMethods.GetRoot(input[0]));
-            temp.AddRange(input.Take(mySet.MaxElementsColumn - 1).ToList());
 
-            
-            for(int j = 0; j < targertList.Count; j++)
+            var cells = SetContent(panel, input);
+            Console.ResetColor();
+            foreach (Cell cell in cells)
             {
-                temp = input.Skip(j * mySet.MaxElementsColumn).Take(mySet.MaxElementsColumn).ToList();
-                for (int i=0; i < targertList[j].Count; i++)
-                {
-                    targertList[j][i].Content = temp[i];
-                }              
-                
+                cell.StartPoint.SetCursor();
+                (cell.Content?.Name).Write();
+               
             }
-            
         }
+
 
     }
 }

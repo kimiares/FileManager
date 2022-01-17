@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Drawing
 {
-    class Corner : IDrawing
+    public class Corner : IDrawing
     {
         /// <summary>
         /// all chars are getting from "╚╝╗╔╦╩"

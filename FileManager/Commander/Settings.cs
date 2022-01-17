@@ -8,7 +8,7 @@ using System.IO;
 
 namespace FileManager.Commander
 {
-    class Settings
+    public class Settings
     {
         public static Settings Instance()
         {

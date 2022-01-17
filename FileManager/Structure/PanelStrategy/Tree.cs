@@ -13,30 +13,12 @@ namespace FileManager.Structure.PanelStrategy
     {
         IDrawing drawing;
 
-        
-
-        public void PrintContent(List<Column> targertList)
+        public void PrintContent(Panel targertList, List<FileSystemInfo> input)
         {
             throw new NotImplementedException();
         }
 
-        public void PrintContent(Panel targertList)
-        {
-            throw new NotImplementedException();
-        }
-
-       
-        public void SetContent(List<Column> targertList, List<FileSystemInfo> input)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetContent(Panel targertList, List<FileSystemInfo> input)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetContentTest(Panel targertList, List<FileSystemInfo> input)
+        public IEnumerable<Cell> SetContent(Panel targertList, List<FileSystemInfo> input)
         {
             throw new NotImplementedException();
         }

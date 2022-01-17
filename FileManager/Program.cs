@@ -26,9 +26,9 @@ namespace FileManager
             
            
             List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\Windows").ToList();
-            
 
-            
+
+
 
             Panel panel = new Panel(
                 new Drawing.Point(1, 1),
@@ -36,7 +36,7 @@ namespace FileManager
                 MySet.Sets.PathLeft,
                 0,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
-                new EachColumn(),
+                new AllColumn(),
                 testFSI);
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
@@ -47,7 +47,7 @@ namespace FileManager
                 MySet.Sets.PathLeft,
                 1,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
-                new AllColumn(),
+                new EachColumn(),
                 testFSI);
 
             List<string> items = new List<string>();

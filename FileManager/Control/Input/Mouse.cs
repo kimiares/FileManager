@@ -9,7 +9,7 @@ namespace FileManager.Control.Input
     /// <summary>
     /// обработчик мышки
     /// </summary>
-    class Mouse : IInput
+    public class Mouse : IInput
     {
     }
 }
