@@ -65,11 +65,13 @@ namespace FileManager
                 if (MyKey.Key == ConsoleKey.UpArrow)
                 {
                     panel1.Move(false);
+                    panel1.Set();
                 }
-                else if(MyKey.Key == ConsoleKey.UpArrow)
+                else if(MyKey.Key == ConsoleKey.DownArrow)
                 {
                     panel1.Move(true);
-                }
+                    panel1.Set();
+            }
 
            
 

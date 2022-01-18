@@ -1,5 +1,6 @@
 ﻿using FileManager.Commander;
 using FileManager.Drawing;
+using FileManager.Structure.PanelStrategy;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -52,6 +53,7 @@ namespace FileManager.Structure
             AddTableName();
             SetColumn();
             SetCells();
+            RefreshContent();
             this.algorithm.PrintContent(this, this.Input);
         }
         
@@ -120,6 +122,16 @@ namespace FileManager.Structure
             if (direction) this.Selected++;
             else
                 this.Selected--;
+        }
+        public void RefreshContent()
+        {
+            foreach(Cell cell in GetAllCells())
+            {
+                Console.ResetColor();
+                cell.StartPoint.SetCursor();
+                Console.WriteLine(new String(' ', mySet.ColumnWidthLeft));
+
+            }
         }
 
 

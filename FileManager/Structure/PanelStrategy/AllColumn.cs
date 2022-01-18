@@ -38,7 +38,6 @@ namespace FileManager.Structure.PanelStrategy
                 .Each(r => r.cellsForFilling.Content = r.temp)
                 .Select(r => r.cellsForFilling);
 
-
         }
 
 
