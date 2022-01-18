@@ -53,7 +53,7 @@ namespace FileManager.Structure
             AddTableName();
             SetColumn();
             SetCells();
-            RefreshContent();
+            //RefreshContent();
             this.algorithm.PrintContent(this, this.Input);
         }
         
@@ -119,19 +119,44 @@ namespace FileManager.Structure
 
         public void Move(bool direction)
         {
-            if (direction) this.Selected++;
+            if (direction) 
+            {
+                SetSelected(this.Selected, this.Selected++);
+                this.Selected++;
+
+            }
+
             else
+            {
+                SetSelected(this.Selected, this.Selected--);
                 this.Selected--;
+            }
+                
         }
+
         public void RefreshContent()
         {
             foreach(Cell cell in GetAllCells())
             {
                 Console.ResetColor();
                 cell.StartPoint.SetCursor();
-                Console.WriteLine(new String(' ', mySet.ColumnWidthLeft));
+                Console.WriteLine(new String(' ', mySet.ColumnWidthLeft-1));
 
             }
+        }
+
+        public void SetSelected(int oldIndex, int newIndex)
+        {
+            List<Cell> c = GetAllCells().ToList();
+            
+            Cell c1 = c[oldIndex];
+            c1.IsActive = false;
+
+            Cell c2 = c[newIndex];
+            c2.IsActive = true;
+
+
+
         }
 
 

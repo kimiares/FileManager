@@ -60,18 +60,21 @@ namespace FileManager
 
 
             ConsoleKeyInfo MyKey = Console.ReadKey();
-           
-
+            do
+            {
                 if (MyKey.Key == ConsoleKey.UpArrow)
                 {
                     panel1.Move(false);
                     panel1.Set();
                 }
-                else if(MyKey.Key == ConsoleKey.DownArrow)
+                else if (MyKey.Key == ConsoleKey.DownArrow)
                 {
                     panel1.Move(true);
                     panel1.Set();
+                }
             }
+            while (MyKey.Key!=ConsoleKey.Escape);
+                
 
            
 

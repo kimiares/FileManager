@@ -52,7 +52,7 @@ namespace FileManager.Structure.PanelStrategy
             foreach (Cell cell in cells)
             {
 
-                if (cells.IndexOf(cell) == panel.Selected)
+                if (cell.IsActive==true)
                 {
                     var tmp = Console.BackgroundColor;
                     Console.BackgroundColor = Console.ForegroundColor;
@@ -75,6 +75,7 @@ namespace FileManager.Structure.PanelStrategy
             }
 
         }
+
         
         /// <summary>
         /// Print properties of FileSystemInfo file in columns
