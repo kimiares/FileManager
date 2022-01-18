@@ -41,9 +41,39 @@ namespace FileManager.Structure.PanelStrategy
         
         public void PrintContent(Panel panel, List<FileSystemInfo> input)
         {
-            var cells = SetContent(panel, input).Take(mySet.MaxElementsColumn);
+            //int shift = 0;
+
+            var cells = SetContent(panel, input)
+                .Take(mySet.MaxElementsColumn).ToList();
+           
             Console.ResetColor();
-            PrintProperties(cells);
+
+
+            foreach (Cell cell in cells)
+            {
+
+                if (cells.IndexOf(cell) == panel.Selected)
+                {
+                    var tmp = Console.BackgroundColor;
+                    Console.BackgroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = tmp;
+                }
+                cell.StartPoint.SetCursor();
+                (cell.Content?.Name)
+                    .Write();
+
+                Console.ResetColor();
+
+                Console.SetCursorPosition(cell.StartPoint.X + mySet.ColumnWidthLeft - 1, cell.StartPoint.Y);
+                (cell.Content?.CreationTime.ToShortDateString())
+                    .Write();
+
+                Console.SetCursorPosition(cell.StartPoint.X + 2 * (mySet.ColumnWidthLeft - 1), cell.StartPoint.Y);
+                (cell.Content?.LastAccessTime.ToShortDateString())
+                    .Write();
+
+            }
+
         }
         
         /// <summary>
@@ -60,7 +90,6 @@ namespace FileManager.Structure.PanelStrategy
                     .Write();
 
                 Console.SetCursorPosition(cell.StartPoint.X + mySet.ColumnWidthLeft - 1, cell.StartPoint.Y);
-
                 (cell.Content?.CreationTime.ToShortDateString())
                     .Write();
 
@@ -71,6 +100,5 @@ namespace FileManager.Structure.PanelStrategy
             }
         }
 
-       
     }
 }

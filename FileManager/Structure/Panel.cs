@@ -18,7 +18,7 @@ namespace FileManager.Structure
         public Point FinishPoint { get; set; }
         public int ColCount { get; set; }
         public int Index { get; set; }
-
+        public int Selected { get; set; }
         public bool IsActive { get; set; }
         /// <summary>
         /// Root path
@@ -40,6 +40,7 @@ namespace FileManager.Structure
             this.algorithm = algorithm;
             this.Input = input;
             this.Index = index;
+            this.Selected = 0;
             Set();
            
 
@@ -114,7 +115,12 @@ namespace FileManager.Structure
         }
 
 
-        
+        public void Move(bool direction)
+        {
+            if (direction) this.Selected++;
+            else
+                this.Selected--;
+        }
 
 
 

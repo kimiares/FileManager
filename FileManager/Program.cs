@@ -59,6 +59,21 @@ namespace FileManager
             Buttons F_Buttons = new Buttons(new Drawing.Point(1, 29), 10, 1, 2, items);
 
 
+            ConsoleKeyInfo MyKey = Console.ReadKey();
+           
+
+                if (MyKey.Key == ConsoleKey.UpArrow)
+                {
+                    panel1.Move(false);
+                }
+                else if(MyKey.Key == ConsoleKey.UpArrow)
+                {
+                    panel1.Move(true);
+                }
+
+           
+
+
 
             Console.ReadLine();
 
