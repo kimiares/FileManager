@@ -41,15 +41,15 @@ namespace FileManager.Structure
             SetColumn();
             SetCells();
             AddTableName();
-            Set();
+            FillPanel();
         
 
         }
         Settings mySet = Settings.Instance();
         
-        public void Set()
+        public void FillPanel()
         {
-            RefreshContent();
+            ClearPanel();
             this.algorithm.PrintContent(this, this.Input);
         }
          
@@ -110,45 +110,42 @@ namespace FileManager.Structure
             this.IsActive = !this.IsActive;
         }
 
-
-        public void Move(bool direction)
+        public void MoveUp()
         {
-             if (direction)
+            if (this[0].selectedIndex <= 0)
             {
-
-                if (this[0].selectedIndex == GetAllCells().Count() - 1)
-                {
-                    this[0].selectedIndex = 0;
-                    SetSelected(mySet.MaxElementsColumn-1, this[0].selectedIndex);
-                }
-                else
-                {
-                    SetSelected(this[0].selectedIndex, this[0].selectedIndex + 1);
-                    this[0].selectedIndex++;
-                }
+                this[0].selectedIndex = GetAllCells().Count() - 1;
+                SetSelected(0, mySet.MaxElementsColumn - 1);
             }
-
             else
             {
-                if (this[0].selectedIndex <= 0)
-                {
-                    this[0].selectedIndex = GetAllCells().Count() - 1;
-                    SetSelected(0, mySet.MaxElementsColumn - 1);
-                }
-                else
-                {
-                    SetSelected(this[0].selectedIndex, this[0].selectedIndex - 1);
-                    this[0].selectedIndex--;
-                }
+                SetSelected(this[0].selectedIndex, this[0].selectedIndex - 1);
+                this[0].selectedIndex--;
             }
         }
 
-        public void RefreshContent()
+
+        public void MoveDown()
+        {
+            if (this[0].selectedIndex == GetAllCells().Count() - 1)
+            {
+                this[0].selectedIndex = 0;
+                SetSelected(mySet.MaxElementsColumn - 1, this[0].selectedIndex);
+            }
+            else
+            {
+                SetSelected(this[0].selectedIndex, this[0].selectedIndex + 1);
+                this[0].selectedIndex++;
+            }
+
+        }
+
+        public void ClearPanel()
         {
             Console.ResetColor();
             string h = new String(' ', mySet.ColumnWidthLeft - 2);
-            foreach (Column column in this)
-                foreach (Cell cell in column)
+
+                foreach (Cell cell in GetAllCells())
             {
                 cell.StartPoint.SetCursor();
                 Console.WriteLine(h);
@@ -157,7 +154,7 @@ namespace FileManager.Structure
 
         public void SetSelected(int oldIndex, int newIndex)
         {
-            if ((newIndex < 27)&(oldIndex<27))
+            if ((newIndex < mySet.MaxElementsColumn)&(oldIndex< mySet.MaxElementsColumn))
             {
                 this[0][oldIndex].IsActive = false;
                 this[0][newIndex].IsActive = true;

@@ -17,8 +17,7 @@ namespace FileManager.Structure.PanelStrategy
     {
 
         Settings mySet = Settings.Instance();
-
-       
+ 
         
         public IEnumerable<Cell> SetContent(Panel panel, List<FileSystemInfo> input)
         {
@@ -35,23 +34,19 @@ namespace FileManager.Structure.PanelStrategy
            
             tempList= tempList.Take(mySet.MaxElementsColumn);
 
-
             return panel.GetAllCells()
                 .ZipAll(tempList, (cellsForFilling, temp) => new { cellsForFilling, temp })
                 .Where(r => r.cellsForFilling != null)
                 .Each (r => r.cellsForFilling.Content = r.temp)
                 .Select(r => r.cellsForFilling);
-
         }
 
 
 
         public void PrintContent(Panel panel, List<FileSystemInfo> input)
         {
-            //int shift = 0;
-
-            var cells = SetContent(panel, input);
-            cells = cells.Take(mySet.MaxElementsColumn).ToList();
+       
+            var cells = SetContent(panel, input).Take(mySet.MaxElementsColumn);
 
             Console.ResetColor();
 
@@ -70,17 +65,10 @@ namespace FileManager.Structure.PanelStrategy
 
             foreach (Cell cell in cells)
             {
-                if (cell.IsActive)
-                {
-                    var tmp = Console.BackgroundColor;
-                    Console.BackgroundColor = Console.ForegroundColor;
-                    Console.ForegroundColor = tmp;
-
-                }
+                if (cell.IsActive) cell.ChangeColor();
 
                 cell.StartPoint.SetCursor();
-                (cell.Content?.Name)
-                    .Write();
+                cell.Content?.Name.Write();
                 Console.ResetColor();
 
                 Console.SetCursorPosition(cell.StartPoint.X + mySet.ColumnWidthLeft - 1, cell.StartPoint.Y);

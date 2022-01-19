@@ -38,7 +38,6 @@ namespace FileManager.Structure.PanelStrategy
         public static string GetRoot(this FileSystemInfo file)
         {
             return Directory.GetDirectoryRoot(file.FullName);
-
         }
 
         public static void Write(this string data)
@@ -48,7 +47,14 @@ namespace FileManager.Structure.PanelStrategy
         public static void SetCursor(this Point point)
         {
             Console.SetCursorPosition(point.X, point.Y);
-            
+
+        }
+
+        public static void ChangeColor(this IStructure cell)
+        {
+            var tmp = Console.BackgroundColor;
+            Console.BackgroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = tmp;
         }
 
 
