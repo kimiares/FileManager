@@ -11,10 +11,7 @@ using System.Threading.Tasks;
 namespace FileManager.Structure
 {
     public class Panel : List<Column>, ICheckArea
-
     {
-
-
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }
         public int ColCount { get; set; }
@@ -26,7 +23,6 @@ namespace FileManager.Structure
         /// </summary>
         public string Path { get; set; }
         public List<FileSystemInfo> Input { get; set; }
-        
         public IDrawing drawing;
         public IPanelStrategy algorithm;
 
@@ -42,23 +38,21 @@ namespace FileManager.Structure
             this.Input = input;
             this.Index = index;
             this.Selected = 0;
+            SetColumn();
+            SetCells();
+            AddTableName();
             Set();
-           
+        
 
         }
         Settings mySet = Settings.Instance();
         
         public void Set()
         {
-            AddTableName();
-            SetColumn();
-            SetCells();
-            //RefreshContent();
+            RefreshContent();
             this.algorithm.PrintContent(this, this.Input);
         }
-        
-        
-        
+         
         /// <summary>
         /// Create columns with coordinates
         /// </summary>
@@ -119,47 +113,57 @@ namespace FileManager.Structure
 
         public void Move(bool direction)
         {
-            if (direction) 
+             if (direction)
             {
-                SetSelected(this.Selected, this.Selected++);
-                this.Selected++;
 
+                if (this[0].selectedIndex == GetAllCells().Count() - 1)
+                {
+                    this[0].selectedIndex = 0;
+                    SetSelected(mySet.MaxElementsColumn-1, this[0].selectedIndex);
+                }
+                else
+                {
+                    SetSelected(this[0].selectedIndex, this[0].selectedIndex + 1);
+                    this[0].selectedIndex++;
+                }
             }
 
             else
             {
-                SetSelected(this.Selected, this.Selected--);
-                this.Selected--;
+                if (this[0].selectedIndex <= 0)
+                {
+                    this[0].selectedIndex = GetAllCells().Count() - 1;
+                    SetSelected(0, mySet.MaxElementsColumn - 1);
+                }
+                else
+                {
+                    SetSelected(this[0].selectedIndex, this[0].selectedIndex - 1);
+                    this[0].selectedIndex--;
+                }
             }
-                
         }
 
         public void RefreshContent()
         {
-            foreach(Cell cell in GetAllCells())
+            Console.ResetColor();
+            string h = new String(' ', mySet.ColumnWidthLeft - 2);
+            foreach (Column column in this)
+                foreach (Cell cell in column)
             {
-                Console.ResetColor();
                 cell.StartPoint.SetCursor();
-                Console.WriteLine(new String(' ', mySet.ColumnWidthLeft-1));
-
+                Console.WriteLine(h);
             }
         }
 
         public void SetSelected(int oldIndex, int newIndex)
         {
-            List<Cell> c = GetAllCells().ToList();
-            
-            Cell c1 = c[oldIndex];
-            c1.IsActive = false;
+            if ((newIndex < 27)&(oldIndex<27))
+            {
+                this[0][oldIndex].IsActive = false;
+                this[0][newIndex].IsActive = true;
+            }
 
-            Cell c2 = c[newIndex];
-            c2.IsActive = true;
-
-
-
+           
         }
-
-
-
     }
 }

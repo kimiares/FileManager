@@ -20,16 +20,8 @@ namespace FileManager
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
-
             Settings MySet = Settings.Instance();
-
-            
-           
             List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\Windows").ToList();
-
-
-
-
             Panel panel = new Panel(
                 new Drawing.Point(1, 1),
                 new Drawing.Point(59, 27),
@@ -58,10 +50,10 @@ namespace FileManager
 
             Buttons F_Buttons = new Buttons(new Drawing.Point(1, 29), 10, 1, 2, items);
 
-
-            ConsoleKeyInfo MyKey = Console.ReadKey();
+            ConsoleKeyInfo MyKey; 
             do
             {
+                MyKey= Console.ReadKey();
                 if (MyKey.Key == ConsoleKey.UpArrow)
                 {
                     panel1.Move(false);
@@ -74,19 +66,7 @@ namespace FileManager
                 }
             }
             while (MyKey.Key!=ConsoleKey.Escape);
-                
-
-           
-
-
-
             Console.ReadLine();
-
-
-
-
-
-
         }
     }
 }

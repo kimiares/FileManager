@@ -49,9 +49,18 @@ namespace FileManager.Structure.PanelStrategy
             Console.ResetColor();
             foreach (Cell cell in cells)
             {
+                if (cell.IsActive)
+                {
+                    var tmp = Console.BackgroundColor;
+                    Console.BackgroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = tmp;
+
+                }
                 cell.StartPoint.SetCursor();
                 (cell.Content?.Name).Write();
-               
+                Console.ResetColor();
+
+
             }
         }
 
