@@ -29,8 +29,8 @@ namespace FileManager.Structure.PanelStrategy
             .Union(input);   
 
 
-            if (panel[0].selectedIndex > mySet.MaxElementsColumn - 1)
-                tempList= tempList.Skip(panel[0].selectedIndex- (mySet.MaxElementsColumn-1));
+            if (panel.Selected > mySet.MaxElementsColumn - 1)
+                tempList= tempList.Skip(panel.Selected- (mySet.MaxElementsColumn-1));
            
             tempList= tempList.Take(mySet.MaxElementsColumn);
 

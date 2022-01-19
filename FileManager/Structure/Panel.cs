@@ -14,7 +14,7 @@ namespace FileManager.Structure
     {
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }
-        public int ColCount { get; set; }
+        public int CountPanelElements { get; set; }
         public int Index { get; set; }
         public int Selected { get; set; }
         public bool IsActive { get; set; }
@@ -49,8 +49,18 @@ namespace FileManager.Structure
         
         public void FillPanel()
         {
+            
             ClearPanel();
+            SetCountPanelElements();
             this.algorithm.PrintContent(this, this.Input);
+        }
+
+        public void SetCountPanelElements()
+        {
+            this.CountPanelElements = mySet.MaxElementsColumn;
+            if (this.algorithm is AllColumn) this.CountPanelElements = 3*mySet.MaxElementsColumn;
+
+
         }
          
         /// <summary>
@@ -112,32 +122,33 @@ namespace FileManager.Structure
 
         public void MoveUp()
         {
-            if (this[0].selectedIndex <= 0)
+         
+            if (this.Selected<= 0)
             {
-                this[0].selectedIndex = GetAllCells().Count() - 1;
-                SetSelected(0, mySet.MaxElementsColumn - 1);
+                this.Selected = GetAllCells().Count() - 1;
+                SetSelected(0, CountPanelElements - 1);
             }
             else
             {
-                SetSelected(this[0].selectedIndex, this[0].selectedIndex - 1);
-                this[0].selectedIndex--;
+                SetSelected(this.Selected, this.Selected- 1);
+                this.Selected--;
             }
         }
 
 
         public void MoveDown()
         {
-            if (this[0].selectedIndex == GetAllCells().Count() - 1)
+            if (this.Selected == GetAllCells().Count() - 1)
             {
-                this[0].selectedIndex = 0;
-                SetSelected(mySet.MaxElementsColumn - 1, this[0].selectedIndex);
+                this.Selected = 0;
+                SetSelected(CountPanelElements - 1, this.Selected);
             }
             else
             {
-                SetSelected(this[0].selectedIndex, this[0].selectedIndex + 1);
-                this[0].selectedIndex++;
-            }
 
+                SetSelected(this.Selected, this.Selected+ 1);
+                this.Selected++;
+            }
         }
 
         public void ClearPanel()
@@ -154,13 +165,13 @@ namespace FileManager.Structure
 
         public void SetSelected(int oldIndex, int newIndex)
         {
-            if ((newIndex < mySet.MaxElementsColumn)&(oldIndex< mySet.MaxElementsColumn))
+            if ((newIndex < CountPanelElements) & (oldIndex < CountPanelElements))
             {
-                this[0][oldIndex].IsActive = false;
-                this[0][newIndex].IsActive = true;
+                GetAllCells().ElementAt(oldIndex).IsActive = false;
+                GetAllCells().ElementAt(newIndex).IsActive = true;
             }
 
-           
+
         }
     }
 }

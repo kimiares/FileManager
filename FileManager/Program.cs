@@ -61,12 +61,12 @@ namespace FileManager
                 switch (MyKey.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        panel1.MoveUp();
-                        panel1.FillPanel();
+                        panel.MoveUp();
+                        panel.FillPanel();
                         break;
                     case ConsoleKey.DownArrow:
-                        panel1.MoveDown();
-                        panel1.FillPanel();
+                        panel.MoveDown();
+                        panel.FillPanel();
                         break;
                 }
 
