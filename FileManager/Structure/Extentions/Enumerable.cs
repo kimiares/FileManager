@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileManager.Exceptions;
 
 namespace System.Linq
 {
@@ -12,9 +13,9 @@ namespace System.Linq
             IEnumerable<TSecond> second, 
             Func<TFirst, TSecond, TResult> resultSelector)
         {
-            if (first == null) throw ArgumentNullException("first");
-            if (second == null) throw ArgumentNullException("second");
-            if (resultSelector == null) throw ArgumentNullException("resultSelector");
+            if (first == null) throw new CollectionNullException("Collection is Empty");
+            if (second == null) throw new CollectionNullException("Collection is Empty");
+            if (resultSelector == null) throw new CollectionNullException("Collection is Empty");
             return ZipAllIterator(first, second, resultSelector);
         }
 

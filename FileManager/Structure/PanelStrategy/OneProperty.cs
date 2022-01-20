@@ -10,7 +10,7 @@ namespace FileManager.Structure.PanelStrategy
     /// fill all columns by same data(only names)
     /// </summary>
 
-    public class AllColumn : IPanelStrategy
+    public class OneProperty : IPanelStrategy
 
     {
         Settings mySet = Settings.Instance();
@@ -21,7 +21,7 @@ namespace FileManager.Structure.PanelStrategy
 
             var tempList = new List<FileSystemInfo>
             {
-                new ParentDirectory((input[0]).GetRoot())
+                new ParentDirectory(input[0])
             }
             .Union(input.Take(cellsCount));
 

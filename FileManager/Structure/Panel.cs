@@ -58,7 +58,7 @@ namespace FileManager.Structure
         public void SetCountPanelElements()
         {
             this.CountPanelElements = mySet.MaxElementsColumn;
-            if (this.algorithm is AllColumn) this.CountPanelElements = 3*mySet.MaxElementsColumn;
+            if (this.algorithm is OneProperty) this.CountPanelElements = 3*mySet.MaxElementsColumn;
 
 
         }

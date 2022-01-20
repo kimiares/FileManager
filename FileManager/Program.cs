@@ -14,6 +14,7 @@ namespace FileManager
     {
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
@@ -28,7 +29,7 @@ namespace FileManager
                 MySet.Sets.PathLeft,
                 0,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
-                new AllColumn(),
+                new OneProperty(),
                 testFSI);
 
             Console.ResetColor();
@@ -41,7 +42,7 @@ namespace FileManager
                 MySet.Sets.PathLeft,
                 1,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
-                new EachColumn(),
+                new ThreeProperties(),
                 testFSI);
 
             List<string> items = new List<string>();

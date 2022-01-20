@@ -18,7 +18,7 @@ namespace FileManager.Structure.PanelStrategy
         /// <param name="name"></param>
         /// <returns></returns>
         
-        public static string CutName(this string name)
+        public static string CutString(this string name)
         {
             if (string.IsNullOrWhiteSpace(name))
                 return String.Empty;
@@ -35,20 +35,15 @@ namespace FileManager.Structure.PanelStrategy
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static string GetRoot(this FileSystemInfo file)
-        {
-            return Directory.GetDirectoryRoot(file.FullName);
-        }
-
-        public static void Write(this string data)
-        {
-            Console.WriteLine(data.CutName());
-        }
-        public static void SetCursor(this Point point)
-        {
+        public static string GetRoot(this FileSystemInfo file) => 
+            Directory.GetDirectoryRoot(file.FullName);
+        
+        public static void Write(this string data) => 
+            Console.WriteLine(data.CutString());
+        
+        public static void SetCursor(this Point point) => 
             Console.SetCursorPosition(point.X, point.Y);
-
-        }
+        
 
         public static void ChangeColor(this IStructure cell)
         {
