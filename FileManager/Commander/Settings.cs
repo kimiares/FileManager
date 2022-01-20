@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
+using FileManager.Drawing;
 
 namespace FileManager.Commander
 {
@@ -43,16 +44,46 @@ namespace FileManager.Commander
 
         public int ColumnCountLeft { get; set; } = 3;
         public int ColumnCountRight { get; set; } = 3;
+        
         public int ColumnWidthLeft { get; set; }
         public int ColumnWidthRight { get; set; }
+
+        public Point FirstTabelStart { get; set; }
+        public Point FirstTabelFinish { get; set; }
+
+        public Point SecondTabelStart { get; set; }
+        public Point SecondTabelFinish { get; set; }
+
+
+        public Point FirstPanelStart { get; set; }
+        public Point FirstPanelFinish { get; set; }
+
+        public Point SecondPanelStart { get; set; }
+        public Point SecondPanelFinish { get; set; }
 
         private void InizialiseParams()
         {
             MaxElementsColumn = Sets.PanelHeight - 3;
+            
             if (Sets.ViewModeLeftPanel == 1) ColumnCountLeft = 1;
             if (Sets.ViewModeRightPanel == 1) ColumnCountRight = 1;
+            
             ColumnWidthLeft = Sets.PanelWidth / ColumnCountLeft;
             ColumnWidthRight = Sets.PanelWidth / ColumnCountRight;
+
+            FirstTabelStart = new Point(Sets.ALX, Sets.ALY);
+            FirstTabelFinish = new Point(Sets.BLX, Sets.BLY);
+
+            SecondTabelStart = new Point(Sets.ARX,Sets.ARY);
+            SecondTabelFinish = new Point(Sets.BRX,Sets.BRY);
+
+            FirstPanelStart = new Point(Sets.ALX+1, Sets.ALY+1);
+            FirstPanelFinish = new Point(Sets.BLX-1, Sets.BLY-1);
+
+            SecondPanelStart = new Point(Sets.ARX + 1, Sets.ARY + 1);
+            SecondPanelFinish = new Point(Sets.BRX - 1, Sets.BRY - 1);
+
+
         }
 
 

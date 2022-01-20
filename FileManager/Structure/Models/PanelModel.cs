@@ -13,18 +13,10 @@ namespace FileManager.Structure.Models
         public Point FinishPoint { get; set; }
         public string Path { get; set; }
         public int Index { get; set; }
-        public IDrawing drawing;
-        public IPanelStrategy algorithm;
+        public IDrawing Drawing { get; set; }
+        public IPanelStrategy Algorithm { get; set; }
 
-        public PanelModel(Point start, Point finish, string path, int index, IDrawing drawing, IPanelStrategy algorithm)
-        {
-            this.StartPoint = start;
-            this.FinishPoint = finish;
-            this.Path = path;
-            this.drawing = drawing;
-            this.algorithm = algorithm;
-            this.Index = index;
-        }
+      
 
     }
 }
