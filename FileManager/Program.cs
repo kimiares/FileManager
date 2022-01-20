@@ -7,6 +7,7 @@ using FileManager.Operations;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using FileManager.Structure.Models;
 
 namespace FileManager
 {
@@ -15,6 +16,7 @@ namespace FileManager
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
+            
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
@@ -23,27 +25,30 @@ namespace FileManager
 
             List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\Windows").ToList();
 
-            Panel panel = new Panel(
-                new Drawing.Point(1, 1),
+            PanelModel firstPanelModel = new PanelModel(new Drawing.Point(1, 1),
                 new Drawing.Point(59, 27),
                 MySet.Sets.PathLeft,
                 0,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
-                new OneProperty(),
-                testFSI);
+                new OneProperty()
+                );
 
-            Console.ResetColor();
-            Console.BackgroundColor = ConsoleColor.Blue;
-            Console.ForegroundColor = ConsoleColor.Black;
-
-            Panel panel1 = new Panel(
+            PanelModel secondPanelModel = new PanelModel(
                 new Drawing.Point(61, 1),
                 new Drawing.Point(119, 27),
                 MySet.Sets.PathLeft,
                 1,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
-                new ThreeProperties(),
-                testFSI);
+                new ThreeProperties()
+                );
+
+            Panel panel = new Panel(firstPanelModel,testFSI);
+
+            Console.ResetColor();
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            Panel panel1 = new Panel(secondPanelModel,testFSI);
 
             List<string> items = new List<string>();
 
