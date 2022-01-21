@@ -26,8 +26,6 @@ namespace FileManager.Structure
         /// </summary>
         public string Path { get; set; }
         public List<FileSystemInfo> Input { get; set; }
-
-
         public IDrawing drawing;
         public IPanelStrategy algorithm;
 
@@ -42,26 +40,40 @@ namespace FileManager.Structure
             this.drawing = panelModel.Drawing;
             this.algorithm = panelModel.Algorithm;
             this.Input = input;
-            this.Index = panelModel.Index;
-
-
-
-            AddTableName();
-            this.SetColumn();
-            algorithm.SetContent(this, this.Input);
-            algorithm.PrintContent(this);
-
-
+            this.Index = index;
+            Set();
+           
 
         }
-
         Settings mySet = Settings.Instance();
-
-
+        
+        public void Set()
+        {
+            AddTableName();
+            SetColumn();
+            this.algorithm.SetContent(this, this.Input);
+            this.algorithm.PrintContent(this);
+        }
+        
+        
+        
         /// <summary>
         /// Create columns with coordinates
         /// </summary>
-        
+        public void SetColumn()
+        {
+            for (int i = 0; i < mySet.ColumnCountLeft; i++)
+            {
+                this.Add(
+                    new Column(
+                        new Point(mySet.Sets.ALX + 1 - i + i * mySet.ColumnWidthLeft + this.Index*(mySet.Sets.PanelWidth+1), mySet.Sets.ALY + 1),
+                            new Point(mySet.Sets.ALX + 1 - i + (i+1) * mySet.ColumnWidthLeft +  this.Index * (mySet.Sets.PanelWidth+1), mySet.Sets.ALY + 1 + mySet.MaxElementsColumn)
+                       ));
+            }
+
+        }
+
+
         /// <summary>
         /// Adding path into top of the panel
         /// </summary>
@@ -77,6 +89,9 @@ namespace FileManager.Structure
         {
             this.IsActive = !this.IsActive;
         }
+
+
+        
 
 
 

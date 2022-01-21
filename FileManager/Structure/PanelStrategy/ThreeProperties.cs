@@ -15,15 +15,13 @@ namespace FileManager.Structure.PanelStrategy
     /// fill all columns by same data(only names)
     /// </summary>
 
-    public class AllColumn : IPanelStrategy
-
-
+    public class ThreeProperties : IPanelStrategy
 
     {
         Settings mySet = Settings.Instance();
 
         
-        public void PrintContent(List<Column> columns)
+        public void PrintContent(Panel columns)
         {
             foreach (Column column in columns)
             {
@@ -31,19 +29,22 @@ namespace FileManager.Structure.PanelStrategy
                 {
                     Console.ResetColor();
                     Console.SetCursorPosition(column.StartPoint.X, column.StartPoint.Y + i);
-                    Console.WriteLine(CutName(column[i].Content.Name));
+                    Console.WriteLine(((columns.IndexOf(column) == 0)&&i==0) ? ".." : column[i].Content.Name.CutString());
                 }
             }
 
         }
 
-        public void SetContent(List<Column> columns, List<FileSystemInfo> input)
+       
+
+        public void SetContent(Panel columns, List<FileSystemInfo> input)
         {
 
             List<FileSystemInfo> temp = new List<FileSystemInfo>();
+            temp.Add(SupportMethods.GetRoot(input[0]));
+            temp.AddRange(input.Take(mySet.MaxElementsColumn - 1).ToList());
             for (int i = 0; i < columns.Count; i++)
             {
-
                 temp = input.Skip(i * mySet.MaxElementsColumn).Take(mySet.MaxElementsColumn).ToList();
 
                 for (int j = 0; j < temp.Count; j++)
@@ -57,11 +58,6 @@ namespace FileManager.Structure.PanelStrategy
                 }
             }
         }
-        public string CutName(string name)
-        {
-            if (name.Length > mySet.ColumnWidthLeft-2)
-                name = name.Substring(0, mySet.ColumnWidthLeft - 2);
-            return name;
-        }
+        
     }
 }

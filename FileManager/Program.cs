@@ -24,10 +24,10 @@ namespace FileManager
 
             Settings MySet = Settings.Instance();
 
+            
            
-
             List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\Windows").ToList();
-
+            
 
 
             PanelModel pm1 = new PanelModel()
@@ -60,6 +60,16 @@ namespace FileManager
 
 
             ICheckArea panel1 = new Panel(pm2, testFSI);
+
+            List<string> items = new List<string>();
+            foreach (var d in Enum.GetValues(typeof(ButtonEnum)))
+            {
+                items.Add(d.ToString().PadRight(10));
+            }
+
+            Buttons F_Buttons = new Buttons(MySet.ButtonsStart, MySet.ButtonsWidth, MySet.ButtonsHeight, MySet.ButtonsSpace, items);
+
+
 
             Console.ReadLine();
 
