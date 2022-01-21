@@ -36,6 +36,7 @@ namespace FileManager.Structure
             this.algorithm = panelModel.Algorithm;
             this.Input = input;
             this.Index = panelModel.Index;
+           
             this.Selected = 0;
             
             CreateColumnsWithCells();
