@@ -27,7 +27,7 @@ namespace FileManager.Structure.PanelStrategy
             int cellsCount = panel.Count * mySet.MaxElementsColumn;
             var tempList = new List<FileSystemInfo>
             {
-                new ParentDirectory((input[0]).GetRoot())
+                new ParentDirectory(input[0])
             }
             .Union(input.Take(cellsCount));
 

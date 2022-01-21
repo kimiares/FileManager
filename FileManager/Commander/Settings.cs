@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
+using FileManager.Drawing;
 
 namespace FileManager.Commander
 {
@@ -46,6 +47,11 @@ namespace FileManager.Commander
         public int ColumnWidthLeft { get; set; }
         public int ColumnWidthRight { get; set; }
 
+        public Point ButtonsStart { get; set; }
+        public int ButtonsHeight { get; set; } = 1;
+        public int ButtonsWidth { get; set; } = 10;
+        public int ButtonsSpace { get; set; } = 2;
+
         private void InizialiseParams()
         {
             MaxElementsColumn = Sets.PanelHeight - 3;
@@ -53,6 +59,7 @@ namespace FileManager.Commander
             if (Sets.ViewModeRightPanel == 1) ColumnCountRight = 1;
             ColumnWidthLeft = Sets.PanelWidth / ColumnCountLeft;
             ColumnWidthRight = Sets.PanelWidth / ColumnCountRight;
+            ButtonsStart = new Point(1, 29);
         }
 
 

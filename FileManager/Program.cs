@@ -56,7 +56,7 @@ namespace FileManager
                 items.Add(d.ToString().PadRight(10));
             }
 
-            Buttons F_Buttons = new Buttons(new Drawing.Point(1, 29), 10, 1, 2, items);
+            Buttons F_Buttons = new Buttons(MySet.ButtonsStart, MySet.ButtonsWidth, MySet.ButtonsHeight, MySet.ButtonsSpace, items);
 
 
 

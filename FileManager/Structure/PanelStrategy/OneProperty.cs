@@ -25,7 +25,7 @@ namespace FileManager.Structure.PanelStrategy
 
             var tempList = new List<FileSystemInfo>
             {
-                new ParentDirectory((input[0]).GetRoot())
+                new ParentDirectory(input[0])
             }
             .Union(input.Take(mySet.MaxElementsColumn-1));
 
