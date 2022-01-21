@@ -26,18 +26,18 @@ namespace FileManager.Structure.PanelStrategy
             {
                 new ParentDirectory(input[0])
             }
-            .Union(input);   
+            .Union(input);
 
 
             if (panel.Selected > mySet.MaxElementsColumn - 1)
-                tempList= tempList.Skip(panel.Selected- (mySet.MaxElementsColumn-1));
-           
-            tempList= tempList.Take(mySet.MaxElementsColumn);
+                tempList = tempList.Skip(panel.Selected - (mySet.MaxElementsColumn - 1));
+
+          ///  tempList = tempList.Take(mySet.MaxElementsColumn);
 
             return panel.GetAllCells()
                 .ZipAll(tempList, (cellsForFilling, temp) => new { cellsForFilling, temp })
                 .Where(r => r.cellsForFilling != null)
-                .Each (r => r.cellsForFilling.Content = r.temp)
+                .Each(r => r.cellsForFilling.Content = r.temp)
                 .Select(r => r.cellsForFilling);
         }
 
@@ -45,7 +45,7 @@ namespace FileManager.Structure.PanelStrategy
 
         public void PrintContent(Panel panel, List<FileSystemInfo> input)
         {
-       
+
             var cells = SetContent(panel, input).Take(mySet.MaxElementsColumn);
 
             Console.ResetColor();

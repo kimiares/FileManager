@@ -25,26 +25,25 @@ namespace FileManager
 
             List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\Windows").ToList();
 
-            PanelModel firstPanelModel = new PanelModel();
-            { firstPanelModel.StartPoint = new Drawing.Point(1, 1);
-                firstPanelModel.FinishPoint = new Point(59, 27);
-                firstPanelModel.Path = MySet.Sets.PathLeft;
-                firstPanelModel.Index = 0;
-                firstPanelModel.Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3);
-                firstPanelModel.Algorithm = new OneProperty();
-             
-            }
+            PanelModel firstPanelModel = new PanelModel()
+            { StartPoint = new Drawing.Point(1, 1),
+              FinishPoint = new Point(59, 27),
+              Path = MySet.Sets.PathLeft,
+              Index = 0,
+              Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
+              Algorithm = new OneProperty()
+            };
 
-            PanelModel secondPanelModel = new PanelModel();
+            PanelModel secondPanelModel = new PanelModel()
             {
-                secondPanelModel.StartPoint = new Drawing.Point(61, 1);
-                secondPanelModel.FinishPoint = new Drawing.Point(119, 27);
-                secondPanelModel.Path = MySet.Sets.PathRight;
-                secondPanelModel.Index = 1;
-                secondPanelModel.Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3);
-                secondPanelModel.Algorithm = new ThreeProperties();
+                StartPoint = new Drawing.Point(61, 1),
+                FinishPoint = new Drawing.Point(119, 27),
+                Path = MySet.Sets.PathRight,
+                Index = 1,
+                Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
+                Algorithm = new ThreeProperties()
 
-            }
+            };
 
             Panel panel = new Panel(firstPanelModel,testFSI);
        
@@ -62,10 +61,14 @@ namespace FileManager
             {
                 items.Add(d.ToString().PadRight(10));
             }
-
+            
             Buttons F_Buttons = new Buttons(new Drawing.Point(1, 29), 10, 1, 2, items);
+           
+            
             Panel ddd = panel;
+            
             ConsoleKeyInfo MyKey;
+            
             do
             {
                 MyKey = Console.ReadKey();
@@ -74,16 +77,16 @@ namespace FileManager
                 {
                     case ConsoleKey.UpArrow:
                         ddd.MoveUp();
-                        ddd.FillPanel();
+                        
                         break;
                     case ConsoleKey.DownArrow:
                         ddd.MoveDown();
-                        ddd.FillPanel();
+                       
                         break;
                     case ConsoleKey.OemPlus:
                         ddd.AddSelectedObjects();
                         ddd.MoveDown();
-                        ddd.FillPanel();
+                       
                         break;
                 }
 

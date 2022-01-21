@@ -112,6 +112,7 @@ namespace FileManager.Structure
                 SetSelected(this.Selected, this.Selected- 1);
                 this.Selected--;
             }
+            this.FillPanel();
         }
 
 
@@ -128,6 +129,10 @@ namespace FileManager.Structure
                 SetSelected(this.Selected, this.Selected+ 1);
                 this.Selected++;
             }
+            this.FillPanel();
+            IEnumerable<Cell> ddd1 = GetAllCells();
+            IEnumerable<Cell> ddd = GetAllCells().Select(r => r).Where(r => r.IsSelected == true);
+
         }
 
         public void ClearPanel()
@@ -155,9 +160,11 @@ namespace FileManager.Structure
 
         public void AddSelectedObjects()
         {
-            IEnumerable<Cell> ddd = GetAllCells();
-            int z = this.Selected;
-            GetAllCells().ElementAt(this.Selected).MakeSelected();
+            IEnumerable<Cell> ddd = GetAllCells();// .Select(r => r).Where(r=>r.IsSelected==true);
+            int y = this.Selected;
+          
+      //      Cell f = this[0][this.Selected];
+            GetAllCells().ElementAt(y).MakeSelected();
 
         }
     }
