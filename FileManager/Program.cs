@@ -61,9 +61,11 @@ namespace FileManager
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
                 new EachColumn(),
                 testFSI);
+
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
+
             ICheckArea panel1 = new Panel(
                 new Drawing.Point(61, 1),
                 new Drawing.Point(119, 27),
