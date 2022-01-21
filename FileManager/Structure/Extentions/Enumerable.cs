@@ -19,12 +19,6 @@ namespace System.Linq
             return ZipAllIterator(first, second, resultSelector);
         }
 
-
-   
-
-
-
-
         static IEnumerable<TResult> ZipAllIterator<TFirst, TSecond, TResult>(IEnumerable<TFirst> first,
             IEnumerable<TSecond> second, 
             Func<TFirst, TSecond, TResult> resultSelector)
@@ -36,11 +30,6 @@ namespace System.Linq
                 while (e1.MoveNext() | e2.MoveNext())
                     yield return resultSelector(e1.Current, e2.Current);
         }
-
-
-       
-
-
 
         public static IEnumerable<T> Each<T>(this IEnumerable<T> data, Action<T> func)
         {

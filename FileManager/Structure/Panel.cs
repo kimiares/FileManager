@@ -156,6 +156,27 @@ namespace FileManager.Structure
 
 
         }
+        public IEnumerable<Cell> SetContent(List<FileSystemInfo> input)
+        {
+            int cellsCount = this.Count * mySet.MaxElementsColumn;
+
+            var tempList = new List<FileSystemInfo>
+            {
+                new ParentDirectory(input[0])
+            }
+            .Union(input.Take(cellsCount));
+
+            if (this.algorithm is ThreeProperties)
+            {
+                if (this.Selected > mySet.MaxElementsColumn - 1)
+                    tempList = tempList.Skip(this.Selected - (mySet.MaxElementsColumn - 1));
+            }
+            return this.GetAllCells()
+                .ZipAll(tempList, (cellsForFilling, temp) => new { cellsForFilling, temp })
+                .Where(r => r.cellsForFilling != null)
+                .Each(r => r.cellsForFilling.Content = r.temp)
+                .Select(r => r.cellsForFilling);
+        }
 
         public void AddSelectedObjects()
         {
