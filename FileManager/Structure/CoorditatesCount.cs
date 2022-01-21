@@ -17,8 +17,8 @@ namespace FileManager.Structure
             {
                 panel.Add(
                     new Column(
-                        new Point(mySet.Sets.ALX + 1 - i + i * mySet.ColumnWidthLeft + this.Index * (mySet.Sets.PanelWidth + 1), mySet.Sets.ALY + 1),
-                            new Point(mySet.Sets.ALX + 1 - i + (i + 1) * mySet.ColumnWidthLeft + this.Index * (mySet.Sets.PanelWidth + 1), mySet.Sets.ALY + 1 + mySet.MaxElementsColumn)
+                        new Point(mySet.Sets.ALX + 1 - i + i * mySet.ColumnWidthLeft + panel.Index * (mySet.Sets.PanelWidth + 1), mySet.Sets.ALY + 1),
+                            new Point(mySet.Sets.ALX + 1 - i + (i + 1) * mySet.ColumnWidthLeft + panel.Index * (mySet.Sets.PanelWidth + 1), mySet.Sets.ALY + 1 + mySet.MaxElementsColumn)
                        ));
             }
 

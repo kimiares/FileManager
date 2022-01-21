@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using FileManager.Structure.Models;
 
 namespace FileManager
 {
@@ -49,31 +50,40 @@ namespace FileManager
             //           new MemoryStream(new byte[56],false)};
 
             List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\Windows").ToList();
-            
+
 
             //Table tableForPanel = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(60, 28), 3);
 
-            ICheckArea panel = new Panel(
-                new Drawing.Point(1, 1),
-                new Drawing.Point(59, 27),
-                MySet.Sets.PathLeft,
-                0,
-                new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
-                new EachColumn(),
-                testFSI);
+            PanelModel pm1 = new PanelModel()
+            {
+
+                StartPoint= new Drawing.Point(1, 1),
+                FinishPoint= new Drawing.Point(59, 27),
+                Path= MySet.Sets.PathLeft,
+                Index=0,
+                Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
+                Algorithm= new EachColumn()
+
+            };
+            ICheckArea panel = new Panel(pm1, testFSI);
 
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
 
-            ICheckArea panel1 = new Panel(
-                new Drawing.Point(61, 1),
-                new Drawing.Point(119, 27),
-                MySet.Sets.PathLeft,
-                1,
-                new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
-                new EachColumn(),
-                testFSI);
+            PanelModel pm2 = new PanelModel()
+            {
+                StartPoint = new Drawing.Point(61, 1),
+                FinishPoint = new Drawing.Point(119, 27),
+                Path = MySet.Sets.PathRight,
+                Index = 1,
+                Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
+                Algorithm = new EachColumn()
+            };
+
+
+
+            ICheckArea panel1 = new Panel(pm2, testFSI);
 
             Console.ReadLine();
 
