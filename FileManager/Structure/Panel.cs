@@ -45,7 +45,7 @@ namespace FileManager.Structure
 
 
             AddTableName();
-            SetColumn();
+            this.SetColumn();
             algorithm.SetContent(this, this.Input);
             algorithm.PrintContent(this);
 
@@ -58,19 +58,7 @@ namespace FileManager.Structure
         /// <summary>
         /// Create columns with coordinates
         /// </summary>
-        public void SetColumn()
-        {
-            for (int i = 0; i < mySet.ColumnCountLeft; i++)
-            {
-                this.Add(
-                    new Column(
-                        new Point(mySet.Sets.ALX + 1 - i + i * mySet.ColumnWidthLeft + this.Index*(mySet.Sets.PanelWidth+1), mySet.Sets.ALY + 1),
-                            new Point(mySet.Sets.ALX + 1 - i + (i+1) * mySet.ColumnWidthLeft +  this.Index * (mySet.Sets.PanelWidth+1), mySet.Sets.ALY + 1 + mySet.MaxElementsColumn)
-                       ));
-            }
-
-        }
-
+        
         /// <summary>
         /// Adding path into top of the panel
         /// </summary>
