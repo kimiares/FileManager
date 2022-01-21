@@ -1,5 +1,6 @@
-﻿using FileManager.Commander;
+using FileManager.Commander;
 using FileManager.Drawing;
+using FileManager.Structure.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,15 +29,16 @@ namespace FileManager.Structure
         public IDrawing drawing;
         public IPanelStrategy algorithm;
 
-        public Panel(Point start, Point finish, string path, int index, IDrawing drawing, IPanelStrategy algorithm, List<FileSystemInfo> input)
+
+        public Panel(PanelModel panelModel, List<FileSystemInfo> input)
         {
 
-            this.StartPoint = start;
-            this.FinishPoint = finish;
-            this.Path = path;
+            this.StartPoint = panelModel.StartPoint;
+            this.FinishPoint = panelModel.FinishPoint;
+            this.Path = panelModel.Path;
             this.IsActive = false;
-            this.drawing = drawing;
-            this.algorithm = algorithm;
+            this.drawing = panelModel.Drawing;
+            this.algorithm = panelModel.Algorithm;
             this.Input = input;
             this.Index = index;
             Set();
