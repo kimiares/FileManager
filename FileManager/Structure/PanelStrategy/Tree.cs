@@ -19,5 +19,10 @@ namespace FileManager.Structure.PanelStrategy
         {
             throw new NotImplementedException();
         }
+
+        public void SetContent(List<Column> targertList, List<FileSystemInfo> input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

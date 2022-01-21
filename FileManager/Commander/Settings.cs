@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,17 +41,18 @@ namespace FileManager.Commander
         /// Additional program settings, calculated on base main settings.  
         /// </summary>
 
-        public int ColumnCountLeftPanel { get; set; }
-        public int ColumnCountRightPanel { get; set; }
-        public int ColumnWidth { get; set; }
+        public int ColumnCountLeft { get; set; } = 3;
+        public int ColumnCountRight { get; set; } = 3;
+        public int ColumnWidthLeft { get; set; }
+        public int ColumnWidthRight { get; set; }
 
         private void InizialiseParams()
         {
-            MaxElementsColumn = Sets.PanelHeight - 2;
-            ColumnCountLeftPanel = 3;
-            ColumnCountRightPanel = 3;
-            if (Sets.ViewModeLeftPanel==1) ColumnCountLeftPanel = 1;
-            if (ColumnCountRightPanel == 1) ColumnCountRightPanel = 1;
+            MaxElementsColumn = Sets.PanelHeight - 3;
+            if (Sets.ViewModeLeftPanel == 1) ColumnCountLeft = 1;
+            if (Sets.ViewModeRightPanel == 1) ColumnCountRight = 1;
+            ColumnWidthLeft = Sets.PanelWidth / ColumnCountLeft;
+            ColumnWidthRight = Sets.PanelWidth / ColumnCountRight;
         }
 
 

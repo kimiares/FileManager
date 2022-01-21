@@ -1,4 +1,4 @@
-﻿using FileManager.Commander;
+using FileManager.Commander;
 using FileManager.Drawing;
 using System;
 
@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using FileManager.Structure.Models;
 
 namespace FileManager
 {
@@ -20,28 +21,47 @@ namespace FileManager
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
-            
+
             Settings MySet = Settings.Instance();
 
-            List<string> input = new List<string>() { "A", "B", "C", "D", "E", "F" };
-            List<Stream> input2 = new List<Stream>()
-                { new MemoryStream(new byte[56],false),
-                        new MemoryStream(new byte[56],false),
-                       new MemoryStream(new byte[56],false)};
+           
 
-            List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\").ToList();
-
-            //Table tableForPanel = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(60, 28), 3);
-
-            ICheckArea panel = new Panel(
-                new Drawing.Point(1, 1),
-                new Drawing.Point(59, 27),
-                MySet.Sets.PathLeft,
-                new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(60, 28), 3),
-                new AllColumn(),
-                testFSI);
+            List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\Windows").ToList();
 
 
+
+            PanelModel pm1 = new PanelModel()
+            {
+
+                StartPoint= new Drawing.Point(1, 1),
+                FinishPoint= new Drawing.Point(59, 27),
+                Path= MySet.Sets.PathLeft,
+                Index=0,
+                Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
+                Algorithm= new EachColumn()
+
+            };
+            ICheckArea panel = new Panel(pm1, testFSI);
+
+            Console.ResetColor();
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            PanelModel pm2 = new PanelModel()
+            {
+                StartPoint = new Drawing.Point(61, 1),
+                FinishPoint = new Drawing.Point(119, 27),
+                Path = MySet.Sets.PathRight,
+                Index = 1,
+                Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
+                Algorithm = new EachColumn()
+            };
+
+
+
+            ICheckArea panel1 = new Panel(pm2, testFSI);
+
+            Console.ReadLine();
 
 
 

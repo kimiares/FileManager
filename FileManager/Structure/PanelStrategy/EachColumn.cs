@@ -14,7 +14,7 @@ namespace FileManager.Structure.PanelStrategy
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class EachColumn : IPanelStrategy
-        
+
 
     {
 
@@ -26,65 +26,75 @@ namespace FileManager.Structure.PanelStrategy
         /// для трех столбцов
         /// </summary>
         Settings mySet = Settings.Instance();
-        //public void SetColumn(List<Column> targertList, List<FileSystemInfo> input)
-        //{
-        //    List<FileSystemInfo> temp = input.Take(MySet.MaxElementsColumn).ToList();
-        //    foreach (var t in temp)
-        //    {
-        //        targertList[0].Add(new Cell(StartPoint, FinishPoint, t));
-        //        targertList[1].Add(new Cell(StartPoint, FinishPoint, t));
-        //        targertList[2].Add(new Cell(StartPoint, FinishPoint, t));
 
-        //    }
-        //}
-
-        public void PrintContent(List<Column> targertList)
+        /// <summary>
+        /// print different property in each column
+        /// </summary>
+        /// <param name="columns"></param>
+        public void PrintContent(List<Column> columns)
         {
-            FillFirstColumn(targertList);
-            FillSecondColumn(targertList);
-            FillThirdColumn(targertList);
-        }
+            foreach (Column column in columns)
 
-
-        
-
-        private void FillFirstColumn(List<Column> targertList)
-        {
-            foreach (Column column in targertList)
             {
-                for (int i = 0; i < targertList.Count; i++)
+                for (int i = 0; i < column.Count; i++)
                 {
-                    Console.SetCursorPosition(mySet.Sets.ALX + 1, mySet.Sets.ALY + 1+i);
-                    Console.WriteLine(column[i].Content.Name);
-                }
-            }
-        }
-        private void FillSecondColumn(List<Column> targertList)
-        {
-            foreach (Column column in targertList)
-            {
-                for (int i = 0; i < targertList.Count; i++)
-                {
-                    //Console.SetCursorPosition(mySet.Sets.ALX + 1 + mySet.ColumnWidth, mySet.Sets.ALY + 1 + i);
-                    Console.WriteLine(column[i].Content.Name);
+                    Console.ResetColor();
+                    Console.SetCursorPosition(column.StartPoint.X, column.StartPoint.Y + i);
+                    CheckColumn(columns.IndexOf(column), column[i].Content);
                 }
             }
 
         }
-        private void FillThirdColumn(List<Column> targertList)
+        /// <summary>
+        /// Fill column with files/folder
+        /// </summary>
+        /// <param name="columns"></param>
+        /// <param name="input"></param>
+        public void SetContent(List<Column> columns, List<FileSystemInfo> input)
         {
-            foreach (Column column in targertList)
+            List<FileSystemInfo> temp = input.Take(mySet.MaxElementsColumn).ToList();
+            for (int i = 0; i < temp.Count; i++)
             {
-                for (int i = 0; i < targertList.Count; i++)
+                for (int j = 0; j < columns.Count; j++)
                 {
-                    //Console.SetCursorPosition(mySet.Sets.ALX + 1 + 2*mySet.ColumnWidth, mySet.Sets.ALY + 1 + i);
-                    Console.WriteLine(column[i].Content.Name);
+                    columns[j].Add(
+                    new Cell(
+                        new Point(columns[j].StartPoint.X + j * mySet.ColumnWidthLeft, columns[j].StartPoint.Y + i),
+                        new Point(columns[j].StartPoint.X + mySet.ColumnWidthLeft + j * mySet.ColumnWidthLeft, columns[j].StartPoint.Y + i),
+                        temp[i]
+                        ));
                 }
             }
-
         }
 
 
 
+
+        /// <summary>
+        /// check column's index to choose strategy
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="file"></param>
+        public void CheckColumn(int index, FileSystemInfo file)
+        {
+            if (index == 0)
+            {
+                Console.WriteLine(CutName(file.Name));
+            }
+            if (index == 1)
+            {
+                Console.WriteLine(file.CreationTime.ToShortDateString());
+            }
+            if (index == 2)
+            {
+                Console.WriteLine(file.LastAccessTime.ToShortDateString());
+            }
+        }
+        public string CutName(string name)
+        {
+            if (name.Length > mySet.ColumnWidthLeft - 2)
+                name = name.Substring(0, mySet.ColumnWidthLeft - 2);
+            return name;
+        }
     }
 }
