@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Control.SavedPanel
 {
-    class SavedState 
+    public class SavedState 
         
     {
         public List<FileSystemInfo> ItemsInColumns { get; set; }

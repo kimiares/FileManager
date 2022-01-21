@@ -11,7 +11,7 @@ namespace FileManager.Control.Mediator
     /// <summary>
     /// binding input with operations
     /// /// </summary>
-    class Mediator: IMediator
+    public class Mediator: IMediator
     {
         IStructure structure;
         IOperation operation;

@@ -15,12 +15,17 @@ namespace FileManager.Structure
 
     {
         /// <summary>
-        /// Column filling. Params: column for filling, count of columns
+        /// Fill collection of all cells by FileSystemInfo files
         /// </summary>
         /// <param name="targertList"></param>
         /// <param name="columnCount"></param>
-        void SetContent(Panel targertList, List<FileSystemInfo> input);
-        void PrintContent(Panel targertList);
-        
+        IEnumerable<Cell> SetContent(Panel targertList, List<FileSystemInfo> input);
+
+        /// <summary>
+        /// Print FileSystemInfo in console
+        /// </summary>
+        /// <param name="targertList"></param>
+        /// <param name="input"></param>
+        void PrintContent(Panel targertList, List<FileSystemInfo> input);
     }
 }

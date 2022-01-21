@@ -17,7 +17,7 @@ namespace FileManager.Structure
         {
             bool result = false;
             if (CheckX(point, start, finish) 
-                && 
+                &&
                 CheckY(point, start, finish)) 
             result = true;
             return result;
@@ -27,7 +27,7 @@ namespace FileManager.Structure
         /// check x-coordinate list
         /// </summary>
         /// <returns></returns>
-        private bool CheckX(Point point, Point start, Point finish)
+        private static bool CheckX(Point point, Point start, Point finish)
         {
             bool result =false;
             if (point.X >= start.X && point.X <= start.X + finish.X) result = true;
@@ -39,7 +39,7 @@ namespace FileManager.Structure
         /// check Y-coordinate list
         /// </summary>
         /// <returns></returns>
-        private bool CheckY(Point point, Point start, Point finish)
+        private static bool CheckY(Point point, Point start, Point finish)
         {
             bool result = false;
             if (point.Y >= start.X && point.Y <= start.Y + finish.Y) result = true;

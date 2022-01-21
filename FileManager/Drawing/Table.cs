@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Drawing
 {
-    class Table : IDrawing
+    public class Table : IDrawing
     {
         /// <summary>
         /// Left upper point

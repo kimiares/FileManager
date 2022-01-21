@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ using FileManager.Drawing;
 
 namespace FileManager.Commander
 {
-    class Settings
+    public class Settings
     {
         public static Settings Instance()
         {
@@ -46,12 +46,11 @@ namespace FileManager.Commander
         public int ColumnCountRight { get; set; } = 3;
         public int ColumnWidthLeft { get; set; }
         public int ColumnWidthRight { get; set; }
-        
+
         public Point ButtonsStart { get; set; }
         public int ButtonsHeight { get; set; } = 1;
         public int ButtonsWidth { get; set; } = 10;
         public int ButtonsSpace { get; set; } = 2;
-
 
         private void InizialiseParams()
         {
@@ -60,7 +59,7 @@ namespace FileManager.Commander
             if (Sets.ViewModeRightPanel == 1) ColumnCountRight = 1;
             ColumnWidthLeft = Sets.PanelWidth / ColumnCountLeft;
             ColumnWidthRight = Sets.PanelWidth / ColumnCountRight;
-            ButtonsStart = new Point(1,29);
+            ButtonsStart = new Point(1, 29);
         }
 
 

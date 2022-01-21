@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Control.SavedPanel
 {
-    class Buffer
+    public class Buffer
         
     {
         public SavedState SavedState { get; set; }

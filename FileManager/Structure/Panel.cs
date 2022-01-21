@@ -26,6 +26,7 @@ namespace FileManager.Structure
         /// </summary>
         public string Path { get; set; }
         public List<FileSystemInfo> Input { get; set; }
+        
         public IDrawing drawing;
         public IPanelStrategy algorithm;
 
@@ -51,8 +52,8 @@ namespace FileManager.Structure
         {
             AddTableName();
             SetColumn();
-            this.algorithm.SetContent(this, this.Input);
-            this.algorithm.PrintContent(this);
+            SetCells();
+            this.algorithm.PrintContent(this, this.Input);
         }
         
         
@@ -71,6 +72,30 @@ namespace FileManager.Structure
                        ));
             }
 
+        }
+        
+        /// <summary>
+        /// create cells in each columns
+        /// </summary>
+        public void SetCells()
+        {
+            for(int i = 0; i < this.Count; i++)
+            {
+                for(int j = 0; j < mySet.MaxElementsColumn; j++)
+                {
+                    this[i].Add(new Cell(
+                        new Point(this[i].StartPoint.X, this[i].StartPoint.Y + j),
+                        new Point(this[i].StartPoint.X + mySet.ColumnWidthLeft, this[i].StartPoint.Y + j)
+                        ));
+                }
+            }
+        }
+
+        public IEnumerable<Cell> GetAllCells()
+        {
+            foreach (Column column in this)
+                foreach (Cell cell in column)
+                    yield return cell;
         }
 
 

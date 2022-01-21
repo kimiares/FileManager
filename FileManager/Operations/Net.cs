@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Operations
 {
-    interface Net: IOperation
+    public class Net: IOperation
     {
     }
 }

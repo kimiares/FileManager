@@ -1,4 +1,4 @@
-using FileManager.Commander;
+﻿using FileManager.Commander;
 using FileManager.Drawing;
 using System;
 
@@ -24,21 +24,21 @@ namespace FileManager
 
             Settings MySet = Settings.Instance();
 
-            
-           
+
+
             List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\Windows").ToList();
-            
+
 
 
             PanelModel pm1 = new PanelModel()
             {
 
-                StartPoint= new Drawing.Point(1, 1),
-                FinishPoint= new Drawing.Point(59, 27),
-                Path= MySet.Sets.PathLeft,
-                Index=0,
+                StartPoint = new Drawing.Point(1, 1),
+                FinishPoint = new Drawing.Point(59, 27),
+                Path = MySet.Sets.PathLeft,
+                Index = 0,
                 Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
-                Algorithm= new OneProperty()
+                Algorithm = new OneProperty()
 
             };
             ICheckArea panel = new Panel(pm1, testFSI);
@@ -64,7 +64,8 @@ namespace FileManager
             List<string> items = new List<string>();
             foreach (var d in Enum.GetValues(typeof(ButtonEnum)))
             {
-                items.Add(d.ToString().PadRight(10));
+                items.Add(d.ToString()
+                    .PadRight(10));
             }
 
             Buttons F_Buttons = new Buttons(MySet.ButtonsStart, MySet.ButtonsWidth, MySet.ButtonsHeight, MySet.ButtonsSpace, items);
@@ -81,4 +82,3 @@ namespace FileManager
         }
     }
 }
-

@@ -27,22 +27,7 @@ namespace FileManager.Structure
 
             
         }
-        /// <summary>
-        /// add cell into column
-        /// </summary>
-        /// <param name="cell"></param>
-        //public void Add(Cell cell)
-        //{
-        //    this.Add(cell);
-        //}
-        /// <summary>
-        /// remove cell from column
-        /// </summary>
-        /// <param name="cell"></param>
-        //public new void Remove(Cell cell)
-        //{
-        //    this.Remove(cell);
-        //}
+        
 
         public void MakeActive()
         {

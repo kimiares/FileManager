@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Control
 {
-    interface IInput
+    public interface IInput
     {
     }
 }

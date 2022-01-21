@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Control.Mediator
 {
-    interface IMediator
+    public interface IMediator
     {
         void Send();
     }

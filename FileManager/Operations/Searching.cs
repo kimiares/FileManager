@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Operations
 {
-    class Searching:IOperation
+    public class Searching:IOperation
     {
         
         public List<FileSystemInfo> SearchInFolder(string mask, string disk)

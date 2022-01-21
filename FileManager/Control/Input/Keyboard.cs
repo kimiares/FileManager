@@ -9,7 +9,7 @@ namespace FileManager.Control.Input
     /// <summary>
     /// обработчик клавиатуры
     /// </summary>
-    class Keyboard:IInput
+    public class Keyboard:IInput
     {
     }
 }
