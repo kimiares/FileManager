@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure
 {
-    public class Button : ICheckArea
+    public class Button:ICheckArea
     {
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }
@@ -24,8 +24,8 @@ namespace FileManager.Structure
         }
         public void DrawButton()
         {
-            Console.SetCursorPosition(StartPoint.X, StartPoint.Y);
-            Console.Write(Text);
+                Console.SetCursorPosition(StartPoint.X, StartPoint.Y);
+                Console.Write(Text);
         }
         //public bool CheckArea(Point point)
         //{
@@ -37,7 +37,5 @@ namespace FileManager.Structure
         {
             throw new NotImplementedException();
         }
-
-
     }
 }

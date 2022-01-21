@@ -18,8 +18,8 @@ namespace FileManager.Structure.PanelStrategy
 
         Settings mySet = Settings.Instance();
 
-       
-        
+
+
         public IEnumerable<Cell> SetContent(Panel panel, List<FileSystemInfo> input)
         {
 
@@ -27,7 +27,7 @@ namespace FileManager.Structure.PanelStrategy
             {
                 new ParentDirectory(input[0])
             }
-            .Union(input.Take(mySet.MaxElementsColumn-1));
+            .Union(input.Take(mySet.MaxElementsColumn - 1));
 
 
             return panel.GetAllCells()
@@ -38,14 +38,14 @@ namespace FileManager.Structure.PanelStrategy
 
         }
 
-        
+
         public void PrintContent(Panel panel, List<FileSystemInfo> input)
         {
             var cells = SetContent(panel, input).Take(mySet.MaxElementsColumn);
             Console.ResetColor();
             PrintProperties(cells);
         }
-        
+
         /// <summary>
         /// Print properties of FileSystemInfo file in columns
         /// </summary>
@@ -56,21 +56,21 @@ namespace FileManager.Structure.PanelStrategy
             {
 
                 cell.StartPoint.SetCursor();
-                (cell.Content?.Name)
+                cell.Content?.Name
                     .Write();
 
                 Console.SetCursorPosition(cell.StartPoint.X + mySet.ColumnWidthLeft - 1, cell.StartPoint.Y);
 
-                (cell.Content?.CreationTime.ToShortDateString())
+                cell.Content?.CreationTime.ToShortDateString()
                     .Write();
 
                 Console.SetCursorPosition(cell.StartPoint.X + 2 * (mySet.ColumnWidthLeft - 1), cell.StartPoint.Y);
-                (cell.Content?.LastAccessTime.ToShortDateString())
+                cell.Content?.LastAccessTime.ToShortDateString()
                     .Write();
 
             }
         }
 
-       
+
     }
 }

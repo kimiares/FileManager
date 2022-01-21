@@ -51,7 +51,7 @@ namespace FileManager.Structure.PanelStrategy
             foreach (Cell cell in cells)
             {
                 cell.StartPoint.SetCursor();
-                (cell.Content?.Name).Write();
+                cell.Content?.Name.Write();
                
             }
         }
