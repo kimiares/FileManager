@@ -1,5 +1,6 @@
 ﻿using FileManager.Commander;
 using FileManager.Drawing;
+using FileManager.Structure.Models;
 using FileManager.Structure.PanelStrategy;
 using System;
 using System.Collections.Generic;
@@ -26,25 +27,23 @@ namespace FileManager.Structure
         public IDrawing drawing;
         public IPanelStrategy algorithm;
 
-        public Panel(Point start, Point finish, string path, int index, IDrawing drawing, IPanelStrategy algorithm, List<FileSystemInfo> input)
+        public Panel(PanelModel panelModel, List<FileSystemInfo> input)
         {
-
-            this.StartPoint = start;
-            this.FinishPoint = finish;
-            this.Path = path;
-            this.IsActive = false;
-            this.drawing = drawing;
-            this.algorithm = algorithm;
+            this.StartPoint = panelModel.StartPoint;
+            this.FinishPoint = panelModel.FinishPoint;
+            this.Path = panelModel.Path;
+            this.drawing = panelModel.Drawing;
+            this.algorithm = panelModel.Algorithm;
             this.Input = input;
-            this.Index = index;
+            this.Index = panelModel.Index;
             this.Selected = 0;
-            SetColumn();
-            SetCells();
+            
+            CreateColumnsWithCells();
             AddTableName();
             FillPanel();
+        }
         
 
-        }
         Settings mySet = Settings.Instance();
         
         public void FillPanel()
@@ -58,44 +57,23 @@ namespace FileManager.Structure
         public void SetCountPanelElements()
         {
             this.CountPanelElements = mySet.MaxElementsColumn;
-            if (this.algorithm is AllColumn) this.CountPanelElements = 3*mySet.MaxElementsColumn;
+            if (this.algorithm is OneProperty) this.CountPanelElements = 3*mySet.MaxElementsColumn;
 
 
         }
          
-        /// <summary>
-        /// Create columns with coordinates
-        /// </summary>
-        public void SetColumn()
-        {
-            for (int i = 0; i < mySet.ColumnCountLeft; i++)
-            {
-                this.Add(
-                    new Column(
-                        new Point(mySet.Sets.ALX + 1 - i + i * mySet.ColumnWidthLeft + this.Index*(mySet.Sets.PanelWidth+1), mySet.Sets.ALY + 1),
-                            new Point(mySet.Sets.ALX + 1 - i + (i+1) * mySet.ColumnWidthLeft +  this.Index * (mySet.Sets.PanelWidth+1), mySet.Sets.ALY + 1 + mySet.MaxElementsColumn)
-                       ));
-            }
-
-        }
         
         /// <summary>
         /// create cells in each columns
         /// </summary>
-        public void SetCells()
+        
+        public void CreateColumnsWithCells() 
         {
-            for(int i = 0; i < this.Count; i++)
-            {
-                for(int j = 0; j < mySet.MaxElementsColumn; j++)
-                {
-                    this[i].Add(new Cell(
-                        new Point(this[i].StartPoint.X, this[i].StartPoint.Y + j),
-                        new Point(this[i].StartPoint.X + mySet.ColumnWidthLeft, this[i].StartPoint.Y + j)
-                        ));
-                }
-            }
+            this.SetColumn();
+            this.SetCells();
         }
-
+        
+        
         public IEnumerable<Cell> GetAllCells()
         {
             foreach (Column column in this)

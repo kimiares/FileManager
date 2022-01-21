@@ -53,7 +53,7 @@ namespace FileManager.Commander
         /// <summary>
         /// Right Bottom coordinate Y for left panel
         /// </summary>
-        public int BLY { get; } = Console.WindowHeight - 4;
+        public int BLY { get; } = Console.WindowHeight - 2;
         /// <summary>
         /// Left Upper coordinate X for right panel
         /// </summary>
@@ -69,7 +69,7 @@ namespace FileManager.Commander
         /// <summary>
         /// Right Bottom coordinate Y for right panel
         /// </summary>
-        public int BRY { get; } = Console.WindowHeight - 4;
+        public int BRY { get; } = Console.WindowHeight - 2;
         /// <summary>
         /// Active Panel
         /// </summary>

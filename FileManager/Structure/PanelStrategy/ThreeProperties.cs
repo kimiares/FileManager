@@ -13,7 +13,7 @@ namespace FileManager.Structure.PanelStrategy
     /// fill each column by diff data(name,date,etc)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class EachColumn : IPanelStrategy
+    public class ThreeProperties : IPanelStrategy
     {
 
         Settings mySet = Settings.Instance();
@@ -24,7 +24,7 @@ namespace FileManager.Structure.PanelStrategy
 
             var tempList = new List<FileSystemInfo>
             {
-                new ParentDirectory((input[0]).GetRoot())
+                new ParentDirectory(input[0])
             }
             .Union(input);   
 
@@ -75,11 +75,11 @@ namespace FileManager.Structure.PanelStrategy
                 Console.ResetColor();
 
                 Console.SetCursorPosition(cell.StartPoint.X + mySet.ColumnWidthLeft - 1, cell.StartPoint.Y);
-                (cell.Content?.CreationTime.ToShortDateString())
+                cell.Content?.CreationTime.ToShortDateString()
                     .Write();
 
                 Console.SetCursorPosition(cell.StartPoint.X + 2 * (mySet.ColumnWidthLeft - 1), cell.StartPoint.Y);
-                (cell.Content?.LastAccessTime.ToShortDateString())
+                cell.Content?.LastAccessTime.ToShortDateString()
                     .Write();
 
             }
