@@ -52,7 +52,7 @@ namespace FileManager
             }
 
             Buttons F_Buttons = new Buttons(new Drawing.Point(1, 29), 10, 1, 2, items);
-
+            Panel ddd = panel1;
             ConsoleKeyInfo MyKey;
             do
             {
@@ -61,12 +61,18 @@ namespace FileManager
                 switch (MyKey.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        panel.MoveUp();
-                        panel.FillPanel();
+                        ddd.MoveUp();
+                        ddd.FillPanel();
                         break;
                     case ConsoleKey.DownArrow:
-                        panel.MoveDown();
-                        panel.FillPanel();
+                        ddd.MoveDown();
+                        ddd.FillPanel();
+                        break;
+                    case ConsoleKey.OemPlus:
+                        ddd.AddSelectedObjects();
+                        ddd.MoveDown();
+                        ddd.FillPanel();
+
                         break;
                 }
 
