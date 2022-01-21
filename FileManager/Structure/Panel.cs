@@ -40,7 +40,7 @@ namespace FileManager.Structure
             this.drawing = panelModel.Drawing;
             this.algorithm = panelModel.Algorithm;
             this.Input = input;
-            this.Index = index;
+            this.Index = panelModel.Index;
             Set();
            
 

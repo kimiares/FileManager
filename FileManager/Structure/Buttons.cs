@@ -1,4 +1,5 @@
-﻿using FileManager.Drawing;
+﻿using FileManager.Commander;
+using FileManager.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace FileManager.Structure
         ///
 
 
-
+        Settings mySet = Settings.Instance();
         public Buttons(Point start, int width, int height, int space, List<string> items)
         {
             this.StartPoint = start;
@@ -44,7 +45,9 @@ namespace FileManager.Structure
             this.SpaceBetweenButtons = space;
             this.ButtonsCount = items.Count;
             ButtonsInitializer(items);
-          
+            DrawButtons();
+
+
         }
 
         private Point GetButtonStartPoint(int i)
@@ -63,7 +66,22 @@ namespace FileManager.Structure
             for (int i = 0; i < ButtonsCount; i++)
                 this.Add(new Button(GetButtonStartPoint(i), GetButtonFinishtPoint(i), items[i]));
         }
+        public void DrawButtons()
+        {
 
-       
+
+            Console.BackgroundColor = mySet.Sets.BackColor;
+            Console.ForegroundColor = mySet.Sets.TextColor;
+
+
+            foreach (Button menuitem in this)
+            {
+                Console.SetCursorPosition(menuitem.StartPoint.X, menuitem.StartPoint.Y);
+                Console.Write(menuitem.Text);
+            }
+            Console.ResetColor();
+        }
+
+
     }
 }

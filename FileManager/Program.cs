@@ -38,7 +38,7 @@ namespace FileManager
                 Path= MySet.Sets.PathLeft,
                 Index=0,
                 Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
-                Algorithm= new EachColumn()
+                Algorithm= new OneProperty()
 
             };
             ICheckArea panel = new Panel(pm1, testFSI);
@@ -54,7 +54,7 @@ namespace FileManager
                 Path = MySet.Sets.PathRight,
                 Index = 1,
                 Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
-                Algorithm = new EachColumn()
+                Algorithm = new OneProperty()
             };
 
 
