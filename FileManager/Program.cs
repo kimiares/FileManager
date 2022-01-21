@@ -36,7 +36,7 @@ namespace FileManager
                 MySet.Sets.PathLeft,
                 0,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
-                new EachColumn(),
+                new OneProperty(),
                 testFSI);
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
@@ -47,7 +47,7 @@ namespace FileManager
                 MySet.Sets.PathLeft,
                 1,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
-                new AllColumn(),
+                new ThreeProperties(),
                 testFSI);
 
             List<string> items = new List<string>();
@@ -56,7 +56,7 @@ namespace FileManager
                 items.Add(d.ToString().PadRight(10));
             }
 
-            Buttons F_Buttons = new Buttons(new Drawing.Point(1, 29), 10, 1, 2, items);
+            Buttons F_Buttons = new Buttons(MySet.ButtonsStart, MySet.ButtonsWidth, MySet.ButtonsHeight, MySet.ButtonsSpace, items);
 
 
 

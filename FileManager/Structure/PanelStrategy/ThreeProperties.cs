@@ -15,7 +15,7 @@ namespace FileManager.Structure.PanelStrategy
     /// fill all columns by same data(only names)
     /// </summary>
 
-    public class AllColumn : IPanelStrategy
+    public class ThreeProperties : IPanelStrategy
 
     {
         Settings mySet = Settings.Instance();
@@ -29,7 +29,7 @@ namespace FileManager.Structure.PanelStrategy
                 {
                     Console.ResetColor();
                     Console.SetCursorPosition(column.StartPoint.X, column.StartPoint.Y + i);
-                    Console.WriteLine(((columns.IndexOf(column) == 0)&&i==0) ? ".." : SupportMethods.CutName(column[i].Content.Name));
+                    Console.WriteLine(((columns.IndexOf(column) == 0)&&i==0) ? ".." : column[i].Content.Name.CutString());
                 }
             }
 

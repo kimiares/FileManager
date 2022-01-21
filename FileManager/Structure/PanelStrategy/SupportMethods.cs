@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Structure.PanelStrategy
 {
-    class SupportMethods
+    public static class SupportMethods
     {
         
         /// <summary>
@@ -16,12 +16,12 @@ namespace FileManager.Structure.PanelStrategy
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static string CutName(string name)
+        public static string CutString(this string str)
         {
             Settings mySet = Settings.Instance();
-            if (name.Length > mySet.ColumnWidthLeft - 2)
-                name = name.Substring(0, mySet.ColumnWidthLeft - 2);
-            return name;
+            if (str.Length > mySet.ColumnWidthLeft - 2)
+                str = str.Substring(0, mySet.ColumnWidthLeft - 2);
+            return str;
         }
         /// <summary>
         /// Get parent directory

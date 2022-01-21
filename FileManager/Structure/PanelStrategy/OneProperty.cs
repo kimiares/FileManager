@@ -12,7 +12,7 @@ namespace FileManager.Structure.PanelStrategy
     /// fill each column by diff data(name,date,etc)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class EachColumn : IPanelStrategy
+    public class OneProperty : IPanelStrategy
     {
 
         Settings mySet = Settings.Instance();
@@ -78,7 +78,7 @@ namespace FileManager.Structure.PanelStrategy
             {
                 return file.LastAccessTime.ToShortDateString();
             }
-            return SupportMethods.CutName(file.Name);
+            return file.Name.CutString();
         }
 
 
