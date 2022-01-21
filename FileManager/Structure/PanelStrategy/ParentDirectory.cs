@@ -17,12 +17,12 @@ namespace FileManager.Structure.PanelStrategy
         {
             throw new NotImplementedException();
         }
-        public ParentDirectory(string fullPath)
+        public ParentDirectory(FileSystemInfo file)
         {
-            this.FullPath = fullPath;
+            this.FullPath = file.GetRoot();
         }
 
 
-        
+
     }
 }

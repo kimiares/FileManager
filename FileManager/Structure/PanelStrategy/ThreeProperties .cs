@@ -15,7 +15,7 @@ namespace FileManager.Structure.PanelStrategy
     /// fill all columns by same data(only names)
     /// </summary>
 
-    public class AllColumn : IPanelStrategy
+    public class ThreeProperties : IPanelStrategy
 
     {
         Settings mySet = Settings.Instance();

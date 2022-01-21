@@ -36,7 +36,7 @@ namespace FileManager
                 MySet.Sets.PathLeft,
                 0,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
-                new AllColumn(),
+                new ThreeProperties(),
                 testFSI);
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
@@ -47,7 +47,7 @@ namespace FileManager
                 MySet.Sets.PathLeft,
                 1,
                 new Table(MySet.Sets.PathLeft, new Drawing.Point(61, 0), new Drawing.Point(119, 28), 3),
-                new EachColumn(),
+                new OneProperty(),
                 testFSI);
 
             List<string> items = new List<string>();

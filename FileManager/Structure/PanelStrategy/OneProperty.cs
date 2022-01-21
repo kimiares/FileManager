@@ -13,7 +13,7 @@ namespace FileManager.Structure.PanelStrategy
     /// fill each column by diff data(name,date,etc)
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class EachColumn : IPanelStrategy
+    public class OneProperty : IPanelStrategy
     {
 
         Settings mySet = Settings.Instance();
