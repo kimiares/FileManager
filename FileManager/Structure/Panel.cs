@@ -173,5 +173,13 @@ namespace FileManager.Structure
 
 
         }
+
+        public void AddSelectedObjects()
+        {
+            IEnumerable<Cell> ddd = GetAllCells();
+            int z = this.Selected;
+            GetAllCells().ElementAt(this.Selected).MakeSelected();
+
+        }
     }
 }

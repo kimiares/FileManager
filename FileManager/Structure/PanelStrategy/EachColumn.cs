@@ -67,8 +67,11 @@ namespace FileManager.Structure.PanelStrategy
             {
                 if (cell.IsActive) cell.ChangeColor();
 
+                if (cell.IsSelected) cell.SetSelectedColor();
+
                 cell.StartPoint.SetCursor();
                 cell.Content?.Name.Write();
+
                 Console.ResetColor();
 
                 Console.SetCursorPosition(cell.StartPoint.X + mySet.ColumnWidthLeft - 1, cell.StartPoint.Y);

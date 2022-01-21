@@ -57,6 +57,10 @@ namespace FileManager.Structure.PanelStrategy
             Console.ForegroundColor = tmp;
         }
 
+        public static void SetSelectedColor(this IStructure cell)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
 
     }
 }
