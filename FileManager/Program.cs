@@ -16,7 +16,7 @@ namespace FileManager
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            
+
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
@@ -26,12 +26,13 @@ namespace FileManager
             List<FileSystemInfo> testFSI = Folder.GetFolder(@"C:\Windows").ToList();
 
             PanelModel firstPanelModel = new PanelModel()
-            { StartPoint = new Drawing.Point(1, 1),
-              FinishPoint = new Point(59, 27),
-              Path = MySet.Sets.PathLeft,
-              Index = 0,
-              Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
-              Algorithm = new OneProperty()
+            {
+                StartPoint = new Drawing.Point(1, 1),
+                FinishPoint = new Point(59, 27),
+                Path = MySet.Sets.PathLeft,
+                Index = 0,
+                Drawing = new Table(MySet.Sets.PathLeft, new Drawing.Point(0, 0), new Drawing.Point(59, 28), 3),
+                Algorithm = new OneProperty()
             };
 
             PanelModel secondPanelModel = new PanelModel()
@@ -45,15 +46,15 @@ namespace FileManager
 
             };
 
-            Panel panel = new Panel(firstPanelModel,testFSI);
-       
+            Panel panel = new Panel(firstPanelModel, testFSI);
+
 
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
 
-            Panel panel1 = new Panel(secondPanelModel,testFSI);
-        
+            Panel panel1 = new Panel(secondPanelModel, testFSI);
+
 
             List<string> items = new List<string>();
 
@@ -61,14 +62,14 @@ namespace FileManager
             {
                 items.Add(d.ToString().PadRight(10));
             }
-            
+
             Buttons F_Buttons = new Buttons(new Drawing.Point(1, 29), 10, 1, 2, items);
+
+
            
-            
-            Panel ddd = panel;
-            
+
             ConsoleKeyInfo MyKey;
-            
+
             do
             {
                 MyKey = Console.ReadKey();
@@ -76,17 +77,17 @@ namespace FileManager
                 switch (MyKey.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        ddd.MoveUp();
-                        
+                        panel.MoveUp();
+
                         break;
                     case ConsoleKey.DownArrow:
-                        ddd.MoveDown();
-                       
+                        panel.MoveDown();
+
                         break;
                     case ConsoleKey.OemPlus:
-                        ddd.AddSelectedObjects();
-                        ddd.MoveDown();
-                       
+                        panel.AddSelectedObjects();
+                        panel.MoveDown();
+
                         break;
                 }
 
