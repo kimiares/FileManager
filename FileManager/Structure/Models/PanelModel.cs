@@ -11,13 +11,9 @@ namespace FileManager.Structure.Models
     {
         public Point StartPoint { get; set; }
         public Point FinishPoint { get; set; }
-        public int ColCount { get; set; }
-        public int Index { get; set; }
-
-        public bool IsActive { get; set; }
-        /// <summary>
-        /// Root path
-        /// </summary>
         public string Path { get; set; }
+        public int Index { get; set; }
+        public IDrawing Drawing { get; set; }
+        public IPanelStrategy Algorithm { get; set; }
     }
 }
