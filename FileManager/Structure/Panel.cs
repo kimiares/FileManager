@@ -160,7 +160,7 @@ namespace FileManager.Structure
         public void AddSelectedObjects()
         {
         
-            GetAllCells().ElementAt(y).MakeSelected();
+            GetAllCells().ElementAt(this.Selected).MakeSelected();
 
         }
     }
