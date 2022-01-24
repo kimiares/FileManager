@@ -80,6 +80,7 @@ namespace FileManager.Structure
                 Console.Write(menuitem.Text);
             }
             Console.ResetColor();
+            
         }
 
 

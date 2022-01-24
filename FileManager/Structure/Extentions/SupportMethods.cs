@@ -57,5 +57,12 @@ namespace FileManager.Structure.PanelStrategy
             Console.ForegroundColor = ConsoleColor.Green;
         }
 
+        public static void SetColour()
+        {
+            Console.ResetColor();
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Black;
+        }
+
     }
 }

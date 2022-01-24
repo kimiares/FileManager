@@ -36,20 +36,20 @@ namespace FileManager.Structure
             this.algorithm = panelModel.Algorithm;
             this.Input = input;
             this.Index = panelModel.Index;
-           
+
             this.Selected = 0;
-            
+
             CreateColumnsWithCells();
             AddTableName();
             FillPanel();
         }
-        
+
 
         Settings mySet = Settings.Instance();
-        
+
         public void FillPanel()
         {
-            
+
             ClearPanel();
             SetCountPanelElements();
             this.algorithm.PrintContent(this, this.Input);
@@ -58,23 +58,23 @@ namespace FileManager.Structure
         public void SetCountPanelElements()
         {
             this.CountPanelElements = mySet.MaxElementsColumn;
-            if (this.algorithm is OneProperty) this.CountPanelElements = 3*mySet.MaxElementsColumn;
+            if (this.algorithm is OneProperty) this.CountPanelElements = 3 * mySet.MaxElementsColumn;
 
 
         }
-         
-        
+
+
         /// <summary>
         /// create cells in each columns
         /// </summary>
-        
-        public void CreateColumnsWithCells() 
+
+        public void CreateColumnsWithCells()
         {
             this.SetColumn();
             this.SetCells();
         }
-        
-        
+
+
         public IEnumerable<Cell> GetAllCells()
         {
             foreach (Column column in this)
@@ -101,15 +101,15 @@ namespace FileManager.Structure
 
         public void MoveUp()
         {
-         
-            if (this.Selected<= 0)
+
+            if (this.Selected <= 0)
             {
                 this.Selected = GetAllCells().Count() - 1;
                 SetSelected(0, CountPanelElements - 1);
             }
             else
             {
-                SetSelected(this.Selected, this.Selected- 1);
+                SetSelected(this.Selected, this.Selected - 1);
                 this.Selected--;
             }
             this.FillPanel();
@@ -126,11 +126,11 @@ namespace FileManager.Structure
             else
             {
 
-                SetSelected(this.Selected, this.Selected+ 1);
+                SetSelected(this.Selected, this.Selected + 1);
                 this.Selected++;
             }
             this.FillPanel();
-          
+
 
         }
 
@@ -139,11 +139,21 @@ namespace FileManager.Structure
             Console.ResetColor();
             string h = new String(' ', mySet.ColumnWidthLeft - 2);
 
-                foreach (Cell cell in GetAllCells())
+            foreach (Cell cell in GetAllCells())
             {
                 cell.StartPoint.SetCursor();
                 Console.WriteLine(h);
             }
+        }
+
+
+        public void ReDraw()
+        {
+            this.drawing.Draw();
+            AddTableName();
+            FillPanel();
+
+
         }
 
         public void SetSelected(int oldIndex, int newIndex)
@@ -180,7 +190,7 @@ namespace FileManager.Structure
 
         public void AddSelectedObjects()
         {
-        
+
             GetAllCells().ElementAt(this.Selected).MakeSelected();
 
         }

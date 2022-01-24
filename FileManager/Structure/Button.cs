@@ -18,7 +18,9 @@ namespace FileManager.Structure
 
         public Button(Point startPoint, Point finishPoint, string text, bool activity) : this(startPoint, finishPoint, text)
         {
+            this.BackColor = activity ? ConsoleColor.Red : ConsoleColor.Black;
             this.IsActive = activity;
+            DrawButton();
         }
         public Button(Point startPoint, Point finishPoint, string text)
         {
@@ -26,11 +28,12 @@ namespace FileManager.Structure
             FinishPoint = finishPoint;
             Text = text;
             
-            DrawButton();
+            
         }
         public void DrawButton()
         {
             Console.SetCursorPosition(StartPoint.X, StartPoint.Y);
+            Console.BackgroundColor = this.BackColor;
             Console.Write(Text);
         }
         

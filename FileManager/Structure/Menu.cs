@@ -111,7 +111,9 @@ namespace FileManager.Structure
 
 
 
-
+        /// <summary>
+        /// Clear all except borders
+        /// </summary>
         public void ClearMenu()
         {
             for (int x = mySet.MenuStartX + 1; x <= mySet.MenuStartX + mySet.MenuWidth - 1; x++)
@@ -125,6 +127,7 @@ namespace FileManager.Structure
 
         public void DeleteMenu()
         {
+            Console.ResetColor();
             for (int x = mySet.MenuStartX; x <= mySet.MenuStartX + mySet.MenuWidth; x++)
                 for (int y = mySet.MenuStartY; y <= mySet.MenuStartY + mySet.MenuHeight; y++)
                 {
