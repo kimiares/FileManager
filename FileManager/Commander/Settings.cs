@@ -25,7 +25,7 @@ namespace FileManager.Commander
             Sets = new Configuration();
                 if (File.Exists("settings.xml"))
                     Sets = LoadSettings();
-            InizialiseParams();
+            InitializeSettings();
         }
 
 
@@ -61,30 +61,59 @@ namespace FileManager.Commander
         public Point SecondPanelStart { get; set; }
         public Point SecondPanelFinish { get; set; }
 
-        private void InizialiseParams()
+        public int MenuWidth { get; set; }
+        public int MenuHeight { get; set; }
+        public int MenuStartX { get; set; }
+        public int MenuStartY { get; set; }
+
+       
+        private void InitializeSettings()
         {
-            MaxElementsColumn = Sets.PanelHeight - 3;
-            
-            if (Sets.ViewModeLeftPanel == 1) ColumnCountLeft = 1;
-            if (Sets.ViewModeRightPanel == 1) ColumnCountRight = 1;
-            
-            ColumnWidthLeft = Sets.PanelWidth / ColumnCountLeft;
-            ColumnWidthRight = Sets.PanelWidth / ColumnCountRight;
+            InizialiseParams();
+            InitializeMenuParams();
+            InitializeTableParams();
+            InitializePanelParams();
+        }
 
-            FirstTabelStart = new Point(Sets.ALX, Sets.ALY);
-            FirstTabelFinish = new Point(Sets.BLX, Sets.BLY);
-
-            SecondTabelStart = new Point(Sets.ARX,Sets.ARY);
-            SecondTabelFinish = new Point(Sets.BRX,Sets.BRY);
-
-            FirstPanelStart = new Point(Sets.ALX+1, Sets.ALY+1);
-            FirstPanelFinish = new Point(Sets.BLX-1, Sets.BLY-1);
-
-            SecondPanelStart = new Point(Sets.ARX + 1, Sets.ARY + 1);
-            SecondPanelFinish = new Point(Sets.BRX - 1, Sets.BRY - 1);
+        private void InitializeMenuParams()
+        {
+            MenuWidth = 2 * Sets.PanelWidth / 4;
+            MenuHeight = Sets.PanelHeight / 3;
+            MenuStartX = Sets.ALX + 2 * (ColumnWidthLeft / 3);
+            MenuStartY = Sets.ALY + 5;
 
 
         }
+
+        private void InizialiseParams()
+        {
+            MaxElementsColumn = Sets.PanelHeight - 3;
+
+            if (Sets.ViewModeLeftPanel == 1) ColumnCountLeft = 1;
+            if (Sets.ViewModeRightPanel == 1) ColumnCountRight = 1;
+
+            ColumnWidthLeft = Sets.PanelWidth / ColumnCountLeft;
+            ColumnWidthRight = Sets.PanelWidth / ColumnCountRight;
+
+        }
+
+        public void InitializeTableParams()
+        {
+            FirstTabelStart = new Point(Sets.ALX, Sets.ALY);
+            FirstTabelFinish = new Point(Sets.BLX, Sets.BLY);
+
+            SecondTabelStart = new Point(Sets.ARX, Sets.ARY);
+            SecondTabelFinish = new Point(Sets.BRX, Sets.BRY);
+        }
+        public void InitializePanelParams()
+        {
+            FirstPanelStart = new Point(Sets.ALX + 1, Sets.ALY + 1);
+            FirstPanelFinish = new Point(Sets.BLX - 1, Sets.BLY - 1);
+
+            SecondPanelStart = new Point(Sets.ARX + 1, Sets.ARY + 1);
+            SecondPanelFinish = new Point(Sets.BRX - 1, Sets.BRY - 1);
+        }
+
 
 
         private static Settings _instance = null;

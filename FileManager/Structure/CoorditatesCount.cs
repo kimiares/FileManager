@@ -42,6 +42,40 @@ namespace FileManager.Structure
                 }
             }
         }
+        /// <summary>
+        /// Create start point for menu's button
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public static Point CountStartButton(int i)
+        {
+            Settings mySet = Settings.Instance();
+            return new Point(mySet.MenuStartX + 3 + i * (3 * mySet.MenuWidth / 4),
+                mySet.MenuStartY + mySet.MenuHeight - 1);
+
+        }
+        /// <summary>
+        /// Create finish point for menu's button
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public static Point CountFinishButton(int i)
+        {
+            Settings mySet = Settings.Instance();
+            return new Point(mySet.MenuStartX + 3 + 2 + i * (3 * mySet.MenuWidth / 4),
+                mySet.MenuStartY + mySet.MenuHeight - 1);
+
+        }
+
+        /// <summary>
+        /// Create start point for menu's text
+        /// </summary>
+        /// <returns></returns>
+        public static Point CountTextStart()
+        {
+            Settings mySet = Settings.Instance();
+            return new Point(mySet.MenuStartX + mySet.MenuWidth / 3, mySet.MenuStartY + 1);
+        }
 
 
     }
