@@ -20,13 +20,24 @@ namespace FileManager.Structure.PanelStrategy
  
         public void PrintContent(Panel panel, List<FileSystemInfo> input)
         {
-            var cells = panel.SetContent( input).Take(mySet.MaxElementsColumn);
+            var cells = panel.SetContent(input).Take(mySet.MaxElementsColumn);
 
+            cells.SetSelectedCell(panel);
+                        
             Console.ResetColor();
 
             PrintProperties(cells);
          }
 
+        public bool CellisActive(List <Cell> cells, List <FileSystemInfo> SelectedFiles)
+        {
+            foreach (Cell cell in cells)
+            {
+                if (SelectedFiles.Contains(cell.Content))
+                    return true;
+            }
+            return false;
+        }
         /// <summary>
         /// Print properties of FileSystemInfo file in columns
         /// </summary>
@@ -34,7 +45,7 @@ namespace FileManager.Structure.PanelStrategy
         public void PrintProperties(IEnumerable<Cell> cells)
         {
             Console.ResetColor();
-
+            
             foreach (Cell cell in cells)
             {
                 if (cell.IsActive) cell.ChangeColor();

@@ -57,5 +57,17 @@ namespace FileManager.Structure.PanelStrategy
             Console.ForegroundColor = ConsoleColor.Green;
         }
 
+        public static void SetSelectedCell(this IEnumerable <Cell> cells, Panel panel  )
+        {
+            foreach (Cell cell in cells)
+            {
+                if (panel.SelectedFiles.Contains(cell.Content))
+                    cell.IsSelected = true;
+                else
+                    cell.IsSelected = false;
+
+            }
+        }
+
     }
 }
