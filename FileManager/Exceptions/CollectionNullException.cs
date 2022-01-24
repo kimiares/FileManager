@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace FileManager.Exceptions
 {
+
     public class CollectionNullException : NullReferenceException
     {
-        public CollectionNullException(string message) 
+        public CollectionNullException(string message)
             : base(message)
         {
 
         }
     }
+
 }

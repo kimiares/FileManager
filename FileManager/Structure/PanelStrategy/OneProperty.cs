@@ -1,8 +1,12 @@
-﻿using System;
+﻿using FileManager.Commander;
+using FileManager.Drawing;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FileManager.Commander;
+
+
 
 namespace FileManager.Structure.PanelStrategy
 {
@@ -12,7 +16,7 @@ namespace FileManager.Structure.PanelStrategy
 
     public class OneProperty : IPanelStrategy
 
-    {
+        {
         public void PrintContent(Panel panel, List<FileSystemInfo> input)
         {
             var cells = panel.SetContent(input);

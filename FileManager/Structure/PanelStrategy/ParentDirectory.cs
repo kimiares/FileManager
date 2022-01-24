@@ -23,6 +23,6 @@ namespace FileManager.Structure.PanelStrategy
         }
 
 
-        
+
     }
 }

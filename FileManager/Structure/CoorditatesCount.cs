@@ -10,8 +10,6 @@ namespace FileManager.Structure
 {
     public static class CoorditatesCount
     {
-
-        
         public static void SetColumn(this Panel panel)
         {
             Settings mySet = Settings.Instance();

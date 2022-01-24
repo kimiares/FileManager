@@ -1,4 +1,4 @@
-﻿using FileManager.Commander;
+using FileManager.Commander;
 using FileManager.Drawing;
 using FileManager.Structure.Models;
 using FileManager.Structure.PanelStrategy;
