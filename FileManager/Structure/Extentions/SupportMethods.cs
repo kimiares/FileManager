@@ -35,15 +35,27 @@ namespace FileManager.Structure.PanelStrategy
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static string GetRoot(this FileSystemInfo file) =>
+        public static string GetRoot(this FileSystemInfo file) => 
             Directory.GetDirectoryRoot(file.FullName);
-
-        public static void Write(this string data) =>
+        
+        public static void Write(this string data) => 
             Console.WriteLine(data.CutString());
-
-        public static void SetCursor(this Point point) =>
+        
+        public static void SetCursor(this Point point) => 
             Console.SetCursorPosition(point.X, point.Y);
+        
 
+        public static void ChangeColor(this IStructure cell)
+        {
+            var tmp = Console.BackgroundColor;
+            Console.BackgroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = tmp;
+        }
+
+        public static void SetSelectedColor(this IStructure cell)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
 
     }
 }

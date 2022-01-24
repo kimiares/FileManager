@@ -19,7 +19,7 @@ namespace FileManager.Structure
         /// </summary>
         /// <param name="targertList"></param>
         /// <param name="columnCount"></param>
-        IEnumerable<Cell> SetContent(Panel targertList, List<FileSystemInfo> input);
+        //IEnumerable<Cell> SetContent(Panel targertList, List<FileSystemInfo> input);
 
         /// <summary>
         /// Print FileSystemInfo in console

@@ -15,5 +15,8 @@ namespace FileManager.Structure.Models
         public int Index { get; set; }
         public IDrawing Drawing { get; set; }
         public IPanelStrategy Algorithm { get; set; }
+
+      
+
     }
 }
