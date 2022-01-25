@@ -76,10 +76,7 @@ namespace FileManager.Structure
         public void RefreshButtons()
         {
             ClearButtons();
-            foreach (var b in this)
-            {
-                b.DrawButton();
-            }
+            this.ForEach(b => b.DrawButton());
         }
 
 
@@ -103,8 +100,6 @@ namespace FileManager.Structure
                 b.IsActive = !b.IsActive;
                 b.BackColor = b.IsActive ? ConsoleColor.Red : ConsoleColor.Black;
             }
-
-
             RefreshButtons();
 
         }
@@ -114,27 +109,25 @@ namespace FileManager.Structure
         /// <summary>
         /// Clear all except borders
         /// </summary>
-        public void ClearMenu()
+        public void ClearMenu() => Delete(1);
+        /// <summary>
+        /// Erase menu
+        /// </summary>
+        public void DeleteMenu() => Delete(0);
+        /// <summary>
+        /// Delete data in menu: 1 - leave border,0 - delete border
+        /// </summary>
+        /// <param name="border"></param>
+        public void Delete(int border)
         {
-            for (int x = mySet.MenuStartX + 1; x <= mySet.MenuStartX + mySet.MenuWidth - 1; x++)
-                for (int y = mySet.MenuStartY + 1; y <= mySet.MenuStartY + mySet.MenuHeight - 1; y++)
+            for (int x = mySet.MenuStartX + border; x <= mySet.MenuStartX + mySet.MenuWidth - border; x++)
+                for (int y = mySet.MenuStartY + border; y <= mySet.MenuStartY + mySet.MenuHeight - border; y++)
                 {
                     Console.SetCursorPosition(x, y);
                     Console.Write(" ");
                 }
         }
 
-
-        public void DeleteMenu()
-        {
-            Console.ResetColor();
-            for (int x = mySet.MenuStartX; x <= mySet.MenuStartX + mySet.MenuWidth; x++)
-                for (int y = mySet.MenuStartY; y <= mySet.MenuStartY + mySet.MenuHeight; y++)
-                {
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(" ");
-                }
-        }
 
         public void MakeActive()
         {
