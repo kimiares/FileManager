@@ -24,7 +24,11 @@ namespace FileManager.Structure
         /// </summary>
         public string Path { get; set; }
         public List<FileSystemInfo> Input { get; set; }
+
+        public List<FileSystemInfo> SelectedFiles { get; set; }
+
         public IDrawing drawing;
+        
         public IPanelStrategy algorithm;
 
         public Panel(PanelModel panelModel, List<FileSystemInfo> input)
@@ -38,7 +42,7 @@ namespace FileManager.Structure
             this.Index = panelModel.Index;
            
             this.Selected = 0;
-            
+            SelectedFiles = new List<FileSystemInfo>();
             CreateColumnsWithCells();
             AddTableName();
             FillPanel();
@@ -49,7 +53,6 @@ namespace FileManager.Structure
         
         public void FillPanel()
         {
-            
             ClearPanel();
             SetCountPanelElements();
             this.algorithm.PrintContent(this, this.Input);
@@ -59,11 +62,8 @@ namespace FileManager.Structure
         {
             this.CountPanelElements = mySet.MaxElementsColumn;
             if (this.algorithm is OneProperty) this.CountPanelElements = 3*mySet.MaxElementsColumn;
-
-
         }
          
-        
         /// <summary>
         /// create cells in each columns
         /// </summary>
@@ -178,10 +178,13 @@ namespace FileManager.Structure
                 .Select(r => r.cellsForFilling);
         }
 
-        public void AddSelectedObjects()
+        public void AddDelSelectedObjects()
         {
-        
-            GetAllCells().ElementAt(this.Selected).MakeSelected();
+            
+            if (SelectedFiles.Contains(Input[this.Selected - 1]))
+                SelectedFiles.Remove(Input[this.Selected - 1]);
+            else
+            SelectedFiles.Add(Input[this.Selected-1]);
 
         }
     }
