@@ -1,5 +1,6 @@
 ﻿using FileManager.Commander;
 using FileManager.Drawing;
+using FileManager.Operations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,7 +37,7 @@ namespace FileManager.Structure.PanelStrategy
         /// <param name="file"></param>
         /// <returns></returns>
         public static string GetRoot(this FileSystemInfo file) => 
-            Directory.GetDirectoryRoot(file.FullName);
+            Directory.GetParent(file.FullName).ToString();
         
         public static void Write(this string data) => 
             Console.WriteLine(data.CutString());
@@ -72,5 +73,27 @@ namespace FileManager.Structure.PanelStrategy
             }
         }
 
+        /// <summary>
+        /// Recieves files&folders from directory
+        /// </summary>
+        /// <param name="panel"></param>
+        /// <param name="activeCell"></param>
+        public static void GoOutOfDir(this Panel panel, Cell activeCell)
+        {
+            panel.Input.AddRange(
+                  Folder.GetFolders(activeCell.Content.GetRoot())
+                   .Union(Files.GetFiles(activeCell.Content.GetRoot())));
+        }
+        /// <summary>
+        /// Receives files&folders from parent directory
+        /// </summary>
+        /// <param name="panel"></param>
+        /// <param name="activeCell"></param>
+        public static void GoIntoDir(this Panel panel, Cell activeCell)
+        {
+            panel.Input.AddRange(
+                Folder.GetFolders(activeCell.Content.FullName)
+                .Union(Files.GetFiles(activeCell.Content.FullName)));
+        }
     }
 }
