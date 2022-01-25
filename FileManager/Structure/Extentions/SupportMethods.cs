@@ -52,9 +52,15 @@ namespace FileManager.Structure.PanelStrategy
             Console.ForegroundColor = tmp;
         }
 
-        public static void SetSelectedColor(this IStructure cell)
-        {
+        public static void SetSelectedColor(this IStructure cell)=> 
             Console.ForegroundColor = ConsoleColor.Green;
+        
+
+        public static void SetColour()
+        {
+            Console.ResetColor();
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Black;
         }
 
         public static void SetSelectedCell(this IEnumerable <Cell> cells, Panel panel  )
