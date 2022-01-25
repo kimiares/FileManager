@@ -178,10 +178,9 @@ namespace FileManager.Structure
                 .Select(r => r.cellsForFilling);
         }
 
-        public void AddSelectedObjects()
+        public void AddDelSelectedObjects()
         {
-            //var rr = (GetAllCells().ElementAt(this.Selected));
-            //var t = Input;
+            
             if (SelectedFiles.Contains(Input[this.Selected - 1]))
                 SelectedFiles.Remove(Input[this.Selected - 1]);
             else

@@ -61,10 +61,7 @@ namespace FileManager.Structure.PanelStrategy
         {
             foreach (Cell cell in cells)
             {
-                if (panel.SelectedFiles.Contains(cell.Content))
-                    cell.IsSelected = true;
-                else
-                    cell.IsSelected = false;
+                cell.IsSelected = panel.SelectedFiles.Contains(cell.Content);
 
             }
         }

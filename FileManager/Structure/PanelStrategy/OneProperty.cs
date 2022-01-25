@@ -28,9 +28,11 @@ namespace FileManager.Structure.PanelStrategy
 
             foreach (Cell cell in cells)
             {
-                if (cell.IsActive) cell.ChangeColor();
+                if (cell.IsActive) 
+                    cell.ChangeColor();
               
-                if (cell.IsSelected) cell.SetSelectedColor();
+                if (cell.IsSelected) 
+                    cell.SetSelectedColor();
 
                 cell.StartPoint.SetCursor();
 
