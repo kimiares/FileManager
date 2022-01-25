@@ -20,13 +20,19 @@ namespace FileManager.Structure.PanelStrategy
         public void PrintContent(Panel panel, List<FileSystemInfo> input)
         {
             var cells = panel.SetContent(input);
+          
+            cells.SetSelectedCell(panel);
+
 
             Console.ResetColor();
 
             foreach (Cell cell in cells)
             {
-                if (cell.IsActive) cell.ChangeColor();
-                if (cell.IsSelected) cell.SetSelectedColor();
+                if (cell.IsActive) 
+                    cell.ChangeColor();
+              
+                if (cell.IsSelected) 
+                    cell.SetSelectedColor();
 
                 cell.StartPoint.SetCursor();
 
