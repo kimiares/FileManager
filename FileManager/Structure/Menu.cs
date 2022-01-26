@@ -1,5 +1,7 @@
 ﻿using FileManager.Commander;
+using FileManager.Control.Input;
 using FileManager.Drawing;
+using FileManager.Models;
 using FileManager.Structure.PanelStrategy;
 using System;
 using System.Collections.Generic;
@@ -102,6 +104,18 @@ namespace FileManager.Structure
             }
             RefreshButtons();
 
+        }
+
+        public void 
+            
+            (ConsoleKey key, ButtonsDictionary dictionary, OperationModel model)
+        {
+            if (this[0].IsActive) DoAction(key, dictionary, model);
+                DeleteMenu();
+        }
+        public void DoAction(ConsoleKey key, ButtonsDictionary dictionary, OperationModel model)
+        {
+            dictionary.RunOperation(key, model);
         }
 
 

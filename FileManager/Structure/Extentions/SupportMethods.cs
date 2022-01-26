@@ -95,5 +95,8 @@ namespace FileManager.Structure.PanelStrategy
                 Folder.GetFolders(activeCell.Content.FullName)
                 .Union(Files.GetFiles(activeCell.Content.FullName)));
         }
+
+        
+        
     }
 }

@@ -11,7 +11,7 @@ namespace FileManager.Operations
     public class Files: IOperation
     {
 
-        //public static Action<OperationModel> Get = (model) => GetFiles(model);
+        
         public static Action<OperationModel> Copy = (model) => CopyFile(model);
         public static Action<OperationModel> Delete = (model) => DeleteFilesFolders(model);
         public static Action<OperationModel> Rename = (model) => RenameFile(model);

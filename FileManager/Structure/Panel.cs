@@ -208,7 +208,7 @@ namespace FileManager.Structure
 
         }
 
-
+        
         public void OpenFolder()
         {
             

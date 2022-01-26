@@ -1,5 +1,6 @@
 ﻿using FileManager.Models;
 using FileManager.Operations;
+using FileManager.Structure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,12 @@ namespace FileManager.Control.Input
     {
         Dictionary<ConsoleKey, Action<OperationModel>> fKeysDictionary = new Dictionary<ConsoleKey, Action<OperationModel>>()
         {
+                
                 { ConsoleKey.F5, Files.Copy},
                 { ConsoleKey.F6, Files.Rename},
                 { ConsoleKey.F7, Folder.Create},
-                { ConsoleKey.F8, Files.Delete}
-                
+                { ConsoleKey.F8, Files.Delete}                
         };
-
 
         public void RunOperation(ConsoleKey key, OperationModel model)
         {
