@@ -70,18 +70,10 @@ namespace FileManager
             Panel secondPanel = new Panel(secondPanelModel,testFSI);
 
 
-            List<Panel> panels = new List<Panel>() { firstPanel, secondPanel };
+            Panel[] panels = new Panel[2] { firstPanel, secondPanel };
 
             bool panelIndex = false;
-            
-            
-            //Menu menu = new Menu("test",
-            //    new Table(
-            //        "test",
-            //        new Point(MySet.MenuStartX, MySet.MenuStartY),
-            //        new Point(MySet.MenuStartX + MySet.MenuWidth, MySet.MenuStartY + MySet.MenuHeight),
-            //        0));
-            
+                                   
             List<string> items = new List<string>();
 
             foreach (var d in Enum.GetValues(typeof(ButtonEnum)))
@@ -95,51 +87,9 @@ namespace FileManager
             Console.SetCursorPosition(0, 0);
 
             ButtonsDictionary dictionary = new ButtonsDictionary();
-            ConsoleKeyInfo MyKey;
-            do
-            {
-                MyKey = Console.ReadKey();
-                Panel activePanel = panels[panelIndex ? 1 : 0];
-
-                switch (MyKey.Key)
-                {
-                    case ConsoleKey.F5:
-                    case ConsoleKey.F6:
-                    case ConsoleKey.F7:
-                    case ConsoleKey.F8:
-                        //меню тут
-                        dictionary.RunOperation(MyKey.Key, operationModel);
-                        break;
-
-                    case ConsoleKey.UpArrow:
-                        activePanel.MoveUp();
-                        activePanel.FillPanel();
-                        break;
-                    case ConsoleKey.DownArrow:
-                        activePanel.MoveDown();
-                        activePanel.FillPanel();
-                        break;
-                    case ConsoleKey.Tab:
-                        panelIndex = !panelIndex;
-                        //menu.ChangeActiveButton();
-                        break;
-                    case ConsoleKey.D:
-                        //menu.DeleteMenu();
-                        SupportMethods.SetColour();
-                        activePanel.ReDraw();
-                        break;
-                    case ConsoleKey.Enter:
-                        SupportMethods.SetColour();
-                        activePanel.OpenFolder();
-                        SupportMethods.SetColour();
-                        
-                        break;
-
-                }
-
-            }
-            while (MyKey.Key != ConsoleKey.Escape);
-            Console.ReadLine();
+            Keyboard keyboard = new Keyboard();
+            keyboard.KeyboardHandler(panels,dictionary,operationModel);
+            
 
         }
     }

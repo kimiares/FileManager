@@ -59,7 +59,7 @@ namespace FileManager.Structure
                 new Button(
                     CoorditatesCount.CountStartButton(0),
                     CoorditatesCount.CountFinishButton(0),
-                    "YES",
+                    MenuButton.YES.ToString(),
                     false
                     ));
 
@@ -67,7 +67,7 @@ namespace FileManager.Structure
                 new Button(
                     CoorditatesCount.CountStartButton(1),
                     CoorditatesCount.CountFinishButton(1),
-                    "NO",
+                    MenuButton.NO.ToString(),
                     true
                     ));
             Console.ResetColor();
@@ -106,18 +106,7 @@ namespace FileManager.Structure
 
         }
 
-        public void 
-            
-            (ConsoleKey key, ButtonsDictionary dictionary, OperationModel model)
-        {
-            if (this[0].IsActive) DoAction(key, dictionary, model);
-                DeleteMenu();
-        }
-        public void DoAction(ConsoleKey key, ButtonsDictionary dictionary, OperationModel model)
-        {
-            dictionary.RunOperation(key, model);
-        }
-
+        
 
 
         /// <summary>

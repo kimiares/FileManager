@@ -25,6 +25,18 @@ namespace FileManager.Control.Input
             fKeysDictionary[key].Invoke(model);
         }
 
+        Dictionary<ConsoleKey, string> FkeysDecription = new Dictionary<ConsoleKey, string>()
+        {
+            { ConsoleKey.F5, "Copy" },
+            { ConsoleKey.F6, "Rename" },
+            { ConsoleKey.F7, "Create" },
+            { ConsoleKey.F8, "Delete" }
+        };
+
+        public string GetDecription(ConsoleKey key ) =>
+            FkeysDecription[key];
+        
+
 
     }
     
