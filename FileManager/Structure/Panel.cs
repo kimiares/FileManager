@@ -1,5 +1,7 @@
 using FileManager.Commander;
 using FileManager.Drawing;
+using FileManager.Models;
+using FileManager.Operations;
 using FileManager.Structure.Models;
 using FileManager.Structure.PanelStrategy;
 using System;
@@ -28,7 +30,7 @@ namespace FileManager.Structure
         public List<FileSystemInfo> SelectedFiles { get; set; }
 
         public IDrawing drawing;
-        
+
         public IPanelStrategy algorithm;
 
         public Panel(PanelModel panelModel, List<FileSystemInfo> input)
@@ -64,9 +66,11 @@ namespace FileManager.Structure
         public void SetCountPanelElements()
         {
             this.CountPanelElements = mySet.MaxElementsColumn;
-            if (this.algorithm is OneProperty) this.CountPanelElements = 3*mySet.MaxElementsColumn;
+            if(this.Input.Count()<mySet.MaxElementsColumn) this.CountPanelElements = this.Input.Count()+1;
+            if (this.algorithm is OneProperty) this.CountPanelElements = 3 * mySet.MaxElementsColumn;
+            
         }
-         
+
 
         /// <summary>
         /// create cells in each columns
@@ -108,7 +112,7 @@ namespace FileManager.Structure
 
             if (this.Selected <= 0)
             {
-                this.Selected = GetAllCells().Count() - 1;
+                this.Selected = this.CountPanelElements - 1;
                 SetSelected(0, CountPanelElements - 1);
             }
             else
@@ -122,8 +126,10 @@ namespace FileManager.Structure
 
         public void MoveDown()
         {
-            if (this.Selected == GetAllCells().Count() - 1)
+            
+            if (this.Selected == this.CountPanelElements-1)
             {
+                
                 this.Selected = 0;
                 SetSelected(CountPanelElements - 1, this.Selected);
             }
@@ -194,12 +200,39 @@ namespace FileManager.Structure
 
         public void AddDelSelectedObjects()
         {
- 
+
             if (SelectedFiles.Contains(Input[this.Selected - 1]))
                 SelectedFiles.Remove(Input[this.Selected - 1]);
             else
-            SelectedFiles.Add(Input[this.Selected-1]);
+                SelectedFiles.Add(Input[this.Selected - 1]);
 
         }
+
+
+        public void OpenFolder()
+        {
+            
+            Cell activeCell = GetAllCells()
+                .FirstOrDefault(cell => cell.IsActive == true);
+
+            this.Input.Clear();
+
+            if (activeCell.Content is DirectoryInfo) this.GoIntoDir(activeCell);
+
+            if (activeCell.Content is ParentDirectory) this.GoOutOfDir(activeCell);
+
+            this.Selected = 0;
+            activeCell.IsActive = false;
+            
+            ReDraw();
+
+        }
+        
+
+
+
+
+
+
     }
 }

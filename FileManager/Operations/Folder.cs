@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileManager.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,21 +10,43 @@ namespace FileManager.Operations
 {
     public class Folder : IOperation
     {
-        public static IEnumerable<FileSystemInfo> GetFolder(string path)
+
+        public static Action<OperationModel> Get = (model) => GetFolder(model);
+        public static Action<OperationModel> Rename = (model) => RenameFolder(model);
+        public static Action<OperationModel> Create = (model) => CreateFolder(model);
+        public static Action<OperationModel> Copy = (model) => CopyFolders(model);
+
+
+
+        public static IEnumerable<FileSystemInfo> GetFolder(OperationModel model)
+        {
+            try
+            {
+                DirectoryInfo dir = new(model.Path);
+                return dir.GetDirectories();
+            }
+            catch
+            {
+                throw new DirectoryNotFoundException();
+            }            
+        }
+        public static IEnumerable<FileSystemInfo> GetFolders(string path)
         {
             try
             {
                 DirectoryInfo dir = new(path);
                 return dir.GetDirectories();
             }
-            catch(Exception)
+            catch
             {
                 throw new DirectoryNotFoundException();
             }
-
-            
         }
-        public void Copy(FileSystemInfo directory, string pathToCopy)
+        public static void CopyFolders(OperationModel model) => 
+            model.Files.ForEach(folder => CopyFolder(folder, model.Path));     
+        
+
+        public static void CopyFolder(FileSystemInfo directory, string pathToCopy)
         {
             if (!Directory.Exists(pathToCopy))
             {
@@ -46,18 +69,20 @@ namespace FileManager.Operations
             {
                 string name = Path.GetFileName(folder.Name);
                 string dest = Path.Combine(pathToCopy, name);
-                Copy(folder, dest);
+                CopyFolder(folder, dest);
             }
         }
-       
-        public static void Rename(FileSystemInfo directory, string newName)
-        {
-            if (directory.Exists) Directory.Move(directory.Name, newName);
 
-        }
-        public static void Create(string path)
+
+        public static void RenameFolder(OperationModel model)
         {
-            DirectoryInfo directory = new DirectoryInfo(path);
+            foreach(var folder in model.Files)
+                if (folder.Exists) Directory.Move(folder.Name, model.Path);
+            
+        }
+        public static void CreateFolder(OperationModel model)
+        {
+            DirectoryInfo directory = new DirectoryInfo(model.Path);
             directory.Create();
         }
 
