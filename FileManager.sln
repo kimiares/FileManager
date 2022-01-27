@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31910.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager", "FileManager\FileManager.csproj", "{DAFC0504-3A2E-489F-81C1-D75A53D908B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileManager", "FileManager\FileManager.csproj", "{DAFC0504-3A2E-489F-81C1-D75A53D908B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager.Web", "FileManager.Web\FileManager.Web.csproj", "{E09B3B67-61E2-418F-89D5-5B89706266CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DAFC0504-3A2E-489F-81C1-D75A53D908B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAFC0504-3A2E-489F-81C1-D75A53D908B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAFC0504-3A2E-489F-81C1-D75A53D908B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E09B3B67-61E2-418F-89D5-5B89706266CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E09B3B67-61E2-418F-89D5-5B89706266CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E09B3B67-61E2-418F-89D5-5B89706266CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E09B3B67-61E2-418F-89D5-5B89706266CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

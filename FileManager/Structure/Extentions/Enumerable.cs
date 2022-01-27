@@ -1,14 +1,9 @@
 ﻿using FileManager.Exceptions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FileManager.Exceptions;
 
 namespace System.Linq
 {
-    public static partial class Enumerable
+    internal  static partial class Enumerable
     {
         public static IEnumerable<TResult> ZipAll<TFirst, TSecond, TResult>(this IEnumerable<TFirst> first, 
             IEnumerable<TSecond> second, 
