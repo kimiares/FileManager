@@ -27,6 +27,17 @@ namespace FileManager.Control
                     case ConsoleKey.Escape:
                         menu.DeleteMenu();
                         break;
+                    case ConsoleKey.Enter:
+                        if (menu.ActiveButton)
+                        {
+                            dictionary.RunOperation(MyKey.Key, model);
+                        }
+                        else
+                        {
+                            menu.DeleteMenu();
+                        }
+                        SupportMethods.SetColour();
+                        break;
                 }
             }
             while (MyKey.Key != ConsoleKey.Enter);

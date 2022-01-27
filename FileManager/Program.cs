@@ -72,8 +72,7 @@ namespace FileManager
 
             Panel[] panels = new Panel[2] { firstPanel, secondPanel };
 
-            bool panelIndex = false;
-                                   
+            
             List<string> items = new List<string>();
 
             foreach (var d in Enum.GetValues(typeof(ButtonEnum)))

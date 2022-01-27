@@ -39,7 +39,7 @@ namespace FileManager.Control.Input
                                 new Point(MySet.MenuStartX, MySet.MenuStartY),
                                 new Point(MySet.MenuStartX + MySet.MenuWidth, MySet.MenuStartY + MySet.MenuHeight),
                                 0));
-                        Keyboard menuKeyboard = new Keyboard();
+                        model.Files = activePanel.SelectedFiles;
                         MenuKeys.MenuKeyboardHandler(menu, dictionary, model);
                         activePanel.ReDraw();
                         break;
