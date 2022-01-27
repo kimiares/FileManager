@@ -5,19 +5,43 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })
+//export class FetchDataComponent {
+//  public forecasts: TestClass[];
+
+//  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+//    http.get<TestClass[]>(baseUrl + 'weatherforecast').subscribe(result => {
+//      this.forecasts = result;
+//    }, error => console.error(error));
+//  }
+//}
 export class FetchDataComponent {
-  public forecasts: WeatherForecast[];
+  public forecasts: FileSystemModel[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
+    http.get<FileSystemModel[]>(baseUrl + 'weatherforecast').subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
   }
 }
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+//interface WeatherForecast {
+//  date: string;
+//  temperatureC: number;
+//  temperatureF: number;
+//  summary: string;
+//}
+
+//interface TestClass {
+//  Name: string;
+//  Number: number;
+  
+//}
+
+
+interface FileSystemModel {
+  FullName: string;
+  Name: string;
+  CurrentTime: Date;
+  Count: number;
+  
 }

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FileManager.Operations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,17 +26,50 @@ namespace FileManager.Web.Controllers
             _logger = logger;
         }
 
+        //[HttpGet]
+        //public IEnumerable<WeatherForecast> Get()
+        //{
+        //    var rng = new Random();
+        //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        //    {
+        //        Date = DateTime.Now.AddDays(index),
+        //        TemperatureC = rng.Next(-20, 55),
+        //        Summary = Summaries[rng.Next(Summaries.Length)]
+        //    })
+        //    .ToArray();
+        //}
+
+        //[HttpGet]
+        //public IEnumerable<TestClass> Get()
+        //{
+        //    var rng = new Random();
+        //    return Enumerable.Range(1, 5).Select(index => new TestClass
+        //    {
+        //        Name = "test",
+        //        Number = rng.Next(0, 12)
+        //    })
+        //    .ToArray();
+        //}
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<FileSystemModel> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            List<FileSystemInfo> test = Files.GetFiles(@"C:\Windows").ToList();
+            List<FileSystemModel> result = new();
+            
+            foreach(var file in test)
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+                result.Add(
+                    new FileSystemModel()
+                    {
+                        Name = file.Name,
+                        FullName = file.FullName,
+                        Count = file.Name.Length,
+                        CreationTime = file.CreationTime
+                    });
+            }
+            
+            
+            return result.ToArray();
         }
     }
 }

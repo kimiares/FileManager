@@ -59,6 +59,8 @@ namespace FileManager.Structure.PanelStrategy
                 cell.Content?.LastAccessTime.ToShortDateString()
                     .Write();
 
+                
+
             }
         }
 
