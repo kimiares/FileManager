@@ -1,34 +1,33 @@
-<h1 id="tableLabel">Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>Fullname</th>
-      <th>CurrentTime</th>
-      <th>Count</th>
-      
 
 
+<p *ngIf="!firstPanelFiles"><em>Loading...</em></p>
 
 
-
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.name }}</td>
-      <td>{{ forecast.name }}</td>
-      <td>{{ forecast.CurrentTime }}</td>
-      <td>{{ forecast.Count }}</td>
+      <table *ngIf="firstPanelFiles" width="80%">
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>fullName</th>
+            <th>creationTime</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let file of firstPanelFiles" class="quizzes" [class.selected]="file === selectedFile" (click)="onSelect(file)">
+            <td >{{ file.name }}</td>
+            <td>{{ file.fullName }}</td>
+            <td>{{ file.creationTime }}</td>
+          </tr>
+        </tbody>
+      </table>
 
 
 
-    </tr>
-  </tbody>
-</table>
+<h1>{{title}}</h1>
+<div style="overflow: auto; width:600px; height:600px;">
+  <ul class="quizzes" style="list-style-type:none;">
+    <li *ngFor="let file of firstPanelFiles" [class.selected]="file === selectedFile" (click)="onSelect(file)">
+      {{file.name}}
+    </li>
+  </ul>
+</div>
+

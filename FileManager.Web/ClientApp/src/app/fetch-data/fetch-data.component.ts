@@ -1,9 +1,33 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+  templateUrl: './fetch-data.component.html',
+  styles: [`
+.quizzes li, .quizzes tr {
+    color: black;
+    cursor: pointer;
+  }
+.quizzes tr {
+    color: black;
+    cursor: pointer;
+  }
+
+.quizzes li:hover, .quizzes tr:hover {
+    color: green;
+    cursor: pointer;
+  }
+
+.quizzes tr:hover {
+    color: green;
+    cursor: pointer;
+  }
+
+.quizzes tr.selected, .quizzes li.selected {
+    cursor: pointer;
+  color: red;
+}`]
 })
 //export class FetchDataComponent {
 //  public forecasts: TestClass[];
@@ -14,13 +38,45 @@ import { HttpClient } from '@angular/common/http';
 //    }, error => console.error(error));
 //  }
 //}
-export class FetchDataComponent {
-  public forecasts: FileSystemModel[];
+export class FetchDataComponent implements OnInit
+{
+  
+  public firstPanelFiles: FileSystemModel[];
+  public selectedFile?: FileSystemModel;
+  public title: string;
+  public http: HttpClient;
+  public baseUrl: string;
+  
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<FileSystemModel[]>(baseUrl + 'weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string)
+  {
+    this.title = "Files Windows";
+    this.http = http;
+    this.baseUrl = baseUrl;
+    http.get<FileSystemModel[]>(baseUrl + 'panel')
+      .subscribe(result =>
+      {
+        this.firstPanelFiles = result;
+        
+      },
+        error => console.error(error));
+  }
+  ngOnInit(): void {
+  }
+  //onClickMe(event?: MouseEvent, file: FileSystemModel ) {
+    
+  //  alert('Click!');
+
+    
+  //}
+  onSelect(file: FileSystemModel): void {
+    this.selectedFile = file;
+    this.http.post<FileSystemModel[]>(this.baseUrl + 'panel/open', {fileSystem:file}).subscribe(result => {
+      this.firstPanelFiles = result;
+    },
+      error => console.error(error));
+    //alert("Hey!");
+    
   }
 }
 
@@ -39,9 +95,11 @@ export class FetchDataComponent {
 
 
 interface FileSystemModel {
-  FullName: string;
-  Name: string;
-  CurrentTime: Date;
-  Count: number;
+  fullName: string;
+  name: string;
+  count: number;
+  creationTime: Date;
+
+  
   
 }

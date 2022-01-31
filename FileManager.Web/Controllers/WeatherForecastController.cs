@@ -39,37 +39,17 @@ namespace FileManager.Web.Controllers
         //    .ToArray();
         //}
 
-        //[HttpGet]
-        //public IEnumerable<TestClass> Get()
-        //{
-        //    var rng = new Random();
-        //    return Enumerable.Range(1, 5).Select(index => new TestClass
-        //    {
-        //        Name = "test",
-        //        Number = rng.Next(0, 12)
-        //    })
-        //    .ToArray();
-        //}
         [HttpGet]
-        public IEnumerable<FileSystemModel> Get()
+        public IEnumerable<TestClass> Get()
         {
-            List<FileSystemInfo> test = Files.GetFiles(@"C:\Windows").ToList();
-            List<FileSystemModel> result = new();
-            
-            foreach(var file in test)
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => new TestClass
             {
-                result.Add(
-                    new FileSystemModel()
-                    {
-                        Name = file.Name,
-                        FullName = file.FullName,
-                        Count = file.Name.Length,
-                        CreationTime = file.CreationTime
-                    });
-            }
-            
-            
-            return result.ToArray();
+                Name = "test",
+                Number = rng.Next(0, 12)
+            })
+            .ToArray();
         }
+
     }
 }
