@@ -9,7 +9,5 @@ namespace FileManager.Web
     {
         public string Name { get; set; }
         public int Number { get; set; }
-        public string FullName { get; set; }
-
     }
 }

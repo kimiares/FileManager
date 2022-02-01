@@ -39,7 +39,7 @@ export class FetchDataComponent {
 
 
 interface FileSystemModel {
-  fullName: string;
+  FullName: string;
   Name: string;
   CurrentTime: Date;
   Count: number;

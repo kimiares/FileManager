@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +8,6 @@ namespace FileManager.Web
 {
     public class FileSystemModel
     {
-        [JsonProperty(PropertyName ="FullName")]
         public string FullName { get; set; }
         public string Name { get; set; }
         public int Count { get; set; }
