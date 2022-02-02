@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace FileManager.Web
 {
+    [JsonObject(MemberSerialization.OptOut)]
     public class FileSystemModel
     {
-        [JsonProperty("fullName")]
+        //[JsonProperty("fullName")]
         public string FullName { get; set; }
+        //[JsonProperty("name")]
         public string Name { get; set; }
+        //[JsonProperty("creationTime")]
         public DateTime CreationTime { get; set; }
         
     }

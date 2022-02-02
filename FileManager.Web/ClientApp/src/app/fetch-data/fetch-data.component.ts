@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-fetch-data',
@@ -42,6 +42,7 @@ export class FetchDataComponent implements OnInit
 {
   
   public firstPanelFiles: FileSystemModel[];
+
   public selectedFile?: FileSystemModel;
   public title: string;
   public http: HttpClient;
@@ -69,13 +70,17 @@ export class FetchDataComponent implements OnInit
 
     
   //}
-  onSelect(file: FileSystemModel): void {
+  onSelect(file: FileSystemModel):void {
     this.selectedFile = file;
-    this.http.post<FileSystemModel[]>(this.baseUrl + 'panel/open', {fileSystem:file}).subscribe(result => {
+    
+    this.http.post<FileSystemModel[]>(this.baseUrl + 'panel/open', file).subscribe(result => {
       this.firstPanelFiles = result;
     },
+
+
       error => console.error(error));
-    //alert("Hey!");
+
+    
     
   }
 }
@@ -97,9 +102,6 @@ export class FetchDataComponent implements OnInit
 interface FileSystemModel {
   fullName: string;
   name: string;
-  count: number;
-  creationTime: Date;
-
-  
+  creationTime: Date; 
   
 }

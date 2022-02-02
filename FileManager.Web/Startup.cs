@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Text.Json;
 
 namespace FileManager.Web
 {
@@ -19,7 +20,7 @@ namespace FileManager.Web
 
         public IConfiguration Configuration { get; }
 
-        
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -35,7 +36,22 @@ namespace FileManager.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            services.AddControllers().AddNewtonsoftJson(options => options.UseCamelCasing(true));
+            services.AddControllers();
+
+            //services.AddControllers().AddNewtonsoftJson(options =>
+            //{
+            //    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //    options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Include;
+            //    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            //});
+            //services.AddControllers()
+            //    .AddJsonOptions(options =>
+            //        {
+            //            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            //        });
+           
+
+
 
         }
 
@@ -80,6 +96,7 @@ namespace FileManager.Web
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+            
         }
     }
 }

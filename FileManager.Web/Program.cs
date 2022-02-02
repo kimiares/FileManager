@@ -22,5 +22,6 @@ namespace FileManager.Web
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+        
     }
 }

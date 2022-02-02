@@ -1,4 +1,5 @@
 ﻿using FileManager.Operations;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Web.Controllers
 {
+    
     [ApiController]
     [Route("[controller]")]
     public class PanelController : ControllerBase
@@ -39,19 +41,20 @@ namespace FileManager.Web.Controllers
             return;
 
             List<FileSystemModel> result = new();
-            List<FileSystemInfo> files = Files.GetFiles(fileSystem.FullName).Union(Folder.GetFolders(fileSystem.FullName)).ToList();
+            //List<FileSystemInfo> files = Files.GetFiles(fileSystem.FullName)
+            //    .Union(Folder.GetFolders(fileSystem.FullName)).ToList();
 
-            foreach (var file in files)
-            {
-                result.Add(
-                    new FileSystemModel()
-                    {
-                        Name = file.Name,
-                        FullName = file.FullName,
-                        CreationTime = file.CreationTime
-                    });
-            }
-
+            //foreach (var file in files)
+            //{
+            //    result.Add(
+            //        new FileSystemModel()
+            //        {
+            //            Name = file.Name,
+            //            FullName = file.FullName,
+            //            CreationTime = file.CreationTime
+            //        });
+            //}
         }
+       
     }
 }
