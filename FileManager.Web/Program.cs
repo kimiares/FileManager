@@ -1,3 +1,5 @@
+using FileManager.Web.Controllers;
+using FileManager.Web.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -11,9 +13,13 @@ namespace FileManager.Web
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            FSIContext context;
+            //if (context.Files.Any())
+            //    context.Files.AddRange(FileSystemModelInit(@"C:\Windows"));
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

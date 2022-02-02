@@ -1,15 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace FileManager.Web
 {
     [JsonObject(MemberSerialization.OptOut)]
     public class FileSystemModel
     {
+        [Key]
+        public int Id { get; set; }
         //[JsonProperty("fullName")]
         public string FullName { get; set; }
         //[JsonProperty("name")]

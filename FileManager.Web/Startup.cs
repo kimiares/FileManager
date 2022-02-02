@@ -1,7 +1,9 @@
+using FileManager.Web.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +27,10 @@ namespace FileManager.Web
         public void ConfigureServices(IServiceCollection services)
         {
 
+
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<FSIContext>(opt=> opt.UseSqlServer(connection));
+
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -38,17 +44,6 @@ namespace FileManager.Web
             });
             services.AddControllers();
 
-            //services.AddControllers().AddNewtonsoftJson(options =>
-            //{
-            //    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            //    options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Include;
-            //    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-            //});
-            //services.AddControllers()
-            //    .AddJsonOptions(options =>
-            //        {
-            //            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-            //        });
            
 
 

@@ -76,8 +76,6 @@ export class FetchDataComponent implements OnInit
     this.http.post<FileSystemModel[]>(this.baseUrl + 'panel/open', file).subscribe(result => {
       this.firstPanelFiles = result;
     },
-
-
       error => console.error(error));
 
     
