@@ -2,32 +2,38 @@
 
 <p *ngIf="!firstPanelFiles"><em>Loading...</em></p>
 
+<!--<button (click)="">Delete</button>
+<button>Do action</button>-->
 
-      <table *ngIf="firstPanelFiles" width="80%">
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>fullName</th>
-            <th>creationTime</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let file of firstPanelFiles" class="quizzes" [class.selected]="file === selectedFile" (click)="onSelect(file)">
-            <td >{{ file.name }}</td>
-            <td>{{ file.fullName }}</td>
-            <td>{{ file.creationTime }}</td>
-          </tr>
-        </tbody>
-      </table>
+<button (click)="onDelete(selectedFile)">Delete</button>
+<button >Back</button>
+<div style="overflow: auto; width:1200px; height:900px;">
+  <table *ngIf="firstPanelFiles" width="80%">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>fullName</th>
+        <th>creationTime</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of firstPanelFiles" class="quizzes" [class.selected]="file === selectedFile" (click)="onSelect(file)">
+        <td>{{ file.name }}</td>
+        <td>{{ file.fullName }}</td>
+        <td>{{ file.creationTime }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
 
 
 
-<h1>{{title}}</h1>
-<div style="overflow: auto; width:600px; height:600px;">
-  <ul class="quizzes" style="list-style-type:none;">
-    <li *ngFor="let file of firstPanelFiles" [class.selected]="file === selectedFile" (click)="onSelect(file)">
-      {{file.name}}
-    </li>
-  </ul>
-</div>
+  <h1>{{title}}</h1>
+  <div style="overflow: auto; width:600px; height:600px;">
+    <ul class="quizzes" style="list-style-type:none;">
+      <li *ngFor="let file of firstPanelFiles" [class.selected]="file === selectedFile" (click)="onSelect(file)">
+        {{file.name}}
+      </li>
+    </ul>
+  </div>
 

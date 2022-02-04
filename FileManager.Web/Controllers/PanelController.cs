@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Web.Controllers
 {
-    
+
     [ApiController]
     [Route("[controller]")]
     public class PanelController : ControllerBase
@@ -19,100 +19,70 @@ namespace FileManager.Web.Controllers
         public PanelController(FSIContext context)
         {
             this.context = context;
+            
             if (!context.Files.Any())
             {
-                context.Files.AddRange(FileSystemModelInit(@"C:\Windows"));
+                context.Files.AddRange(FileSystemModelInit(@"C:\"));
                 context.SaveChanges();
             }
         }
 
-        //[HttpGet]
-        //public IEnumerable<FileSystemModel> Get()
-        //{
-        //    List<FileSystemInfo> test = Files.GetFiles(@"C:\Windows")
-        //        .Union(Folder.GetFolders(@"C:\Windows")).ToList();
-        //    List<FileSystemModel> result = new();
 
-        //    foreach (var file in test)
-        //    {
-        //        result.Add(
-        //            new FileSystemModel()
-        //            {
-        //                Name = file.Name,
-        //                FullName = file.FullName.ToString(),
-        //                CreationTime = file.CreationTime
-        //            });
-        //    }
-        //    return result.ToArray();
-        //}
+        #region REST
+        [HttpGet]
+        public IEnumerable<FileSystemModel> Get() =>
+           context.Files.ToArray();
 
-        
 
+
+        [HttpPost("Open")]
+        public void Open(FileSystemModel fileSystem)
+        {
+            ClearDbSet();
+            string path = fileSystem.FullName;
+            context.Files.AddRange(FileSystemModelInit(path));
+            context.SaveChanges();
+        }
+
+
+
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            var fileToDelete = context.Files.FirstOrDefault(f => f.Id == id);
+            context.Files.Remove(fileToDelete);
+        }
+        #endregion
+
+
+        #region supported methods
         public List<FileSystemModel> FileSystemModelInit(string path)
         {
             List<FileSystemModel> result = new();
             List<FileSystemInfo> input = Files.GetFiles(path)
                .Union(Folder.GetFolders(path)).ToList();
-            foreach(var file in input)
+            foreach (var file in input)
             {
                 result.Add(
-                    new FileSystemModel() 
-                    { 
+                    new FileSystemModel()
+                    {
                         Name = file.Name,
-                        FullName=file.FullName,
-                        CreationTime=file.CreationTime                        
-                    });                    
+                        FullName = file.FullName,
+                        CreationTime = file.CreationTime
+                    });
             }
             return result;
 
         }
-
-        [HttpGet]
-        public IEnumerable<FileSystemModel> Get()
+        public void ClearDbSet()
         {
-
-            return context.Files.ToArray();
+            foreach (var file in context.Files) context.Files.Remove(file);
+            context.SaveChanges();
         }
-        //[HttpGet]
-        //public IEnumerable<FileSystemModel> Get()
-        //{
-        //    List<FileSystemInfo> test = Files.GetFiles(@"C:\Windows")
-        //        .Union(Folder.GetFolders(@"C:\Windows")).ToList();
-        //    List<FileSystemModel> result = new();
 
-        //    foreach (var file in test)
-        //    {
-        //        result.Add(
-        //            new FileSystemModel()
-        //            {
-        //                Name = file.Name,
-        //                FullName = file.FullName.ToString(),
-        //                CreationTime = file.CreationTime
-        //            });
-        //    }
-        //    return result.ToArray();
-        //}
+        #endregion
 
-        [HttpPost("Open")]
-        public void Open(FileSystemModel fileSystem)
-        {
-            return;
 
-            List<FileSystemModel> result = new();
-            //List<FileSystemInfo> files = Files.GetFiles(fileSystem.FullName)
-            //    .Union(Folder.GetFolders(fileSystem.FullName)).ToList();
 
-            //foreach (var file in files)
-            //{
-            //    result.Add(
-            //        new FileSystemModel()
-            //        {
-            //            Name = file.Name,
-            //            FullName = file.FullName,
-            //            CreationTime = file.CreationTime
-            //        });
-            //}
-        }
-       
     }
 }

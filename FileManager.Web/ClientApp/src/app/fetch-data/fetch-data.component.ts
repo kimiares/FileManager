@@ -78,9 +78,27 @@ export class FetchDataComponent implements OnInit
     },
       error => console.error(error));
 
-    
-    
+
   }
+
+  onDelete(selectedFile: FileSystemModel): void  {
+
+    var reqHeader = new HttpHeaders({
+      "Content-Type": "application/json",
+    });
+    const httpOptions = {
+      headers: reqHeader,
+      body: selectedFile.id
+    };
+
+    this.http.delete(this.baseUrl + 'panel / delete', httpOptions)
+      .subscribe((ok) => { console.log(ok) });
+
+
+  }
+
+  
+
 }
 
 //interface WeatherForecast {
@@ -98,6 +116,7 @@ export class FetchDataComponent implements OnInit
 
 
 interface FileSystemModel {
+  id: number;
   fullName: string;
   name: string;
   creationTime: Date; 

@@ -17,9 +17,7 @@ namespace FileManager.Web
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            FSIContext context;
-            //if (context.Files.Any())
-            //    context.Files.AddRange(FileSystemModelInit(@"C:\Windows"));
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -12,7 +12,7 @@ namespace FileManager.Web.Data
         public DbSet<FileSystemModel> Files { get; set; }
         public FSIContext(DbContextOptions<FSIContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            
         }
     }
 }
