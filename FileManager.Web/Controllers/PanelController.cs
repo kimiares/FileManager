@@ -1,4 +1,5 @@
 ﻿using FileManager.Operations;
+using FileManager.Structure.PanelStrategy;
 using FileManager.Web.Data;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -59,9 +60,17 @@ namespace FileManager.Web.Controllers
         public List<FileSystemModel> FileSystemModelInit(string path)
         {
             List<FileSystemModel> result = new();
+            
             List<FileSystemInfo> input = Files.GetFiles(path)
                .Union(Folder.GetFolders(path)).ToList();
-            foreach (var file in input)
+            
+            var FSIlist = new List<FileSystemInfo>
+            {
+                new ParentDirectory(input[0])
+            }.Union(input);
+
+
+            foreach (var file in FSIlist)
             {
                 result.Add(
                     new FileSystemModel()
