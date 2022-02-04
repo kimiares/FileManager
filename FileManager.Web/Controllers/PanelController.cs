@@ -39,10 +39,44 @@ namespace FileManager.Web.Controllers
         [HttpPost("Open")]
         public void Open(FileSystemModel fileSystem)
         {
+            //ClearDbSet();
+            //string path = fileSystem.FullName;
+            //context.Files.AddRange(FileSystemModelInit(path));
+            //context.SaveChanges();
+
             ClearDbSet();
-            string path = fileSystem.FullName;
-            context.Files.AddRange(FileSystemModelInit(path));
-            context.SaveChanges();
+            context.Files.AddRange(
+
+                (fileSystem.Name == "..")?
+                FileSystemInfoConvert(GoOutFolder(fileSystem)):
+                FileSystemInfoConvert(GoIntoFolder(fileSystem))
+                );
+        }
+        public List<FileSystemInfo> GoIntoFolder(FileSystemModel fileSystem)
+        {
+
+            List<FileSystemInfo> temp = new();
+
+            temp.AddRange(Folder.GetFolders(fileSystem.FullName)
+                .Union(Files.GetFiles(fileSystem.FullName)));
+
+            return temp;
+
+            
+            
+        }
+        public List<FileSystemInfo> GoOutFolder(FileSystemModel fileSystem)
+        {
+
+            FileInfo file = new FileInfo(fileSystem.FullName);
+            DirectoryInfo directory = file.Directory;
+
+            List<FileSystemInfo> temp = new();
+
+            temp.AddRange(Folder.GetFolders(directory.FullName)
+                .Union(Files.GetFiles(directory.FullName)));
+
+            return temp;
         }
 
 
@@ -83,6 +117,33 @@ namespace FileManager.Web.Controllers
             return result;
 
         }
+
+        public List<FileSystemModel> FileSystemInfoConvert(List<FileSystemInfo> input)
+        {
+            List<FileSystemModel> result = new();
+
+           
+            var FSIlist = new List<FileSystemInfo>
+            {
+                new ParentDirectory(input[0])
+            }.Union(input);
+
+
+            foreach (var file in FSIlist)
+            {
+                result.Add(
+                    new FileSystemModel()
+                    {
+                        Name = file.Name,
+                        FullName = file.FullName,
+                        CreationTime = file.CreationTime
+                    });
+            }
+            return result;
+
+        }
+
+
         public void ClearDbSet()
         {
             foreach (var file in context.Files) context.Files.Remove(file);
