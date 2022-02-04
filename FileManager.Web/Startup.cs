@@ -43,6 +43,7 @@ namespace FileManager.Web
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddControllers();
+                
 
            
 

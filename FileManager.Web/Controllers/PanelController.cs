@@ -51,6 +51,8 @@ namespace FileManager.Web.Controllers
                 FileSystemInfoConvert(GoOutFolder(fileSystem)):
                 FileSystemInfoConvert(GoIntoFolder(fileSystem))
                 );
+
+            
         }
         public List<FileSystemInfo> GoIntoFolder(FileSystemModel fileSystem)
         {
@@ -93,28 +95,11 @@ namespace FileManager.Web.Controllers
         #region supported methods
         public List<FileSystemModel> FileSystemModelInit(string path)
         {
-            List<FileSystemModel> result = new();
-            
             List<FileSystemInfo> input = Files.GetFiles(path)
-               .Union(Folder.GetFolders(path)).ToList();
-            
-            var FSIlist = new List<FileSystemInfo>
-            {
-                new ParentDirectory(input[0])
-            }.Union(input);
+               .Union(Folder.GetFolders(path))
+               .ToList();
 
-
-            foreach (var file in FSIlist)
-            {
-                result.Add(
-                    new FileSystemModel()
-                    {
-                        Name = file.Name,
-                        FullName = file.FullName,
-                        CreationTime = file.CreationTime
-                    });
-            }
-            return result;
+            return FileSystemInfoConvert(input);
 
         }
 
