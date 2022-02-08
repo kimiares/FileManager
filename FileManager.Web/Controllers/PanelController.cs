@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace FileManager.Web.Controllers
@@ -37,22 +39,20 @@ namespace FileManager.Web.Controllers
 
 
         [HttpPost("Open")]
-        public void Open(FileSystemModel fileSystem)
+        public IActionResult Open(FileSystemModel fileSystem)
         {
-            //ClearDbSet();
-            //string path = fileSystem.FullName;
-            //context.Files.AddRange(FileSystemModelInit(path));
-            //context.SaveChanges();
-
             ClearDbSet();
             context.Files.AddRange(
 
-                (fileSystem.Name == "..")?
-                FileSystemInfoConvert(GoOutFolder(fileSystem)):
+                (fileSystem.Name == "..") ?
+                FileSystemInfoConvert(GoOutFolder(fileSystem)) :
                 FileSystemInfoConvert(GoIntoFolder(fileSystem))
                 );
 
-            
+            context.SaveChanges();
+            return Ok();
+
+
         }
         public List<FileSystemInfo> GoIntoFolder(FileSystemModel fileSystem)
         {
@@ -62,8 +62,7 @@ namespace FileManager.Web.Controllers
             temp.AddRange(Folder.GetFolders(fileSystem.FullName)
                 .Union(Files.GetFiles(fileSystem.FullName)));
 
-            return temp;
-
+            return temp;            
             
             
         }
@@ -83,11 +82,17 @@ namespace FileManager.Web.Controllers
 
 
 
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public IActionResult Delete(int[] checkedFiles)
         {
-            var fileToDelete = context.Files.FirstOrDefault(f => f.Id == id);
-            context.Files.Remove(fileToDelete);
+            foreach(var c in checkedFiles)
+            {
+                var fileToDelete = context.Files.FirstOrDefault(f => f.Id == c);
+                context.Files.Remove(fileToDelete);
+            }
+
+            context.SaveChanges();
+            return Ok();
         }
         #endregion
 
@@ -107,7 +112,7 @@ namespace FileManager.Web.Controllers
         {
             List<FileSystemModel> result = new();
 
-           
+            if (input == null) throw new Exception();
             var FSIlist = new List<FileSystemInfo>
             {
                 new ParentDirectory(input[0])

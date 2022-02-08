@@ -1,0 +1,24 @@
+.quizzes li, .quizzes tr {
+  color: black;
+  cursor: pointer;
+}
+
+.quizzes tr {
+  color: black;
+  cursor: pointer;
+}
+
+  .quizzes li:hover, .quizzes tr:hover {
+    color: green;
+    cursor: pointer;
+  }
+
+  .quizzes tr:hover {
+    color: green;
+    cursor: pointer;
+  }
+
+  .quizzes tr.selected, .quizzes li.selected {
+    cursor: pointer;
+    color: red;
+  }

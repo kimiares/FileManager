@@ -42,6 +42,7 @@ export class FetchDataComponent implements OnInit
 {
   
   public firstPanelFiles: FileSystemModel[];
+  public checkedFiles?: number[] = [];
 
   public selectedFile?: FileSystemModel;
   public title: string;
@@ -70,6 +71,27 @@ export class FetchDataComponent implements OnInit
 
     
   //}
+  onCheck(event) {
+
+    //if (event.target.value !== undefined) {
+    //  this.checkedFiles.push(event.target.value);
+    //}
+    //this.checkedFiles += event.target.value;
+    this.checkedFiles.push(event.target.value);
+    
+    console.log(event.target.value);    
+  }
+
+  printChecked() {
+
+    console.log(this.checkedFiles);
+    this.checkedFiles.forEach(function (file) {
+      console.log(file)}
+    );
+
+  }
+
+
   onSelect(file: FileSystemModel):void {
     this.selectedFile = file;
     
@@ -81,14 +103,15 @@ export class FetchDataComponent implements OnInit
 
   }
 
-  onDelete(selectedFile: FileSystemModel): void  {
+
+  onDelete(): void  {
 
     var reqHeader = new HttpHeaders({
       "Content-Type": "application/json",
     });
     const httpOptions = {
       headers: reqHeader,
-      body: selectedFile.id
+      body: this.checkedFiles
     };
 
     this.http.delete(this.baseUrl + 'panel / delete', httpOptions)
