@@ -50,7 +50,7 @@ namespace FileManager.Web.Controllers
                 );
 
             context.SaveChanges();
-            return Ok();
+            return RedirectToAction("Get","Panel");
 
 
         }
@@ -73,6 +73,7 @@ namespace FileManager.Web.Controllers
             DirectoryInfo directory = file.Directory;
 
             List<FileSystemInfo> temp = new();
+            if (directory == null) throw new Exception();
 
             temp.AddRange(Folder.GetFolders(directory.FullName)
                 .Union(Files.GetFiles(directory.FullName)));
@@ -82,17 +83,18 @@ namespace FileManager.Web.Controllers
 
 
 
-        [HttpDelete]
-        public IActionResult Delete(int[] checkedFiles)
+        [HttpPost("Delete")]
+        public IActionResult Delete(string[] checkedFiles)
         {
             foreach(var c in checkedFiles)
             {
-                var fileToDelete = context.Files.FirstOrDefault(f => f.Id == c);
+                var fileToDelete = context.Files.FirstOrDefault(f => f.Name == c);
                 context.Files.Remove(fileToDelete);
             }
 
             context.SaveChanges();
-            return Ok();
+            return RedirectToAction();
+
         }
         #endregion
 

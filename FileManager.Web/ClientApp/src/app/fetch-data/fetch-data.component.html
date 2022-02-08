@@ -3,10 +3,9 @@
 <p *ngIf="!firstPanelFiles"><em>Loading...</em></p>
 
 
-<button (click)="onDelete()">Delete</button>
-<button (click)="printChecked()">PrintChecked</button>
 
-<div style="overflow: auto; width:1200px; height:900px;">
+
+<div style="overflow: auto; width:1400px; height:800px;">
   <table *ngIf="firstPanelFiles" width="80%">
     <thead>
       <tr>
@@ -18,23 +17,15 @@
     </thead>
     <tbody>
       <tr *ngFor="let file of firstPanelFiles" class="quizzes">
-        <td><input type="checkbox" name="checkedFiles" [value]="file.id" class="chek" (change)="onCheck($event)"></td>
+        <td><input type="checkbox" name="checkedFiles" [value]="file.name" class="chek" (change)="onCheck($event)" ></td>
         <td [class.selected]="file === selectedFile" (click)="onSelect(file)">{{ file.name }}</td>
         <td>{{ file.fullName }}</td>
         <td>{{ file.creationTime }}</td>
       </tr>
     </tbody>
   </table>
-  </div>
-
-
-
-  <h1>{{title}}</h1>
-  <div style="overflow: auto; width:600px; height:600px;">
-    <ul class="quizzes" style="list-style-type:none;">
-      <li *ngFor="let file of firstPanelFiles" [class.selected]="file === selectedFile" (click)="onSelect(file)">
-        {{file.name}}
-      </li>
-    </ul>
-  </div>
+</div>
+<button (click)="onDeleteTest()">Delete</button>
+<button (click)="printChecked()">PrintChecked</button>
+<button>Rename</button>
 
