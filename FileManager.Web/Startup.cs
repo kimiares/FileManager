@@ -1,4 +1,5 @@
 using FileManager.Web.Data;
+using FileManager.Web.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace FileManager.Web
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<FSIContext>(opt=> opt.UseSqlServer(connection));
+
+            services.AddScoped<IRepository, Repository>();
 
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
