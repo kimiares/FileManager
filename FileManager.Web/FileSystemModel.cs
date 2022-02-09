@@ -9,11 +9,11 @@ namespace FileManager.Web
     {
         [Key]
         public int Id { get; set; }
-        //[JsonProperty("fullName")]
+        
         public string FullName { get; set; }
-        //[JsonProperty("name")]
+        
         public string Name { get; set; }
-        //[JsonProperty("creationTime")]
+                
         public DateTime CreationTime { get; set; }
         
     }

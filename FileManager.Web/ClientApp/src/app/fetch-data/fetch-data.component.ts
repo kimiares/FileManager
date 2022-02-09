@@ -75,15 +75,14 @@ export class FetchDataComponent implements OnInit
   }
 
   onDeleteTest(): void {
-    this.http.post<number[]>(this.baseUrl + 'panel/delete', this.checkedFiles).subscribe((ok) => { console.log(ok) });
-    this.refresh();
+    //this.http.post<string[]>(this.baseUrl + 'panel/delete', this.checkedFiles).subscribe((ok) => { console.log(ok) });
+    this.http.post<FileSystemModel[]>(this.baseUrl + 'panel/delete', this.checkedFiles).subscribe(result => {
+      this.firstPanelFiles = result;
+    });
+    //this.refresh();
 
   }
 
-
-  delete(id: number) {
-    this.http.delete(this.baseUrl + 'panel/delete' + id).subscribe((ok) => { console.log(ok) });
-  }
 
  
 
