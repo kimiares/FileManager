@@ -1,6 +1,7 @@
 ﻿using FileManager.Operations;
 using FileManager.Structure.PanelStrategy;
 using FileManager.Web.Data;
+using FileManager.Web.Model;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,39 +19,33 @@ namespace FileManager.Web.Controllers
     [Route("[controller]")]
     public class PanelController : ControllerBase
     {
-        FSIContext context;
-        public PanelController(FSIContext context)
+        
+        public IRepository repository;
+        public PanelController(IRepository repository)
         {
-            this.context = context;
             
-            if (!context.Files.Any())
-            {
-                context.Files.AddRange(FileSystemModelInit(@"C:\"));
-                context.SaveChanges();
-            }
+            this.repository = repository;
+            this.repository.FilesInit(FileSystemModelInit(@"C:\"));
+            
         }
 
 
         #region REST
         [HttpGet]
         public IEnumerable<FileSystemModel> Get() =>
-           context.Files.ToArray();
-
-
-
+        this.repository.GetFiles();
+        
         [HttpPost("Open")]
         public IActionResult Open(FileSystemModel fileSystem)
         {
-            ClearDbSet();
-            context.Files.AddRange(
 
+            this.repository.AddFilesFromFolder(
                 (fileSystem.Name == "..") ?
                 FileSystemInfoConvert(GoOutFolder(fileSystem)) :
                 FileSystemInfoConvert(GoIntoFolder(fileSystem))
                 );
 
-            context.SaveChanges();
-            return RedirectToAction("Get","Panel");
+            return RedirectToAction("Get", "Panel");
 
 
         }
@@ -62,8 +57,7 @@ namespace FileManager.Web.Controllers
             temp.AddRange(Folder.GetFolders(fileSystem.FullName)
                 .Union(Files.GetFiles(fileSystem.FullName)));
 
-            return temp;            
-            
+            return temp;                        
             
         }
         public List<FileSystemInfo> GoOutFolder(FileSystemModel fileSystem)
@@ -83,17 +77,12 @@ namespace FileManager.Web.Controllers
 
 
 
+        
         [HttpPost("Delete")]
         public IActionResult Delete(string[] checkedFiles)
         {
-            foreach(var c in checkedFiles)
-            {
-                var fileToDelete = context.Files.FirstOrDefault(f => f.Name == c);
-                context.Files.Remove(fileToDelete);
-            }
-
-            context.SaveChanges();
-            return RedirectToAction();
+            this.repository.RemoveFiles(checkedFiles);
+            return Ok();
 
         }
         #endregion
@@ -135,12 +124,6 @@ namespace FileManager.Web.Controllers
 
         }
 
-
-        public void ClearDbSet()
-        {
-            foreach (var file in context.Files) context.Files.Remove(file);
-            context.SaveChanges();
-        }
 
         #endregion
 
