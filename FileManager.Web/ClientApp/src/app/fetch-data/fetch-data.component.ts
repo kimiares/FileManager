@@ -1,49 +1,24 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FileSystemModel } from './IFileSystemModel';
+
+
+
 
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html',
-  styles: [`
-.quizzes li, .quizzes tr {
-    color: black;
-    cursor: pointer;
-  }
-.quizzes tr {
-    color: black;
-    cursor: pointer;
-  }
-
-.quizzes li:hover, .quizzes tr:hover {
-    color: green;
-    cursor: pointer;
-  }
-
-.quizzes tr:hover {
-    color: green;
-    cursor: pointer;
-  }
-
-.quizzes tr.selected, .quizzes li.selected {
-    cursor: pointer;
-  color: red;
-}`]
+  styles: ['./fetch-data.component.css']
 })
-//export class FetchDataComponent {
-//  public forecasts: TestClass[];
 
-//  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-//    http.get<TestClass[]>(baseUrl + 'weatherforecast').subscribe(result => {
-//      this.forecasts = result;
-//    }, error => console.error(error));
-//  }
-//}
 export class FetchDataComponent implements OnInit
 {
   
   public firstPanelFiles: FileSystemModel[];
+  public checkedFiles?: string[] = [];
 
   public selectedFile?: FileSystemModel;
+
   public title: string;
   public http: HttpClient;
   public baseUrl: string;
@@ -61,47 +36,59 @@ export class FetchDataComponent implements OnInit
         
       },
         error => console.error(error));
+    
   }
   ngOnInit(): void {
   }
-  //onClickMe(event?: MouseEvent, file: FileSystemModel ) {
-    
-  //  alert('Click!');
+  
+  onCheck(event) {
 
     
-  //}
+    this.checkedFiles.push(event.target.value);
+    
+    console.log(event.target.value);    
+  }
+
+  printChecked() {
+
+    console.log(this.checkedFiles);
+    this.checkedFiles.forEach(function (file) {
+      console.log(file)}
+    );
+
+  }
+
+
   onSelect(file: FileSystemModel):void {
-    this.selectedFile = file;
+    //this.selectedFile = file;
     
     this.http.post<FileSystemModel[]>(this.baseUrl + 'panel/open', file).subscribe(result => {
       this.firstPanelFiles = result;
     },
-
-
       error => console.error(error));
 
-    
-    
+
   }
+
+  refresh(): void {
+    window.location.reload();
+  }
+
+  onDeleteTest(): void {
+    //this.http.post<string[]>(this.baseUrl + 'panel/delete', this.checkedFiles).subscribe((ok) => { console.log(ok) });
+    this.http.post<FileSystemModel[]>(this.baseUrl + 'panel/delete', this.checkedFiles).subscribe(result => {
+      this.firstPanelFiles = result;
+    });
+    //this.refresh();
+
+  }
+
+
+ 
+
+  
+
 }
 
-//interface WeatherForecast {
-//  date: string;
-//  temperatureC: number;
-//  temperatureF: number;
-//  summary: string;
-//}
-
-//interface TestClass {
-//  Name: string;
-//  Number: number;
-  
-//}
 
 
-interface FileSystemModel {
-  fullName: string;
-  name: string;
-  creationTime: Date; 
-  
-}
