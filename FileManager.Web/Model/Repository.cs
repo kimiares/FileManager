@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileManager.Web.Model
 {
-    public class Repository: IRepository
+    public class Repository : IRepository
     {
 
         public FSIContext context;
@@ -14,7 +14,7 @@ namespace FileManager.Web.Model
         {
             this.context = context;
         }
-        
+
 
         public IEnumerable<FileSystemModel> Files
         {
@@ -39,14 +39,14 @@ namespace FileManager.Web.Model
         {
             context.SaveChanges();
         }
-        
+
         public void RemoveFiles(string[] fileSystems)
         {
-            foreach (var c in fileSystems)
-            {
-                var fileToDelete = context.Files.FirstOrDefault(f => f.Name == c);
-                context.Files.Remove(fileToDelete);
-            }
+            context.Files.RemoveRange(
+                context.Files.Where(
+                    item => fileSystems.Contains(item.Name)
+                    ));
+            
             SaveFiles();
         }
 
