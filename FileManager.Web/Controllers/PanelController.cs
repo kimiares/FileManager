@@ -1,6 +1,7 @@
 ﻿using FileManager.Operations;
 using FileManager.Structure.PanelStrategy;
 using FileManager.Web.Data;
+using FileManager.Web.ExtentionsForFSI;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,7 +26,7 @@ namespace FileManager.Web.Controllers
             
             if (!context.Files.Any())
             {
-                context.Files.AddRange(FileSystemModelInit(@"C:\"));
+                context.Files.AddRange(@"C:\".FileSystemModelInit());
                 context.SaveChanges();
             }
         }
@@ -33,8 +34,10 @@ namespace FileManager.Web.Controllers
 
         #region REST
         [HttpGet]
-        public IEnumerable<FileSystemModel> Get() =>
-           context.Files.ToArray();
+        public IActionResult Get() =>
+            Ok(context.Files.ToArray());
+        
+           
 
 
 
@@ -45,8 +48,10 @@ namespace FileManager.Web.Controllers
             context.Files.AddRange(
 
                 (fileSystem.Name == "..") ?
-                FileSystemInfoConvert(GoOutFolder(fileSystem)) :
-                FileSystemInfoConvert(GoIntoFolder(fileSystem))
+                fileSystem.GoOutFolder()
+                .FileSystemInfoConvert() :
+                    fileSystem.GoIntoFolder()
+                    .FileSystemInfoConvert()
                 );
 
             context.SaveChanges();
@@ -54,32 +59,8 @@ namespace FileManager.Web.Controllers
 
 
         }
-        public List<FileSystemInfo> GoIntoFolder(FileSystemModel fileSystem)
-        {
-
-            List<FileSystemInfo> temp = new();
-
-            temp.AddRange(Folder.GetFolders(fileSystem.FullName)
-                .Union(Files.GetFiles(fileSystem.FullName)));
-
-            return temp;            
-            
-            
-        }
-        public List<FileSystemInfo> GoOutFolder(FileSystemModel fileSystem)
-        {
-
-            FileInfo file = new FileInfo(fileSystem.FullName);
-            DirectoryInfo directory = file.Directory;
-
-            List<FileSystemInfo> temp = new();
-            if (directory == null) throw new Exception();
-
-            temp.AddRange(Folder.GetFolders(directory.FullName)
-                .Union(Files.GetFiles(directory.FullName)));
-
-            return temp;
-        }
+       
+        
 
 
 
@@ -99,50 +80,13 @@ namespace FileManager.Web.Controllers
         #endregion
 
 
-        #region supported methods
-        public List<FileSystemModel> FileSystemModelInit(string path)
-        {
-            List<FileSystemInfo> input = Files.GetFiles(path)
-               .Union(Folder.GetFolders(path))
-               .ToList();
-
-            return FileSystemInfoConvert(input);
-
-        }
-
-        public List<FileSystemModel> FileSystemInfoConvert(List<FileSystemInfo> input)
-        {
-            List<FileSystemModel> result = new();
-
-            if (input == null) throw new Exception();
-            var FSIlist = new List<FileSystemInfo>
-            {
-                new ParentDirectory(input[0])
-            }.Union(input);
-
-
-            foreach (var file in FSIlist)
-            {
-                result.Add(
-                    new FileSystemModel()
-                    {
-                        Name = file.Name,
-                        FullName = file.FullName,
-                        CreationTime = file.CreationTime
-                    });
-            }
-            return result;
-
-        }
-
-
         public void ClearDbSet()
         {
             foreach (var file in context.Files) context.Files.Remove(file);
             context.SaveChanges();
         }
 
-        #endregion
+       
 
 
 
