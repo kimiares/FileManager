@@ -31,11 +31,6 @@ namespace FileManager.Web
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<FSIContext>(opt=> opt.UseSqlServer(connection));
 
-            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
